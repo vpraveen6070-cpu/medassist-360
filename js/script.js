@@ -395,4 +395,170 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // =====================================================================
+    // 7. MEDICINE SEARCH LOGIC (SNAPSHOT ASSISTANT)
+    // =====================================================================
+    const docTypeSelect = document.getElementById('doc-type-select');
+    const snapshotMainActions = document.getElementById('snapshot-main-actions');
+    const medicineSearchPanel = document.getElementById('medicine-search-panel');
+    const medicineSearchBtn = document.getElementById('medicine-search-btn');
+    const medicineSearchInput = document.getElementById('medicine-search-input');
+    const medicineSearchLoading = document.getElementById('medicine-search-loading');
+    const medicineSearchResults = document.getElementById('medicine-search-results');
+
+    // Custom Glass Dropdown Logic
+    const customSelect = document.getElementById('custom-doc-select');
+    if (customSelect) {
+        const trigger = customSelect.querySelector('.select-trigger');
+        const triggerText = customSelect.querySelector('.select-text');
+        const optionsContainer = customSelect.querySelector('.custom-options');
+        const options = customSelect.querySelectorAll('.custom-option');
+
+        trigger.addEventListener('click', (e) => {
+            optionsContainer.style.display = optionsContainer.style.display === 'flex' ? 'none' : 'flex';
+            e.stopPropagation();
+        });
+
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                // Update text and classes
+                triggerText.innerText = option.innerText;
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
+                // Update hidden select and trigger change
+                if (docTypeSelect) {
+                    docTypeSelect.value = option.getAttribute('data-value');
+                    docTypeSelect.dispatchEvent(new Event('change'));
+                }
+                
+                optionsContainer.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('click', () => {
+            optionsContainer.style.display = 'none';
+        });
+    }
+
+    if (docTypeSelect && snapshotMainActions && medicineSearchPanel) {
+        docTypeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'medicine_search') {
+                snapshotMainActions.style.display = 'none';
+                medicineSearchPanel.style.display = 'block';
+                medicineSearchResults.style.display = 'none';
+                medicineSearchInput.value = '';
+            } else {
+                snapshotMainActions.style.display = 'flex';
+                medicineSearchPanel.style.display = 'none';
+            }
+        });
+    }
+
+    if (medicineSearchBtn && medicineSearchInput) {
+        medicineSearchBtn.addEventListener('click', async () => {
+            const query = medicineSearchInput.value.trim();
+            if (!query) {
+                alert("Please enter a medicine name.");
+                return;
+            }
+
+            // Hide results, show loading
+            medicineSearchResults.style.display = 'none';
+            medicineSearchLoading.style.display = 'block';
+            medicineSearchBtn.disabled = true;
+
+            try {
+                // Real Background Search API Fetch (Mimicking Google Search Engine behavior)
+                const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`;
+                const searchRes = await fetch(searchUrl);
+                let desc = "";
+                let usage = "Usage instructions generally depend on patient age, weight, and medical history. Please refer to the packaging or consult a healthcare professional.";
+                let details = "Consult your healthcare provider for full medical details and potential side-effects.";
+                let isRecommended = true;
+                let foundTitle = query;
+
+                if (searchRes.ok) {
+                    const searchData = await searchRes.json();
+                    if (searchData.query && searchData.query.search.length > 0) {
+                        foundTitle = searchData.query.search[0].title; // Best match from the search engine!
+                        
+                        // Fetch the detail abstract of the top search result
+                        const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(foundTitle)}`;
+                        const pageRes = await fetch(pageUrl);
+                        if (pageRes.ok) {
+                            const pageData = await pageRes.json();
+                            desc = pageData.extract; // The actual background search result details
+                            
+                            // Dynamic real-time heuristics based on actual description
+                            const descLower = desc.toLowerCase();
+                            if (descLower.includes("prescription") || descLower.includes("antibiotic") || descLower.includes("schedule") || descLower.includes("controlled") || descLower.includes("rx-only") || descLower.includes("doctor")) {
+                                isRecommended = false;
+                            }
+                            if (descLower.includes("over-the-counter") || descLower.includes("otc") || descLower.includes("supplement")) {
+                                isRecommended = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!desc) {
+                    // Fallback if the search engine completely fails or returns zero results
+                    const qLower = query.toLowerCase();
+                    desc = `We couldn't find extensive public details for "${foundTitle}". It may be a specialized or newly registered medication.`;
+                    
+                    if (qLower.includes("antibiotic") || qLower.includes("amoxicillin") || qLower.includes("azithromycin")) {
+                        isRecommended = false;
+                        desc = "A prescription antibiotic used to treat various bacterial infections.";
+                    } else if (qLower.includes("syrup") || qLower.includes("cough")) {
+                        isRecommended = true;
+                        desc = "Cough suppressant and expectorant syrup used for relief of dry cough and throat irritation.";
+                    } else if (qLower.includes("insulin") || qLower.includes("metformin")) {
+                        isRecommended = false;
+                        desc = "Anti-diabetic medication used to control high blood sugar in patients with diabetes.";
+                    }
+                }
+
+                // Update UI elements
+                const nameEl = document.getElementById('med-res-title');
+                const recEl = document.getElementById('med-res-rec');
+                const descEl = document.getElementById('med-res-desc');
+                const usageEl = document.getElementById('med-res-usage');
+                const detailsEl = document.getElementById('med-res-details');
+
+                nameEl.innerText = foundTitle.charAt(0).toUpperCase() + foundTitle.slice(1);
+                
+                if (isRecommended) {
+                    recEl.innerHTML = '✅ Recommended for General Use (OTC)';
+                    recEl.style.background = 'rgba(0, 255, 100, 0.1)';
+                    recEl.style.color = '#00ff64';
+                } else {
+                    recEl.innerHTML = '⚠️ Prescription Required (Consult Doctor)';
+                    recEl.style.background = 'rgba(255, 170, 0, 0.1)';
+                    recEl.style.color = '#ffaa00';
+                }
+
+                descEl.innerText = desc;
+                usageEl.innerText = usage;
+                detailsEl.innerText = details;
+
+            } catch (error) {
+                console.error("Error fetching medicine data:", error);
+                const descEl = document.getElementById('med-res-desc');
+                if (descEl) descEl.innerText = "Failed to fetch medicine details. Please try again or check your internet connection.";
+            } finally {
+                medicineSearchLoading.style.display = 'none';
+                medicineSearchBtn.disabled = false;
+                medicineSearchResults.style.display = 'block';
+            }
+        });
+
+        // Trigger search on Enter key
+        medicineSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                medicineSearchBtn.click();
+            }
+        });
+    }
+
 });

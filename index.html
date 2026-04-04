@@ -168,16 +168,32 @@
                         medical documents, prescriptions, or medicine packaging for instant AI analysis.</p>
                 </div>
 
-                <div class="input-types" style="max-width: 400px; margin: 0 auto 30px;">
-                    <select id="doc-type-select" class="premium-select" title="Select Document Type">
+                <div class="input-types glass-select-container" style="max-width: 400px; margin: 0 auto 30px; position: relative;">
+                    <!-- Hidden native select for compatibility -->
+                    <select id="doc-type-select" style="display: none;">
                         <option value="prescription">Prescription</option>
                         <option value="medicine">Medicine / Tablet Pack</option>
                         <option value="lab_report">Lab / Diagnostic Report</option>
                         <option value="other">Other Medical Document</option>
+                        <option value="medicine_search">Medicine Search</option>
                     </select>
+
+                    <!-- Custom Dropdown UI -->
+                    <div class="custom-select" id="custom-doc-select">
+                        <div class="select-trigger premium-select" style="text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                            <span class="select-text">Prescription</span>
+                        </div>
+                        <div class="custom-options glass-panel" style="position: absolute; top: calc(100% + 10px); left: 0; right: 0; z-index: 100; border-radius: 12px; overflow: hidden; display: none; flex-direction: column; text-align: left; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                            <div class="custom-option selected" data-value="prescription">Prescription</div>
+                            <div class="custom-option" data-value="medicine">Medicine / Tablet Pack</div>
+                            <div class="custom-option" data-value="lab_report">Lab / Diagnostic Report</div>
+                            <div class="custom-option" data-value="other">Other Medical Document</div>
+                            <div class="custom-option" data-value="medicine_search">Medicine Search</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="action-cards" style="display: flex; gap: 20px; justify-content: center;">
+                <div id="snapshot-main-actions" class="action-cards" style="display: flex; gap: 20px; justify-content: center;">
                     <div class="action-card" id="btn-camera" onclick="window.location.href='snapshot-assistant.html'"
                         style="flex: 1;">
                         <div class="icon-ring" style="margin: 0 auto 20px;">📷</div>
@@ -189,6 +205,38 @@
                         <div class="icon-ring" style="margin: 0 auto 20px;">📂</div>
                         <h3 data-i18n="snap_btn_up">Upload Image</h3>
                         <p data-i18n="snap_btn_up_desc">Choose from gallery</p>
+                    </div>
+                </div>
+
+                <!-- Medicine Search Panel -->
+                <div id="medicine-search-panel" style="display: none; max-width: 600px; margin: 0 auto; text-align: left; animation: fadeInUp 0.4s ease forwards;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <input type="text" id="medicine-search-input" placeholder="Enter medicine name (e.g. Paracetamol)" style="flex: 1; min-width: 250px; padding: 15px 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                        <button id="medicine-search-btn" class="btn btn-primary" style="border-radius: 30px; padding: 0 35px; border: none; font-weight: 600;">
+                            <span>🔍 Search</span>
+                        </button>
+                    </div>
+                    
+                    <div id="medicine-search-loading" style="display: none; text-align: center; color: #cbd5e1; padding: 30px 0;">
+                        <div style="display: inline-block; width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--primary); border-radius: 50%; margin-bottom: 10px; animation: __spin 1s linear infinite;"></div>
+                        <div>Analyzing database...</div>
+                        <style>@keyframes __spin { to { transform: rotate(360deg); } }</style>
+                    </div>
+
+                    <div id="medicine-search-results" class="glass-panel" style="display: none; padding: 30px; border-left: 4px solid var(--accent-blue); text-align: left;">
+                        <h4 id="med-res-title" style="font-size: 1.6rem; margin-bottom: 10px; color: white;"></h4>
+                        <div style="margin-bottom: 20px;">
+                            <span id="med-res-rec" style="padding: 6px 14px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;"></span>
+                        </div>
+                        
+                        <h5 style="color: white; margin-bottom: 8px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Description</h5>
+                        <p id="med-res-desc" style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem;"></p>
+                        
+                        <h5 style="color: white; margin-bottom: 8px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Usage Instructions</h5>
+                        <p id="med-res-usage" style="color: #cbd5e1; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem;"></p>
+                        
+                        <h5 style="color: white; margin-bottom: 8px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">More Details</h5>
+                        <p id="med-res-details" style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;"></p>
                     </div>
                 </div>
             </div>

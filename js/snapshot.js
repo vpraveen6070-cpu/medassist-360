@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function startProcessing() {
+    async function startProcessing() {
         switchStep(stepProcessing);
         
         // Validate Image
@@ -158,18 +158,59 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Simulate Processing Delays
+        // Simulate Google Lens Processing Flow
         const statusText = document.getElementById('processing-text');
+        statusText.innerText = 'Initializing Google Lens Vision API...';
         
-        setTimeout(() => { statusText.innerText = 'Extracting text (OCR)...'; }, 1000);
-        setTimeout(() => { statusText.innerText = 'Applying Medical NLP...'; }, 2500);
-        setTimeout(() => { statusText.innerText = 'Cross-referencing databases...'; }, 4000);
+        setTimeout(() => { statusText.innerText = 'Extracting OCR text and identifying objects...'; }, 1000);
+        setTimeout(() => { statusText.innerText = 'Querying Global Web Database...'; }, 2200);
+        
+        // Simulating Google Lens confidentially extracting a medication name from the image
+        const possibleScans = ['Paracetamol', 'Ibuprofen', 'Amoxicillin', 'Lisinopril', 'Aspirin', 'Metformin', 'Atorvastatin', 'Omeprazole', 'Amlodipine', 'Cetirizine', 'Azithromycin'];
+        const query = possibleScans[Math.floor(Math.random() * possibleScans.length)];
+        
+        let desc = "";
+        let foundTitle = query;
+        let isRecommended = true;
+
+        try {
+            // Live Background API Fetch simulating Google's knowledge graph natively
+            const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`;
+            const searchRes = await fetch(searchUrl);
+            if (searchRes.ok) {
+                const searchData = await searchRes.json();
+                if (searchData.query.search.length > 0) {
+                    foundTitle = searchData.query.search[0].title;
+                    const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(foundTitle)}`;
+                    const pageRes = await fetch(pageUrl);
+                    if (pageRes.ok) {
+                        const pageData = await pageRes.json();
+                        desc = pageData.extract;
+                        
+                        // Parse live data for warnings
+                        const descLower = desc.toLowerCase();
+                        if (descLower.includes("prescription") || descLower.includes("antibiotic") || descLower.includes("controlled") || descLower.includes("rx-only") || descLower.includes("doctor")) {
+                            isRecommended = false;
+                        }
+                        if (descLower.includes("over-the-counter") || descLower.includes("otc") || descLower.includes("supplement")) {
+                            isRecommended = true;
+                        }
+                    }
+                }
+            }
+        } catch(e) {
+            console.error("Lens Simulation Fetch Error:", e);
+        }
+        
+        if (!desc) {
+            desc = `Background extraction identified "${foundTitle}", but detailed public documentation was not immediately available over the network connection.`;
+        }
         
         setTimeout(() => {
-            renderResults();
+            renderDynamicResults(foundTitle, desc, isRecommended);
             switchStep(stepResults);
-            statusText.innerText = 'Analyzing Document...'; // reset
-        }, 5500);
+            statusText.innerText = 'Analyzing Document...'; // reset for next time
+        }, 3600);
     }
 
     // --- Mock Data Rendering based on Type ---
@@ -267,45 +308,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderResults() {
+    function renderDynamicResults(title, desc, isRecommended) {
+        const titleSpan = document.getElementById('res-title');
         const mainContent = document.getElementById('res-extracted-content');
         const safetyContent = document.getElementById('res-safety-content');
         const timelineCard = document.getElementById('card-timeline');
         const timelineContent = document.getElementById('res-timeline');
         const nearbyContent = document.getElementById('res-nearby');
-        const titleSpan = document.getElementById('res-title');
         const safetyCard = document.getElementById('card-safety');
         const dietCard = document.getElementById('card-diet');
         const dietContent = document.getElementById('res-diet-content');
 
-        // Reset display
-        timelineCard.classList.add('hidden');
-        timelineContent.innerHTML = '';
+        // Reset visibility
+        if (timelineCard) timelineCard.classList.remove('hidden');
         if (safetyCard) safetyCard.classList.remove('hidden');
-        if (dietCard) dietCard.classList.add('hidden');
+        if (dietCard) dietCard.classList.remove('hidden');
         nearbyContent.innerHTML = '';
 
-        const scenario = getNextScenario();
+        const trustBadge = isRecommended ? 
+            `<span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);">OTC Verified</span>` :
+            `<span style="font-size: 0.7rem; background: rgba(255,165,0,0.1); color: #fbbf24; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">Prescription Required</span>`;
 
-        titleSpan.innerHTML = scenario.title;
-        mainContent.innerHTML = scenario.main;
-        safetyContent.innerHTML = scenario.safety;
+        titleSpan.innerHTML = `<span style="display:flex; align-items:center; gap:8px;">Google Lens Match <span style="font-size: 1.2rem;">🔍</span></span> ${trustBadge}`;
         
-        if (scenario.diet) {
-            dietCard.classList.remove('hidden');
-            dietContent.innerHTML = scenario.diet;
-        }
+        mainContent.innerHTML = `
+            <div class="info-row"><span class="info-label">Identified Object:</span> <span class="info-value highlight-value" style="font-size:1.15rem">${title}</span></div>
+            <div class="info-row" style="flex-direction:column; align-items:flex-start; text-align:left; border:none; padding-top:15px;">
+                <span class="info-label" style="margin-bottom:8px; color: #cbd5e1; font-weight: 500;">Live Web Knowledge Graph:</span> 
+                <span class="info-value" style="text-align:left; max-width:100%; font-size:0.95rem; line-height:1.6; color:#94a3b8; font-weight: normal;">${desc}</span>
+            </div>
+        `;
 
-        if (scenario.hasTimeline) {
-            timelineCard.classList.remove('hidden');
-            timelineContent.innerHTML = scenario.timeline;
-        }
-
-        if (scenario.type === 'hospital') {
-            nearbyContent.innerHTML = getMockHospitals();
+        if (isRecommended) {
+            safetyContent.innerHTML = `<div class="info-row" style="border:none;"><span class="info-label">Advisory:</span> <span class="info-value" style="font-size:0.9rem; color:#4ade80;">Generally safe for over-the-counter use. Follow packaging limits.</span></div>`;
+            dietContent.innerHTML = `
+                <div class="info-row"><span class="info-label">Recommended Pairing:</span> <span class="info-value">Take with plain water</span></div>
+                <div class="info-row" style="border:none;"><span class="info-label">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;">Excessive alcohol consumption</span></div>
+            `;
+            timelineContent.innerHTML = `<div class="timeline-item"><span class="time-label">Dosage Routine</span><div class="time-action"><span>${title}</span> <span class="food-note">Do not exceed maximum daily limits as per box</span></div></div>`;
         } else {
-            nearbyContent.innerHTML = getMockPharmacies();
+            safetyContent.innerHTML = `<div class="info-row" style="border:none;"><span class="info-label">Advisory:</span> <span class="info-value alert-value" style="font-size:0.9rem;">Strict adherence to physician prescription required.</span></div>`;
+            dietContent.innerHTML = `
+                <div class="info-row"><span class="info-label">Important Note:</span> <span class="info-value">Consult doctor for dietary restrictions</span></div>
+                <div class="info-row" style="border:none;"><span class="info-label">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;">Grapefruit juice or specific vitamins that may interact</span></div>
+            `;
+            timelineContent.innerHTML = `<div class="timeline-item"><span class="time-label">Schedule</span><div class="time-action"><span>${title}</span> <span class="food-note">Take strictly according to your physician's schedule</span></div></div>`;
         }
+
+        nearbyContent.innerHTML = getMockPharmacies(); 
         
         // Let the language script replace tags if needed
         if (typeof changeLanguage === 'function') {

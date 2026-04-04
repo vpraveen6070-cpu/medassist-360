@@ -86,9 +86,29 @@
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
 }
 
-.premium-select option {
-    background-color: var(--bg-dark);
-    color: var(--text);
+/* Custom Dropdown UI */
+.custom-select {
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+
+.custom-option {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+}
+
+.custom-option:last-child {
+    border-bottom: none;
+}
+
+.custom-option:hover, .custom-option.selected {
+    background: rgba(56, 189, 248, 0.15);
+    color: white;
+    padding-left: 25px;
 }
 
 /* Action Cards */

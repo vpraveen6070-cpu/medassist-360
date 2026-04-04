@@ -325,12 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Analysis Logic
     const validKeywords = ['pain', 'ache', 'fever', 'cough', 'cold', 'bleed', 'breath', 'chest', 'head', 'stomach', 'nausea', 'vomit', 'dizzy', 'tired', 'fatigue', 'rash', 'itch', 'swell', 'burn', 'tingl', 'numb', 'weak', 'chill', 'sweat', 'sore', 'hurt', 'cramp', 'lump', 'blood', 'heart', 'muscle', 'joint', 'skin', 'migraine', 'flu', 'infection', 'vision', 'hearing', 'throat', 'sick', 'ill'];
 
-    analyzeBtn.addEventListener('click', () => {
+    analyzeBtn.addEventListener('click', async () => {
         const symptoms = textInput.value.toLowerCase();
         const hasValidKeyword = validKeywords.some(kw => symptoms.includes(kw));
         
         // Validation check for random text or empty inputs
-        if (!hasValidKeyword && symptoms.trim().split(/\\s+/).length < 4) {
+        if (!hasValidKeyword && symptoms.trim().split(/\s+/).length < 4) {
             alert('Invalid input: We could not detect any recognizable medical symptoms. Please describe your condition with more specific symptom keywords (e.g., pain, fever, cough) or provide more context.');
             return;
         }
@@ -343,15 +343,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const severity = parseInt(severityInput.value);
 
-        // Analyze after delay
-        setTimeout(() => {
-            renderAnalysis(symptoms, severity);
-            loadingState.classList.add('hidden');
-            resultsState.classList.remove('hidden');
-        }, 2000); // 2 second mock delay
+        // Process Live Analysis with Background Web Search
+        await renderLiveAnalysis(symptoms, severity);
+        
+        loadingState.classList.add('hidden');
+        resultsState.classList.remove('hidden');
     });
 
-    function renderAnalysis(symptoms, severity) {
+    async function renderLiveAnalysis(symptoms, severity) {
         const isEmergency = symptoms.includes('chest') || symptoms.includes('breath') || symptoms.includes('bleed') || severity > 7;
         const levelDisplay = document.getElementById('risk-level-display');
         const descDisplay = document.getElementById('risk-desc-display');
@@ -362,52 +361,79 @@ document.addEventListener('DOMContentLoaded', () => {
         levelDisplay.className = 'risk-level';
         conditionsList.innerHTML = '';
 
+        // Determine Triage Logic and Formatting
+        let colorCode = '';
+        let dot = '';
         if (isEmergency) {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_high_lvl');
             levelDisplay.classList.add('risk-danger');
             descDisplay.setAttribute('data-i18n', 'sym_risk_high_desc');
             emergencyWarning.classList.remove('hidden');
-            
-            conditionsList.innerHTML = `
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #ef4444;" data-i18n="sym_cond_high1_title">🔴 Suspected Deep Tissue / Cardiac Anomaly</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_high1_desc">Symptoms match critical cardiopulmonary distress markers. Immediate stabilization recommended.</span>
-                </li>
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #ef4444;" data-i18n="sym_cond_high2_title">🔴 Acute Respiratory / Vascular Event</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_high2_desc">High probability of severe systemic disruption requiring specialized emergent intervention.</span>
-                </li>
-            `;
+            colorCode = '#ef4444';
+            dot = '🔴';
         } else if (severity > 4) {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_med_lvl');
             levelDisplay.classList.add('risk-medium');
             descDisplay.setAttribute('data-i18n', 'sym_risk_med_desc');
             emergencyWarning.classList.add('hidden');
-            
-            conditionsList.innerHTML = `
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #f59e0b;" data-i18n="sym_cond_med1_title">🟠 Probable Viral/Bacterial Infection</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_med1_desc">Consistent with upper-respiratory or localized infectious profiles. Requires physician diagnosis.</span>
-                </li>
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #f59e0b;" data-i18n="sym_cond_med2_title">🟠 Moderate Inflammatory Response</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_med2_desc">Localized swelling or systemic immune reactions detected based on pain scale and symptom description.</span>
-                </li>
-            `;
+            colorCode = '#f59e0b';
+            dot = '🟠';
         } else {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_low_lvl');
             levelDisplay.classList.add('risk-low');
             descDisplay.setAttribute('data-i18n', 'sym_risk_low_desc');
             emergencyWarning.classList.add('hidden');
+            colorCode = '#22c55e';
+            dot = '🟢';
+        }
+
+        // Live Web Knowledge Fetch Engine (Mimicking Google Background Search)
+        let liveConditionsHTML = '';
+        try {
+            const validKWs = ['pain', 'ache', 'fever', 'cough', 'cold', 'bleed', 'breath', 'chest', 'head', 'stomach', 'nausea', 'vomit', 'dizzy', 'tired', 'fatigue', 'rash', 'itch', 'swell', 'burn', 'tingl', 'numb', 'weak', 'chill', 'sweat', 'sore', 'hurt', 'cramp', 'lump', 'blood', 'heart', 'muscle', 'joint', 'skin', 'migraine', 'flu', 'infection', 'vision', 'hearing', 'throat', 'sick', 'ill'];
+            let queryWords = validKWs.filter(kw => symptoms.includes(kw));
+            if (queryWords.length === 0) queryWords = symptoms.split(' ').slice(0, 2);
             
+            // Append "disease" to ensure the search engine locks onto medical articles
+            const searchQuery = queryWords.join(' ') + ' disease';
+
+            const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchQuery)}&utf8=&format=json&origin=*`;
+            const searchRes = await fetch(searchUrl);
+            if (searchRes.ok) {
+                const searchData = await searchRes.json();
+                let results = searchData.query.search || [];
+                
+                // Filter out meta pages and pick the top 2 highly relevant diagnoses
+                results = results.filter(r => !r.title.includes("List of") && !r.title.includes("Wikipedia:")).slice(0, 2);
+
+                for (let r of results) {
+                    const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(r.title)}`;
+                    const pageRes = await fetch(pageUrl);
+                    if (pageRes.ok) {
+                        const pageData = await pageRes.json();
+                        const extract = pageData.extract || "No detailed clinical abstract available. Consult a physician for accurate diagnosis.";
+                        liveConditionsHTML += `
+                            <li style="margin-bottom:15px; line-height: 1.5;">
+                                <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} Web Match: ${r.title}</strong><br>
+                                <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">${extract}</span>
+                            </li>
+                        `;
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Live Web Search Sync Error:", e);
+        }
+
+        // Render Results or Fallbacks
+        if (liveConditionsHTML.trim()) {
+            conditionsList.innerHTML = liveConditionsHTML;
+        } else {
+            // Fallback heuristic if network fails or 0 zero matches
             conditionsList.innerHTML = `
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #22c55e;" data-i18n="sym_cond_low1_title">🟢 Benign Systemic Fatigue</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_low1_desc">Matches profiles of standard sleep deficit or mild physiological stress.</span>
-                </li>
-                <li style="margin-bottom:12px; line-height: 1.4;">
-                    <strong style="color: #22c55e;" data-i18n="sym_cond_low2_title">🟢 Uncomplicated Seasonal Immunity Response</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85;" data-i18n="sym_cond_low2_desc">Symptoms resemble standard common cold or brief allergic reactive markers. Expected to clear shortly.</span>
+                <li style="margin-bottom:15px; line-height: 1.5;">
+                    <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} General Physiological Response</strong><br>
+                    <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">Your submitted symptoms match generalized physiological defense markers. Please consult our recommended clinics for a thorough physical evaluation.</span>
                 </li>
             `;
         }
