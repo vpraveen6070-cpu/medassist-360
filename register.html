@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account | MedAssist 360</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* Locks physical scrollbar, lets wheel events only drive cinematic engine */
+        }
+
+        .login-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 40px 40px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .login-header {
+            margin-bottom: 25px;
+        }
+
+        .login-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .login-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .login-form {
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-form .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .login-form .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 18px;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--trans-smooth);
+            outline: none;
+        }
+
+        .login-form .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px var(--primary-dim);
+        }
+
+        .login-form .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Fix Browser Autofill Background */
+        .login-form .input-group input:-webkit-autofill,
+        .login-form .input-group input:-webkit-autofill:hover,
+        .login-form .input-group input:-webkit-autofill:focus,
+        .login-form .input-group input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .auth-footer {
+            margin-top: 25px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .auth-footer a {
+            color: #fff;
+            font-weight: 600;
+            transition: var(--trans-smooth);
+            margin-left: 5px;
+        }
+
+        .auth-footer a:hover {
+            color: var(--primary);
+        }
+
+        .simple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .login-section {
+                height: auto;
+                min-height: 100vh;
+                align-items: flex-start;
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .simple-nav {
+                padding: 15px 20px;
+                position: absolute;
+                background: rgba(10, 10, 10, 0.8);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
+            .simple-nav .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .brand-text {
+                font-size: 1.2rem;
+            }
+
+            .login-card {
+                padding: 30px 25px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Pill Loader Styles */
+        .pill-loader-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.85);
+            backdrop-filter: blur(10px);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .pill-loader-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+        .pill {
+            width: 40px;
+            height: 100px;
+            position: relative;
+            animation: rotate-pill 1.5s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+        }
+        .pill-top, .pill-bottom {
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            border: 2px solid #555;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .pill-top {
+            top: 0;
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid #444;
+            background: #2a2a2a;
+        }
+        .pill-bottom {
+            bottom: 0;
+            border-radius: 0 0 20px 20px;
+            border-top: none;
+            background: rgba(180, 20, 20, 0.3);
+            border-color: rgba(239, 68, 68, 0.6);
+        }
+        .dot-row {
+            display: flex;
+            gap: 4px;
+        }
+        .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+        .dot.w { background: #fff; box-shadow: 0 0 8px #fff; animation: pulse 1s infinite alternate; }
+        .dot.r { background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; animation: pulse 1s infinite alternate-reverse; }
+        
+        .loading-text {
+            color: #fff;
+            margin-top: 30px;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes rotate-pill {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Cinematic Background Engine -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Minimal Nav -->
+    <header class="simple-nav">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">✧</span>
+            <span class="brand-text">MedAssist 360</span>
+        </a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <select id="language-select" class="lang-selector">
+                <option value="en">English</option>
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+            </select>
+            <a href="index.html" class="btn btn-outline btn-sm" data-i18n="back_home">← Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Register Area -->
+    <section class="login-section">
+        <div class="glass-panel login-card hover-tilt">
+            <div class="login-header">
+                <a href="index.html" class="login-brand" style="text-decoration: none;">
+                    <span class="brand-icon" style="font-size: 2.5rem; margin-bottom: 5px;">✧</span>
+                </a>
+                <h2 style="font-size: 2rem; margin-bottom: 5px; font-weight: 700;"><span
+                        data-i18n="reg_welcome">Create</span> <span class="text-gradient"
+                        data-i18n="reg_account">Account</span></h2>
+                <p class="login-subtitle" data-i18n="reg_subtitle">Join the medical intelligence network.</p>
+            </div>
+
+            <form class="login-form" action="login.html" method="GET">
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 6px; font-size: 0.85rem; color: #cbd5e1;"
+                        data-i18n="reg_name">User
+                        Name</label>
+                    <input type="text" placeholder="Dr. John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 6px; font-size: 0.85rem; color: #cbd5e1;"
+                        data-i18n="reg_email">Work
+                        Email</label>
+                    <input type="email" placeholder="e.g., doctor@hospital.com" required>
+                </div>
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 6px; font-size: 0.85rem; color: #cbd5e1;"
+                        data-i18n="reg_phone">Phone
+                        Number</label>
+                    <input type="tel" placeholder="1234567890" pattern="[0-9]{10}" maxlength="10" minlength="10"
+                        title="Please enter exactly 10 digits"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required>
+                </div>
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 6px; font-size: 0.85rem; color: #cbd5e1;"
+                        data-i18n="reg_pwd">Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-glow full-width mt-1"
+                    style="padding: 14px; font-size: 1.05rem; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px;"
+                    data-i18n="reg_btn">
+                    TO BE A MEMBER
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="login.html" style="text-decoration: none; color: inherit; display: block;"><span
+                        data-i18n="reg_already">Already a member?</span>
+                    <span style="color: var(--primary); font-weight: 600; margin-left: 5px;" data-i18n="reg_signin">Sign
+                        In securely</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pill Loader Overlay -->
+    <div id="pill-loader-overlay" class="pill-loader-overlay hidden">
+        <div class="pill">
+            <div class="pill-top">
+                <div class="dot-row"><span class="dot w" style="animation-delay: 0.1s"></span><span class="dot w" style="animation-delay: 0.2s"></span></div>
+                <div class="dot-row"><span class="dot w" style="animation-delay: 0.3s"></span><span class="dot w" style="animation-delay: 0.4s"></span><span class="dot w" style="animation-delay: 0.5s"></span></div>
+                <div class="dot-row"><span class="dot w" style="animation-delay: 0.6s"></span></div>
+            </div>
+            <div class="pill-bottom">
+                <div class="dot-row"><span class="dot r" style="animation-delay: 0.2s"></span><span class="dot r" style="animation-delay: 0.4s"></span></div>
+                <div class="dot-row"><span class="dot r" style="animation-delay: 0.1s"></span><span class="dot r" style="animation-delay: 0.5s"></span><span class="dot r" style="animation-delay: 0.7s"></span></div>
+                <div class="dot-row"><span class="dot r" style="animation-delay: 0.3s"></span></div>
+            </div>
+        </div>
+        <div class="loading-text">CREATING PROFILE...</div>
+    </div>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Hide login card gracefully
+            document.querySelector('.login-card').style.opacity = '0';
+            setTimeout(() => { document.querySelector('.login-card').classList.add('hidden'); }, 300);
+            
+            // Show loader
+            const loader = document.getElementById('pill-loader-overlay');
+            loader.classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.querySelector('.loading-text').innerText = "SECURING NETWORK...";
+            }, 1000);
+            
+            // Redirect after 2.5 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2500);
+        });
+    </script>
+</body>
+
+</html>

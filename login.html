@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MedAssist 360</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* Locks physical scrollbar, lets wheel events only drive cinematic engine */
+        }
+
+        .login-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 50px 40px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .login-header {
+            margin-bottom: 35px;
+        }
+
+        .login-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .login-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .login-form {
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-form .input-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .login-form .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px 18px;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--trans-smooth);
+            outline: none;
+        }
+
+        .login-form .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px var(--primary-dim);
+        }
+
+        .login-form .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Fix Browser Autofill Background */
+        .login-form .input-group input:-webkit-autofill,
+        .login-form .input-group input:-webkit-autofill:hover, 
+        .login-form .input-group input:-webkit-autofill:focus, 
+        .login-form .input-group input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .login-options a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--trans-smooth);
+        }
+
+        .login-options a:hover {
+            color: #ff6666;
+            text-shadow: 0 0 10px var(--primary-dim);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .checkbox-group input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            background-color: transparent;
+            border: 1px solid var(--glass-border);
+        }
+
+        .auth-footer {
+            margin-top: 35px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .auth-footer a {
+            color: #fff;
+            font-weight: 600;
+            transition: var(--trans-smooth);
+            margin-left: 5px;
+        }
+
+        .auth-footer a:hover {
+            color: var(--primary);
+        }
+
+        .simple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .login-section {
+                height: auto;
+                min-height: 100vh;
+                align-items: flex-start;
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .simple-nav {
+                padding: 15px 20px;
+                position: absolute;
+                /* stop it covering the form when scrolling */
+                background: rgba(10, 10, 10, 0.8);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
+            .simple-nav .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .brand-text {
+                font-size: 1.2rem;
+            }
+
+            .login-card {
+                padding: 40px 25px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Capsule Loader Styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        #loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .capsule-loader {
+            width: 34px;
+            height: 80px;
+            border-radius: 17px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: rotateCapsule 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(20, 20, 20, 0.6);
+        }
+
+        @keyframes rotateCapsule {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .capsule-half {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            padding: 6px;
+            gap: 3px;
+            position: relative;
+        }
+
+        .white-half {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .red-half {
+            background: rgba(255, 51, 51, 0.1);
+        }
+
+        .ball {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: floatBalls 1.5s infinite alternate ease-in-out;
+        }
+
+        .white-ball {
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        .red-ball {
+            background: var(--primary);
+            box-shadow: 0 0 5px var(--primary);
+        }
+
+        .ball:nth-child(1) { animation-delay: 0.1s; }
+        .ball:nth-child(2) { animation-delay: 0.3s; }
+        .ball:nth-child(3) { animation-delay: 0.5s; }
+        .ball:nth-child(4) { animation-delay: 0.2s; }
+        .ball:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes floatBalls {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-4px) scale(1.1); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cinematic Background Engine -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Minimal Nav -->
+    <header class="simple-nav">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">✧</span>
+            <span class="brand-text">MedAssist 360</span>
+        </a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <select id="language-select" class="lang-selector">
+                <option value="en">English</option>
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+            </select>
+            <a href="index.html" class="btn btn-outline btn-sm" data-i18n="back_home">← Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Login Area -->
+    <section class="login-section">
+        <div class="glass-panel login-card hover-tilt">
+            <div class="login-header">
+                <a href="index.html" class="login-brand" style="text-decoration: none;">
+                    <span class="brand-icon" style="font-size: 2.5rem; margin-bottom: 5px;">✧</span>
+                </a>
+                <h2 style="font-size: 2.2rem; margin-bottom: 12px; font-weight: 700;"><span data-i18n="login_welcome">Welcome</span> <span
+                        class="text-gradient" data-i18n="login_back">Back</span></h2>
+                <p class="login-subtitle" data-i18n="login_subtitle">Secure access to your medical intelligence dashboard.</p>
+            </div>
+
+            <form class="login-form" id="loginForm" onsubmit="handleLoginSubmit(event)">
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: #cbd5e1;" data-i18n="login_email">Work
+                        Email</label>
+                    <input type="email" placeholder="e.g., doctor@hospital.com" required>
+                </div>
+                <div class="input-group">
+                    <label
+                        style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: #cbd5e1;" data-i18n="login_pwd">Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="login-options">
+                    <label class="checkbox-group">
+                        <input type="checkbox" checked>
+                        <span data-i18n="login_remember">Remember securely</span>
+                    </label>
+                    <a href="#" data-i18n="login_forgot">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-glow full-width mt-1"
+                    style="padding: 16px; font-size: 1.1rem; border-radius: 14px; text-transform: uppercase; letter-spacing: 1px;" data-i18n="login_btn">
+                    Enter Dashboard
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <span data-i18n="login_no_acc">Want to be a member?</span> <a href="register.html" data-i18n="login_create_acc">Create an Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="capsule-loader">
+            <div class="capsule-half white-half">
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+            </div>
+            <div class="capsule-half red-half">
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        function handleLoginSubmit(event) {
+            event.preventDefault(); // Stop normal form submission
+            
+            // Show the loading animation
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.add('active');
+            
+            // Simulate network request then redirect with an epic delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2500); 
+        }
+    </script>
+</body>
+
+</html>

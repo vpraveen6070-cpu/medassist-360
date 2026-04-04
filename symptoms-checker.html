@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptoms Checker | MedAssist 360</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: #050510;
+        }
+
+        .checker-section {
+            padding: 120px 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .simple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 16, 0.6);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .simple-nav {
+                padding: 15px 20px;
+            }
+            .brand-text {
+                font-size: 1.2rem;
+            }
+            .checker-section {
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cinematic Background -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Minimal Nav -->
+    <header class="simple-nav">
+        <a href="index.html" class="brand" style="text-decoration: none;">
+            <span class="brand-icon">✧</span>
+            <span class="brand-text">MedAssist 360</span>
+        </a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <select id="language-select" class="lang-selector">
+                <option value="en">English</option>
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+            </select>
+            <a href="index.html" class="btn btn-outline btn-sm" data-i18n="back_home">← Back to Home</a>
+        </div>
+    </header>
+
+    <section class="checker-section">
+        <div class="container" style="width: 100%;">
+            <div class="symptoms-modal-container glass-panel hover-tilt" style="position: relative; max-width: 550px; margin: 0 auto; transform: none;">
+                <div class="modal-header">
+                    <h3><span data-i18n="sym_title_1">Symptoms</span> <span class="text-gradient" data-i18n="sym_title_2">Checker</span></h3>
+                </div>
+                <div class="modal-body" id="symptoms-steps-container">
+                    <!-- Step 1: Input -->
+                    <div class="step-pane active" id="step-1">
+                        <h4 class="step-title" data-i18n="sym_step1_title">Describe your symptoms</h4>
+                        <p class="step-desc" data-i18n="sym_step1_desc">Type or speak how you are feeling right now.</p>
+                        <div class="input-group">
+                            <textarea id="symptoms-text-input" placeholder="e.g. I have a severe headache and feel dizzy since morning..."></textarea>
+                        </div>
+                        <div class="voice-input-container">
+                            <button class="btn btn-secondary pulse-record" id="voice-record-btn" style="width: 100%; border-color: var(--primary);">
+                                <span class="icon">🎙️</span> <span data-i18n="sym_speak">Tap to Speak</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary btn-glow full-width mt-1" id="next-step-1" style="margin-top: 20px;" data-i18n="sym_next">Next Step</button>
+                    </div>
+
+                    <!-- Step 2: Pre-check -->
+                    <div class="step-pane hidden" id="step-2">
+                        <h4 class="step-title" data-i18n="sym_step2_title">Quick Details</h4>
+                        <p class="step-desc" data-i18n="sym_step2_desc">Help us understand you better to provide accurate guidance.</p>
+                        <div class="input-group">
+                            <label data-i18n="sym_gender_label">Gender</label>
+                            <select id="sym-gender" title="Select Gender" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; margin-bottom: 15px;">
+                                <option value="male" data-i18n="sym_male" selected>Male</option>
+                                <option value="female" data-i18n="sym_female">Female</option>
+                                <option value="other" data-i18n="sym_other">Other</option>
+                            </select>
+                            <div class="hidden" id="pref-female-doc-wrap" style="margin-top: -5px; margin-bottom: 15px;">
+                                <label style="display: flex; align-items: center; cursor: pointer; color: var(--primary); font-size: 0.9rem;">
+                                    <input type="checkbox" id="pref-female-doc" style="margin-right: 8px; accent-color: var(--primary);">
+                                    <span data-i18n="sym_female_doc">Prefer Female Doctor</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="sym_age_label">Age (Optional)</label>
+                            <input type="number" id="sym-age" placeholder="e.g. 35" title="Age" class="input-field" min="0" max="120" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; margin-bottom: 15px;">
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="sym_duration_label">Duration of Symptoms</label>
+                            <select id="sym-duration" title="Select Duration of Symptoms" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; margin-bottom: 15px;">
+                                <option value="just_now" data-i18n="sym_dur_1">Just started</option>
+                                <option value="few_hours" data-i18n="sym_dur_2">A few hours</option>
+                                <option value="today" data-i18n="sym_dur_3">Since today</option>
+                                <option value="few_days" data-i18n="sym_dur_4">A few days</option>
+                                <option value="weeks" data-i18n="sym_dur_5">Weeks</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="sym_severity_label">Severity (0-10)</label>
+                            <input type="range" id="sym-severity" title="Severity" min="0" max="10" value="5" class="slider-field" style="width: 100%; margin-bottom: 5px;">
+                            <div class="severity-labels" style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                <span style="color: #4ade80;" data-i18n="sym_mild">Mild</span>
+                                <span style="color: #f87171;" data-i18n="sym_severe">Severe</span>
+                            </div>
+                        </div>
+                        <div class="step-actions mt-1" style="display: flex; gap: 15px; margin-top: 20px;">
+                            <button class="btn btn-outline" id="prev-step-2" style="flex: 1;" data-i18n="sym_back">Back</button>
+                            <button class="btn btn-primary btn-glow" id="analyze-symptoms-btn" style="flex: 2;" data-i18n="sym_analyze">Analyze Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Analysis Results -->
+                    <div class="step-pane hidden" id="step-3">
+                        <div class="loading-state" id="symptoms-loading">
+                            <div class="spinner"></div>
+                            <p style="text-align: center; margin-top: 15px;" data-i18n="sym_analyzing_ai">Analyzing symptoms using Medical AI...</p>
+                        </div>
+                        <div class="results-state hidden" id="symptoms-results">
+                            <div class="risk-card glass-card" id="risk-card-container">
+                                <h4 style="margin-bottom: 5px; color: var(--text-muted);" data-i18n="sym_rec_urgency">Recommended Urgency</h4>
+                                <div class="risk-level" id="risk-level-display" style="font-size: 1.8rem; font-weight: 800;">Medium Risk</div>
+                                <p class="risk-desc" id="risk-desc-display" style="color: #cbd5e1; font-size: 0.95rem;">Consider visiting a clinic soon.</p>
+                            </div>
+                            
+                            <div class="possible-conditions mt-1 glass-card" style="margin-top: 15px; padding: 15px;">
+                                <h5 style="margin-bottom: 10px; color: var(--text-muted);" data-i18n="sym_poss_cat">Possible Categories</h5>
+                                <ul id="conditions-list" style="list-style: none; padding: 0;">
+                                    <!-- Populated dynamically -->
+                                </ul>
+                            </div>
+
+                            <div class="emergency-warning hidden" id="emergency-warning" style="margin-top: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 8px; display: flex; gap: 15px; align-items: flex-start;">
+                                <span class="warning-icon" style="font-size: 2rem;">⚠️</span>
+                                <div>
+                                    <strong style="color: var(--primary); font-size: 1.1rem; display: block; margin-bottom: 5px;" data-i18n="sym_emerg_risk">Emergency Risk Detected</strong>
+                                    <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;" data-i18n="sym_emerg_desc">This tool does not provide a confirmed diagnosis. Please consult a licensed doctor immediately for urgent symptoms.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-actions mt-1" style="display: flex; gap: 15px; margin-top: 20px;">
+                                <button class="btn btn-outline" id="prev-step-3" style="flex: 1;" data-i18n="sym_back">Back</button>
+                                <button class="btn btn-primary btn-glow" id="find-hospitals-btn" style="flex: 2;" data-i18n="sym_find_care">Find Nearby Care</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Hospitals -->
+                    <div class="step-pane hidden" id="step-4">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                            <h4 class="step-title" style="margin-bottom: 0;" data-i18n="sym_rec_fac">Recommended Facilities</h4>
+                            <button class="btn btn-outline btn-micro" id="prev-step-4" style="padding: 5px 10px;"><span data-i18n="sym_back">← Back</span></button>
+                        </div>
+                        <p class="step-desc" data-i18n="sym_rec_fac_desc">Based on your condition and proximity.</p>
+                        
+                        <!-- Detail View (Hidden by default) -->
+                        <div id="hospital-detail-view" class="hidden">
+                            <div class="glass-card" style="background: rgba(0,0,0,0.4); border-color: var(--primary);">
+                                <h4 id="h-detail-name" style="font-size: 1.3rem; margin-bottom: 5px;">Hospital Name</h4>
+                                <p id="h-detail-spec" style="color: var(--primary); font-size: 0.9rem; margin-bottom: 15px;">Specialty</p>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                                        <small style="color: var(--text-muted); display: block;" data-i18n="sym_det_dist">Distance</small>
+                                        <strong id="h-detail-dist">1.2 km</strong>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                                        <small style="color: var(--text-muted); display: block;" data-i18n="sym_det_rating">Rating</small>
+                                        <strong id="h-detail-rating">⭐ 4.5</strong>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; grid-column: span 2;">
+                                        <small style="color: var(--text-muted); display: block;" data-i18n="sym_det_address">Address</small>
+                                        <span id="h-detail-address" style="font-size: 0.9rem;">123 Street Name</span>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                                        <small style="color: var(--text-muted); display: block;" data-i18n="sym_det_phone">Phone</small>
+                                        <span id="h-detail-phone" style="font-size: 0.9rem;">+91 98765 43210</span>
+                                    </div>
+                                    <div style="background: rgba(255,51,51,0.1); padding: 10px; border-radius: 8px;">
+                                        <small style="color: var(--text-muted); display: block;" data-i18n="sym_det_emer">Emergency Support</small>
+                                        <strong id="h-detail-emergency" style="color: var(--primary);">Yes - 24/7</strong>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 20px;">
+                                    <h5 style="margin-bottom: 10px; font-size: 1.05rem; color: var(--text-main);" data-i18n="sym_det_avail">Available Doctors</h5>
+                                    <div id="h-detail-doctors" style="display: flex; flex-direction: column; gap: 10px;">
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 10px; flex-direction: column;">
+                                    <a href="#" target="_blank" id="h-map-link" class="btn btn-secondary full-width" style="border-color: #4ade80; color: #4ade80;">
+                                        <span data-i18n="sym_map_btn">🗺️ Open in Google Maps</span>
+                                    </a>
+                                    <button class="btn btn-outline full-width" id="close-detail-view" style="margin-top: 5px;" data-i18n="sym_close_det">Back to List</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Basic List View -->
+                        <div class="hospital-list" id="hospital-list-container">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/symptoms.js"></script>
+</body>
+</html>

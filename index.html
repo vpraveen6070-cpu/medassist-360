@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedAssist 360 | AI-Powered Emergency Intelligence</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snapshot.css">
+</head>
+
+<body>
+
+    <!-- 0. Cinematic Background Engine -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- 1. Sticky Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <span class="brand-icon">✧</span>
+                <span class="brand-text">MedAssist 360</span>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
+                <a href="#how-it-works" class="nav-link text-gradient" id="nav-symptoms-btn"
+                    data-i18n="nav_symptoms">SympScan</a>
+                <a href="#" class="nav-link" id="view-toggle-btn" data-i18n="nav_mobile">Mobile View</a>
+                <a href="login.html" class="nav-link" data-i18n="nav_login">Login</a>
+                <select id="language-select" class="lang-selector">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                </select>
+                <a href="#demo" class="btn btn-primary nav-cta" data-i18n="nav_demo">Try Live Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content fade-up">
+                <div class="badge-wrapper">
+                    <span class="badge" data-i18n="hero_badge">Next-Gen AI Healthcare</span>
+                </div>
+                <h1 class="hero-title">
+                    <span data-i18n="hero_title_1">The Future of</span> <br>
+                    <span class="text-gradient" data-i18n="hero_title_2">Emergency Intelligence.</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    An AI-powered multilingual platform for instant triage, prescription decoding, and precision
+                    hospital navigation. Make critical decisions in seconds, not hours.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="symptoms-checker.html" class="btn btn-primary btn-glow" data-i18n="hero_btn_start">Get
+                        Started</a>
+                    <a href="#demo" class="btn btn-secondary" data-i18n="hero_btn_demo">Explore Demo</a>
+                </div>
+            </div>
+
+            <div class="hero-visual" id="hero-visual">
+                <div class="floating-dashboard glass-panel magnetic-element">
+                    <div class="dash-header">
+                        <div class="dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="dash-title" data-i18n="dash_active">AI Triage Active</div>
+                    </div>
+                    <div class="dash-body">
+                        <div class="dash-row input-row">
+                            <i class="icon">◎</i> <span data-i18n="dash_msg_1">"Futuristic AI-powered multilingual
+                                emergency triage platform..."</span>
+                        </div>
+                        <div class="dash-row alert-row highlight-alert">
+                            <span class="alert-icon">⚡</span>
+                            <div class="alert-text">
+                                <strong data-i18n="dash_msg_2_title">Intelligent Symptoms Checker</strong>
+                                <small data-i18n="dash_msg_2_desc">Real-time voice input & contextual AI
+                                    categorization</small>
+                            </div>
+                        </div>
+                        <div class="dash-row recommend-row">
+                            <div class="rec-card">
+                                <strong>Snapshot:</strong> <span data-i18n="dash_rec_1">Instant AI Doc Analysis</span>
+                            </div>
+                            <div class="rec-card">
+                                <strong>Precision:</strong> <span data-i18n="dash_rec_2">Dynamic Hospital Nav</span>
+                            </div>
+                        </div>
+                        <div class="dash-row summary-row">
+                            <button class="btn-micro" data-i18n="dash_btn">Deploy Hackathon Demo ↗</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. How Symptoms Checker Works Section -->
+    <section class="metrics-section" id="how-it-works" style="position: relative; z-index: 10;">
+        <div class="container">
+            <div class="section-header fade-up" style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title"><span data-i18n="how_title_1">How</span> <span class="text-gradient"
+                        data-i18n="how_title_2">Symptoms Checker</span> <span data-i18n="how_title_3">Works</span></h2>
+                <p class="section-desc" data-i18n="how_desc">Get instant, AI-powered health insights in three simple
+                    steps.</p>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+                <div class="metric-card glass-panel fade-up delay-1" style="text-align: center;">
+                    <div class="metric-value text-gradient" style="font-size: 3rem; margin-bottom: 10px;">1</div>
+                    <div class="metric-label" style="font-size: 1.3rem;" data-i18n="step_1_title">Describe Symptoms
+                    </div>
+                    <p style="margin-top: 15px; color: #cbd5e1;" data-i18n="step_1_desc">Type or speak your symptoms
+                        clearly to our advanced AI engine for immediate triage.</p>
+                </div>
+                <div class="metric-card glass-panel fade-up delay-2" style="text-align: center;">
+                    <div class="metric-value text-gradient" style="font-size: 3rem; margin-bottom: 10px;">2</div>
+                    <div class="metric-label" style="font-size: 1.3rem;" data-i18n="step_2_title">Instant Analysis</div>
+                    <p style="margin-top: 15px; color: #cbd5e1;" data-i18n="step_2_desc">MedAssist 360 evaluates your
+                        symptoms against millions of clinical parameters in real-time.</p>
+                </div>
+                <div class="metric-card glass-panel fade-up delay-3" style="text-align: center;">
+                    <div class="metric-value text-gradient" style="font-size: 3rem; margin-bottom: 10px;">3</div>
+                    <div class="metric-label" style="font-size: 1.3rem;" data-i18n="step_3_title">Get Recommendations
+                    </div>
+                    <p style="margin-top: 15px; color: #cbd5e1;" data-i18n="step_3_desc">Receive estimated urgency,
+                        possible conditions, and navigation to the nearest appropriate hospital.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;" class="fade-up delay-4">
+                <a href="symptoms-checker.html" class="btn btn-primary btn-glow btn-large"
+                    style="padding: 16px 40px; font-size: 1.1rem; border-radius: 50px; text-decoration: none;"
+                    data-i18n="how_btn">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. Snapshot Assistant Section -->
+    <section class="demo-section" id="demo">
+        <div class="container" style="max-width: 800px;">
+            <div class="snapshot-step glass-panel fade-up active" id="step-input" style="padding: 50px;">
+                <div class="snapshot-header">
+                    <h2 class="snapshot-title" style="font-size: 2.5rem; margin-bottom: 20px;"><span
+                            data-i18n="snap_title_1">Snapshot</span> <span class="text-gradient"
+                            data-i18n="snap_title_2">Assistant</span></h2>
+                    <p class="snapshot-desc" style="margin-bottom: 40px;" data-i18n="snap_desc">Upload or capture your
+                        medical documents, prescriptions, or medicine packaging for instant AI analysis.</p>
+                </div>
+
+                <div class="input-types" style="max-width: 400px; margin: 0 auto 30px;">
+                    <select id="doc-type-select" class="premium-select" title="Select Document Type">
+                        <option value="prescription">Prescription</option>
+                        <option value="medicine">Medicine / Tablet Pack</option>
+                        <option value="lab_report">Lab / Diagnostic Report</option>
+                        <option value="other">Other Medical Document</option>
+                    </select>
+                </div>
+
+                <div class="action-cards" style="display: flex; gap: 20px; justify-content: center;">
+                    <div class="action-card" id="btn-camera" onclick="window.location.href='snapshot-assistant.html'"
+                        style="flex: 1;">
+                        <div class="icon-ring" style="margin: 0 auto 20px;">📷</div>
+                        <h3 data-i18n="snap_btn_cam">Take Photo</h3>
+                        <p data-i18n="snap_btn_cam_desc">Use your device camera</p>
+                    </div>
+                    <div class="action-card" id="btn-upload" onclick="window.location.href='snapshot-assistant.html'"
+                        style="flex: 1;">
+                        <div class="icon-ring" style="margin: 0 auto 20px;">📂</div>
+                        <h3 data-i18n="snap_btn_up">Upload Image</h3>
+                        <p data-i18n="snap_btn_up_desc">Choose from gallery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Why MedAssist 360 Wins Section -->
+    <section class="metrics-section" id="why-us">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title"><span data-i18n="why_title_1">Built for</span> <span class="text-gradient"
+                        data-i18n="why_title_2">Impact</span></h2>
+                <p class="section-desc" data-i18n="why_desc">Why this platform represents the next evolution in
+                    pre-hospital care.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card glass-panel fade-up delay-1">
+                    <div class="metric-value text-gradient">92%</div>
+                    <div class="metric-label" data-i18n="impact_1_title">Faster Decision True</div>
+                    <p data-i18n="impact_1_desc">Reduces the time patients take to decide to go to the ER.</p>
+                </div>
+                <div class="metric-card glass-panel fade-up delay-2">
+                    <div class="metric-value text-gradient">40+</div>
+                    <div class="metric-label" data-i18n="impact_2_title">Languages Supported</div>
+                    <p data-i18n="impact_2_desc">Accessible medical intelligence for global communities.</p>
+                </div>
+                <div class="metric-card glass-panel fade-up delay-3">
+                    <div class="metric-value text-gradient">0</div>
+                    <div class="metric-label" data-i18n="impact_3_title">Data Privacy Risks</div>
+                    <p data-i18n="impact_3_desc">No storage of PII; sessions are encrypted & ephemeral.</p>
+                </div>
+                <div class="metric-card glass-panel fade-up delay-4">
+                    <div class="metric-value text-gradient">L1</div>
+                    <div class="metric-label" data-i18n="impact_4_title">Startup Ready</div>
+                    <p data-i18n="impact_4_desc">Highly scalable architecture designed for real-world launch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- 10. Final CTA Section -->
+    <section class="cta-section" id="contact" style="min-height: 80vh; display: flex; align-items: center;">
+        <div class="container" style="width: 100%;">
+            <div class="minimal-cta fade-up" style="text-align: center;">
+                <h2 style="font-size: 4rem; text-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 30px;">
+                    <span data-i18n="cta_title_1">Experience the Future of</span> <br><span
+                        style="color: var(--primary);" data-i18n="cta_title_2">Emergency Intelligence.</span>
+                </h2>
+                <div class="cta-actions" style="justify-content: center;">
+                    <a href="downloads/MedAssist360.apk" download="MedAssist360.apk"
+                        class="btn btn-primary btn-glow btn-large"
+                        style="padding: 18px 45px; font-size: 1.2rem; border-radius: 50px;" data-i18n="cta_btn">Download
+                        As App</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="brand">
+                        <span class="brand-icon">✧</span>
+                        <span class="brand-text">MedAssist 360</span>
+                    </a>
+                    <p>AI-powered multilingual emergency triage, prescription understanding, and hospital navigation
+                        platform.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <a href="symptoms-checker.html">SympScan</a>
+                    <a href="snapshot-assistant.html">Snapshot Assistant</a>
+                    <a href="#demo">Live Demo</a>
+                </div>
+                <div class="footer-bottom" style="width: 100%; grid-column: span 2;">
+                    <p>&copy; 2026 MedAssist 360. Built for Hackathon Excellence.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 11. Mobile Viewer Simulation Overlay -->
+    <div id="mobile-viewer-overlay">
+        <div class="mobile-viewer-container">
+            <div class="mobile-device-frame">
+                <div class="mobile-notch"></div>
+                <iframe id="mobile-viewer-frame" src="" allow="camera; microphone; autoplay; fullscreen"></iframe>
+            </div>
+            <button id="close-mobile-viewer" class="btn btn-secondary" style="margin-top: 20px; z-index: 10;">Close
+                Mockup Preview</button>
+        </div>
+    </div>
+
+    <!-- Global Scroll Toggle (Bottom Right) -->
+    <div id="global-scroll-toggle"
+        style="position: fixed; bottom: 15px; right: 15px; z-index: 9999; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(255, 51, 51, 0.2); border-radius: 50%;"
+        onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 25px rgba(255, 51, 51, 0.6)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(255, 51, 51, 0.2)'">
+        <div
+            style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary) 100%); display: flex; justify-content: center; align-items: center;">
+            <svg id="scroll-toggle-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                style="transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('global-scroll-toggle');
+            const arrow = document.getElementById('scroll-toggle-arrow');
+            let isAtBottom = false;
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.innerHeight + window.scrollY;
+                const bottomPosition = document.body.offsetHeight - 50;
+
+                if (scrollPosition >= bottomPosition) {
+                    isAtBottom = true;
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    isAtBottom = false;
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            toggle.addEventListener('click', () => {
+                if (isAtBottom) {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: document.body.scrollHeight, left: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
