@@ -1,7 +1,80 @@
 /**
  * Symptoms Checker Modal Logic
- * Handles multi-step flow, mock AI analysis, and hospital discovery
+ * Powered by Dataset-Driven AI Retrieval Engine
  */
+
+// Simple robust CSV Parser
+function parseCSV(str) {
+    const arr = [];
+    let quote = false;
+    let row = 0, col = 0;
+    for (let c = 0; c < str.length; c++) {
+        let cc = str[c], nc = str[c+1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+
+        if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+        if (cc == '"') { quote = !quote; continue; }
+        if (cc == ',' && !quote) { ++col; continue; }
+        if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+        if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+        arr[row][col] += cc;
+    }
+    
+    if(arr.length === 0) return [];
+    const headers = arr[0];
+    const data = [];
+    for(let i = 1; i < arr.length; i++) {
+        if(arr[i].length === 1 && arr[i][0] === "") continue; 
+        const obj = {};
+        for(let j = 0; j < headers.length; j++) {
+            obj[headers[j]] = arr[i][j];
+        }
+        data.push(obj);
+    }
+    return data;
+}
+
+// Global DB
+const DB = {
+    symptoms: [],
+    diseases: [],
+    mapping: [],
+    hospitals: [],
+    doctors: [],
+    loaded: false
+};
+
+async function loadDatasets() {
+    try {
+        const basePath = '/finalframes/healthcare_ai_system%202/data/raw/';
+        
+        const [symRes, disRes, mapRes, hosRes, docRes] = await Promise.all([
+            fetch(basePath + 'medical_knowledge_base/symptoms.csv'),
+            fetch(basePath + 'medical_knowledge_base/diseases.csv'),
+            fetch(basePath + 'medical_knowledge_base/symptom_disease_mapping.csv'),
+            fetch(basePath + 'hospital_operations/hospitals.csv'),
+            fetch(basePath + 'hospital_operations/doctors.csv')
+        ]);
+
+        DB.symptoms = parseCSV(await symRes.text());
+        DB.diseases = parseCSV(await disRes.text());
+        DB.mapping = parseCSV(await mapRes.text());
+        DB.hospitals = parseCSV(await hosRes.text());
+        DB.doctors = parseCSV(await docRes.text());
+        
+        DB.loaded = true;
+        console.log("Datasets loaded successfully", DB);
+    } catch(e) {
+        console.error("Error loading datasets", e);
+    }
+}
+
+// Start loading immediately
+loadDatasets();
+
+let predictedDiseaseCategory = null; // Store this globally for hospital filtering
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -76,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Expose to window for starting/stopping
         window.startSymptomsCanvas = function() {
             if(!sysIsAnimating) {
                 sysIsAnimating = true;
@@ -91,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function sysAnimLoop() {
             if(!sysIsAnimating) return;
 
-            // Auto-play the frames slowly
             sysTargetFrame += 0.35;
             if(sysTargetFrame >= frameCount) {
                 sysTargetFrame = sysTargetFrame % frameCount;
@@ -111,8 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Elements
-    const modalOverlay = document.getElementById('symptoms-modal');
-    const closeBtn = document.getElementById('close-symptoms-btn');
     const navBtn = document.getElementById('nav-symptoms-btn');
     const heroBtn = document.getElementById('hero-symptoms-btn');
     
@@ -142,38 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingState = document.getElementById('symptoms-loading');
     const resultsState = document.getElementById('symptoms-results');
 
-    // Mock Data
-    const hospitalsData = [
-        { 
-            id: "hosp_1", name: "City General Hospital", spec: "General / Emergency", dist: 1.2, rating: 4.8, address: "100 Med Center Dr, City", phone: "555-0101", emergency: true, coords: "40.7128,-74.0060",
-            doctors: [
-                { name: "Dr. Ananya Sharma", spec: "Lead Cardiologist", rating: "4.9", emoji: "👩‍⚕️" },
-                { name: "Dr. Rajesh Kumar", spec: "ER Specialist", rating: "4.7", emoji: "👨‍⚕️" }
-            ]
-        },
-        { 
-            id: "hosp_2", name: "Heart & Neuro Center", spec: "Cardiology / Neurology", dist: 3.4, rating: 4.9, address: "400 Specialist Way, City", phone: "555-0202", emergency: true, coords: "40.7306,-73.9352",
-            doctors: [
-                { name: "Dr. Vikram Singh", spec: "Neurologist", rating: "5.0", emoji: "👨‍⚕️" },
-                { name: "Dr. Kavita Reddy", spec: "Cardiothoracic Surgeon", rating: "4.8", emoji: "👩‍⚕️" }
-            ]
-        },
-        { 
-            id: "hosp_3", name: "Community Care Clinic", spec: "Urgent Care", dist: 0.8, rating: 4.2, address: "50 Local Rd, Suburb", phone: "555-0303", emergency: false, coords: "40.7488,-73.9857",
-            doctors: [
-                { name: "Dr. Priya Desai", spec: "General Physician", rating: "4.5", emoji: "👩‍⚕️" },
-                { name: "Dr. Rahul Verma", spec: "Pediatrician", rating: "4.6", emoji: "👨‍⚕️" }
-            ]
-        },
-        { 
-            id: "hosp_4", name: "Mercy Trauma Center", spec: "Level 1 Trauma", dist: 5.1, rating: 4.6, address: "999 Rescue Blvd, City", phone: "555-9111", emergency: true, coords: "40.7580,-73.9855",
-            doctors: [
-                { name: "Dr. Sanjay Gupta", spec: "Trauma Surgeon", rating: "4.9", emoji: "👨‍⚕️" },
-                { name: "Dr. Meera Patel", spec: "Anesthesiologist", rating: "4.8", emoji: "👩‍⚕️" }
-            ]
-        }
-    ];
-
     // Functions
     function scrollToSymptoms(e) {
         if(e) e.preventDefault();
@@ -183,13 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // (Modal close removed)
-
     function showStep(stepElement) {
         [step1, step2, step3, step4].forEach(s => s.classList.add('hidden'));
         stepElement.classList.remove('hidden');
         
-        // Smooth scrolling animation reset
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -207,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navBtn?.addEventListener('click', scrollToSymptoms);
     heroBtn?.addEventListener('click', scrollToSymptoms);
     
-    // Auto-init visible flow
     resetFlow();
 
     // Gender Preference Logic
@@ -230,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Step Navigation
     nextStep1.addEventListener('click', () => {
         if (!textInput.value.trim()) {
-            // Shake effect or slight warning
             textInput.style.borderColor = 'var(--primary)';
             setTimeout(() => textInput.style.borderColor = '', 1000);
             return;
@@ -254,8 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         recognition = new SpeechRecognition();
-        recognition.continuous = false; // Stops automatically when user pauses
-        recognition.interimResults = true; // Shows text in real-time without delay
+        recognition.continuous = false;
+        recognition.interimResults = true;
 
         recognition.onstart = () => {
             recording = true;
@@ -263,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
             recordBtn.innerHTML = '<span class="icon">⏹️</span> Listening... (Speak now)';
             textInput.placeholder = "Listening...";
             
-            // Remember what was typed/spoken before so we can append cleanly
             baseTranscript = textInput.value;
             if (baseTranscript.length > 0 && !baseTranscript.endsWith(' ')) {
                 baseTranscript += ' ';
@@ -305,7 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!recording) {
-            // Do NOT clear textInput.value here, so it appends automatically
             recognition.start();
         } else {
             stopRecording();
@@ -322,46 +352,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Analysis Logic
-    const validKeywords = ['pain', 'ache', 'fever', 'cough', 'cold', 'bleed', 'breath', 'chest', 'head', 'stomach', 'nausea', 'vomit', 'dizzy', 'tired', 'fatigue', 'rash', 'itch', 'swell', 'burn', 'tingl', 'numb', 'weak', 'chill', 'sweat', 'sore', 'hurt', 'cramp', 'lump', 'blood', 'heart', 'muscle', 'joint', 'skin', 'migraine', 'flu', 'infection', 'vision', 'hearing', 'throat', 'sick', 'ill'];
+    // AI Dataset Retrieval Engine Logic
+    function extractSymptomIds(userInput) {
+        const text = userInput.toLowerCase();
+        const matchedSymptomIds = new Set();
+        
+        DB.symptoms.forEach(sym => {
+            const symName = sym.symptom_name.toLowerCase();
+            if (text.includes(symName)) {
+                matchedSymptomIds.add(sym.symptom_id);
+            } else {
+                const words = symName.split(' ');
+                if(words.some(w => w.length > 3 && text.includes(w))) {
+                    matchedSymptomIds.add(sym.symptom_id);
+                }
+            }
+        });
+        
+        return Array.from(matchedSymptomIds);
+    }
+
+    function predictDiseases(matchedSymptomIds) {
+        const diseaseScores = {};
+        
+        DB.mapping.forEach(m => {
+            if (matchedSymptomIds.includes(m.symptom_id)) {
+                if (!diseaseScores[m.disease_id]) diseaseScores[m.disease_id] = 0;
+                diseaseScores[m.disease_id] += parseInt(m.frequency_percent || 0);
+            }
+        });
+        
+        const sorted = Object.entries(diseaseScores).sort((a,b) => b[1] - a[1]);
+        
+        return sorted.slice(0, 2).map(entry => {
+            return DB.diseases.find(d => d.disease_id === entry[0]);
+        }).filter(Boolean);
+    }
 
     analyzeBtn.addEventListener('click', async () => {
-        const symptoms = textInput.value.toLowerCase();
-        const hasValidKeyword = validKeywords.some(kw => symptoms.includes(kw));
+        if (!DB.loaded) {
+            alert('AI Knowledge Base is still loading. Please wait a moment.');
+            return;
+        }
+
+        const symptoms = textInput.value;
+        const matchedIds = extractSymptomIds(symptoms);
         
-        // Validation check for random text or empty inputs
-        if (!hasValidKeyword && symptoms.trim().split(/\s+/).length < 4) {
-            alert('Invalid input: We could not detect any recognizable medical symptoms. Please describe your condition with more specific symptom keywords (e.g., pain, fever, cough) or provide more context.');
+        if (matchedIds.length === 0 && symptoms.trim().split(/\s+/).length < 4) {
+            alert('Invalid input: We could not detect any recognizable medical symptoms. Please describe your condition with more specific symptom keywords.');
             return;
         }
 
         showStep(step3);
         
-        // Reset states
         loadingState.classList.remove('hidden');
         resultsState.classList.add('hidden');
         
         const severity = parseInt(severityInput.value);
 
-        // Process Live Analysis with Background Web Search
-        await renderLiveAnalysis(symptoms, severity);
+        await renderLiveAnalysis(matchedIds, symptoms, severity);
         
         loadingState.classList.add('hidden');
         resultsState.classList.remove('hidden');
     });
 
-    async function renderLiveAnalysis(symptoms, severity) {
-        const isEmergency = symptoms.includes('chest') || symptoms.includes('breath') || symptoms.includes('bleed') || severity > 7;
+    async function renderLiveAnalysis(matchedIds, rawText, severity) {
+        const textLower = rawText.toLowerCase();
+        const isEmergency = textLower.includes('chest') || textLower.includes('breath') || textLower.includes('bleed') || severity > 7;
         const levelDisplay = document.getElementById('risk-level-display');
         const descDisplay = document.getElementById('risk-desc-display');
         const emergencyWarning = document.getElementById('emergency-warning');
         const conditionsList = document.getElementById('conditions-list');
         
-        // Reset styles
         levelDisplay.className = 'risk-level';
         conditionsList.innerHTML = '';
 
-        // Determine Triage Logic and Formatting
         let colorCode = '';
         let dot = '';
         if (isEmergency) {
@@ -387,49 +452,27 @@ document.addEventListener('DOMContentLoaded', () => {
             dot = '🟢';
         }
 
-        // Live Web Knowledge Fetch Engine (Mimicking Google Background Search)
+        // Run Dataset AI Match
+        const topDiseases = predictDiseases(matchedIds);
         let liveConditionsHTML = '';
-        try {
-            const validKWs = ['pain', 'ache', 'fever', 'cough', 'cold', 'bleed', 'breath', 'chest', 'head', 'stomach', 'nausea', 'vomit', 'dizzy', 'tired', 'fatigue', 'rash', 'itch', 'swell', 'burn', 'tingl', 'numb', 'weak', 'chill', 'sweat', 'sore', 'hurt', 'cramp', 'lump', 'blood', 'heart', 'muscle', 'joint', 'skin', 'migraine', 'flu', 'infection', 'vision', 'hearing', 'throat', 'sick', 'ill'];
-            let queryWords = validKWs.filter(kw => symptoms.includes(kw));
-            if (queryWords.length === 0) queryWords = symptoms.split(' ').slice(0, 2);
-            
-            // Append "disease" to ensure the search engine locks onto medical articles
-            const searchQuery = queryWords.join(' ') + ' disease';
 
-            const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchQuery)}&utf8=&format=json&origin=*`;
-            const searchRes = await fetch(searchUrl);
-            if (searchRes.ok) {
-                const searchData = await searchRes.json();
-                let results = searchData.query.search || [];
-                
-                // Filter out meta pages and pick the top 2 highly relevant diagnoses
-                results = results.filter(r => !r.title.includes("List of") && !r.title.includes("Wikipedia:")).slice(0, 2);
+        if (topDiseases.length > 0) {
+            predictedDiseaseCategory = topDiseases[0].category; // Save for hospital filtering
 
-                for (let r of results) {
-                    const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(r.title)}`;
-                    const pageRes = await fetch(pageUrl);
-                    if (pageRes.ok) {
-                        const pageData = await pageRes.json();
-                        const extract = pageData.extract || "No detailed clinical abstract available. Consult a physician for accurate diagnosis.";
-                        liveConditionsHTML += `
-                            <li style="margin-bottom:15px; line-height: 1.5;">
-                                <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} Web Match: ${r.title}</strong><br>
-                                <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">${extract}</span>
-                            </li>
-                        `;
-                    }
-                }
+            for (let d of topDiseases) {
+                liveConditionsHTML += `
+                    <li style="margin-bottom:15px; line-height: 1.5;">
+                        <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} Knowledge Base Match: ${d.disease_name}</strong><br>
+                        <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">${d.description}</span>
+                    </li>
+                `;
             }
-        } catch (e) {
-            console.error("Live Web Search Sync Error:", e);
         }
 
-        // Render Results or Fallbacks
         if (liveConditionsHTML.trim()) {
             conditionsList.innerHTML = liveConditionsHTML;
         } else {
-            // Fallback heuristic if network fails or 0 zero matches
+            predictedDiseaseCategory = "General"; // Fallback
             conditionsList.innerHTML = `
                 <li style="margin-bottom:15px; line-height: 1.5;">
                     <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} General Physiological Response</strong><br>
@@ -445,17 +488,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hospitals Render
     findHospitalsBtn.addEventListener('click', () => {
+        if (!DB.loaded) return;
+
         showStep(step4);
         const container = document.getElementById('hospital-list-container');
         container.innerHTML = '';
         
-        // Sort by distance roughly for simulation
-        hospitalsData.forEach(h => {
+        // Filter by predicted category if possible
+        let validHospitals = DB.hospitals.filter(h => !predictedDiseaseCategory || h.specialty_focus === predictedDiseaseCategory || h.hospital_type === 'General' || h.hospital_type === 'Multi-Specialty');
+        
+        // Sort by rating 
+        validHospitals.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating));
+
+        // Limit to top 5
+        validHospitals.slice(0, 5).forEach(h => {
+            const hId = h.hospital_id;
+            const hDocs = DB.doctors.filter(d => d.hospital_id === hId);
+            
+            // Assign doctors temporarily to hospital object for detail view
+            h.doctors = hDocs.map(doc => ({
+                name: doc.full_name,
+                spec: doc.specialization,
+                rating: 4.5 + (Math.random() * 0.5).toFixed(1), // mock rating since doctor csv doesn't have it
+                emoji: doc.gender === 'Female' ? '👩‍⚕️' : '👨‍⚕️',
+                gender: doc.gender
+            }));
+
+            // Generate a random distance for demo purposes based on rating
+            h.dist = (Math.random() * 5 + 0.5).toFixed(1);
+
             const el = document.createElement('div');
             el.className = 'hospital-item';
             el.innerHTML = `
-                <h5><span data-i18n="${h.id}_name">${h.name}</span> <span class="h-dist">${h.dist} km</span></h5>
-                <p data-i18n="${h.id}_spec">${h.spec}</p>
+                <h5><span data-i18n="${h.hospital_id}_name">${h.hospital_name}</span> <span class="h-dist">${h.dist} km</span></h5>
+                <p data-i18n="${h.hospital_id}_spec">${h.hospital_type} • ${h.specialty_focus}</p>
                 <div class="h-meta">
                     <span>⭐ ${h.rating}</span>
                 </div>
@@ -478,25 +544,26 @@ document.addEventListener('DOMContentLoaded', () => {
         detailView.classList.remove('hidden');
         
         const hNameDisplay = document.getElementById('h-detail-name');
-        hNameDisplay.setAttribute('data-i18n', h.id + '_name');
-        hNameDisplay.textContent = h.name;
+        hNameDisplay.setAttribute('data-i18n', h.hospital_id + '_name');
+        hNameDisplay.textContent = h.hospital_name;
         
         const hSpecDisplay = document.getElementById('h-detail-spec');
-        hSpecDisplay.setAttribute('data-i18n', h.id + '_spec');
-        hSpecDisplay.textContent = h.spec;
+        hSpecDisplay.setAttribute('data-i18n', h.hospital_id + '_spec');
+        hSpecDisplay.textContent = h.specialty_focus;
         
         document.getElementById('h-detail-dist').textContent = `${h.dist} km`;
         document.getElementById('h-detail-rating').textContent = `⭐ ${h.rating}`;
         
         const hAddrDisplay = document.getElementById('h-detail-address');
-        hAddrDisplay.setAttribute('data-i18n', h.id + '_addr');
-        hAddrDisplay.textContent = h.address;
+        hAddrDisplay.setAttribute('data-i18n', h.hospital_id + '_addr');
+        hAddrDisplay.textContent = `${h.city}, ${h.state}`;
         
-        document.getElementById('h-detail-phone').textContent = h.phone;
+        document.getElementById('h-detail-phone').textContent = h.contact_number;
         
+        const isEmergency = h.hospital_type === 'General' || h.hospital_type === 'Multi-Specialty';
         const hEmerDisplay = document.getElementById('h-detail-emergency');
-        hEmerDisplay.setAttribute('data-i18n', h.emergency ? 'sym_yes_247' : 'sym_no_clinic');
-        hEmerDisplay.textContent = h.emergency ? 'Yes - 24/7' : 'No - Clinic Hours';
+        hEmerDisplay.setAttribute('data-i18n', isEmergency ? 'sym_yes_247' : 'sym_no_clinic');
+        hEmerDisplay.textContent = isEmergency ? 'Yes - 24/7' : 'No - Clinic Hours';
         
         // Render Doctors
         const doctorsContainer = document.getElementById('h-detail-doctors');
@@ -504,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (h.doctors && h.doctors.length > 0) {
             let doctorsToRender = [...h.doctors];
             if (prefFemaleCheckbox && prefFemaleCheckbox.checked) {
-                doctorsToRender = doctorsToRender.filter(doc => doc.emoji.includes('👩'));
+                doctorsToRender = doctorsToRender.filter(doc => doc.gender === 'Female');
             }
 
             doctorsToRender.forEach((doc, idx) => {
@@ -513,8 +580,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 docCard.innerHTML = `
                     <div class="doctor-img">${doc.emoji}</div>
                     <div class="doctor-info">
-                        <div class="doctor-name" data-i18n="${h.id}_doc_${idx}_name">${doc.name}</div>
-                        <div class="doctor-spec" data-i18n="${h.id}_doc_${idx}_spec">${doc.spec}</div>
+                        <div class="doctor-name" data-i18n="${h.hospital_id}_doc_${idx}_name">${doc.name}</div>
+                        <div class="doctor-spec" data-i18n="${h.hospital_id}_doc_${idx}_spec">${doc.spec}</div>
                         <div class="doctor-rating">⭐ ${doc.rating}</div>
                     </div>
                 `;
@@ -523,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Map Link Generation
-        const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(h.name + " " + h.address)}`;
+        const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(h.hospital_name + " " + h.city)}`;
         document.getElementById('h-map-link').href = mapUrl;
         
         if (typeof changeLanguage === 'function') {
