@@ -8,7 +8,9 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Optional
 
+# pyrefly: ignore [missing-import]
 from sqlalchemy import DateTime, Integer, String, func
+# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.database import Base
