@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resDept = document.getElementById('res-dept');
     const resSummary = document.getElementById('res-summary');
 
-    // ── HERO DEMO: Dataset-Driven Triage Engine ────────────────────────────
+    // ── HERO DEMO: Intelligent AI Pipeline Engine ──────────────────────────
     if (analyzeBtn) {
         analyzeBtn.addEventListener('click', async () => {
             const text = demoInput.value.trim();
@@ -268,41 +268,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await DB.loadPromise;
 
-            let urgency = 'Level 3: Urgent (Monitor)';
+            let urgency = 'Level 3: Routine';
             let dept    = 'General Urgent Care';
             let critical = false;
+            let summaryText = '';
 
-            const symptomIds = DB_extractSymptomIds(text);
-            const topDiseases = DB_predictDiseases(symptomIds, 1);
+            try {
+                const response = await MedAssistAI.query(text, { severity: 5 });
+                const topAssessment = response.assessment?.[0];
+                const urg = response.urgency;
 
-            if (topDiseases.length > 0) {
-                const d = topDiseases[0];
-                const sev = (d.typical_severity || '').toLowerCase();
-                dept = d.category || 'General Medicine';
+                if (topAssessment) {
+                    dept = topAssessment.category || 'General Medicine';
+                    const conf = topAssessment.confidence;
 
-                if (sev === 'severe' || sev === 'critical') {
-                    urgency = `Level 1: Critical — ${d.disease_name}`;
-                    critical = true;
-                } else if (sev === 'moderate') {
-                    urgency = `Level 2: High — ${d.disease_name}`;
-                    critical = true;
+                    if (urg.level === 'EMERGENCY') { urgency = `Level 1: Critical — ${topAssessment.name} (${conf}%)`; critical = true; }
+                    else if (urg.level === 'HIGH')  { urgency = `Level 2: High — ${topAssessment.name} (${conf}%)`; critical = true; }
+                    else                            { urgency = `Level 3: Routine — ${topAssessment.name} (${conf}%)`; }
+
+                    const symList = response.symptomsDetected.exact.slice(0, 3).join(', ') || text.substring(0, 40);
+                    summaryText = `AI matched ${response.symptomsDetected.count} symptom(s): "${symList}". Dataset prediction: ${topAssessment.name} with ${conf}% confidence. ${response.specialists.recommended[0]} consultation recommended.`;
                 } else {
-                    urgency = `Level 3: Routine — ${d.disease_name}`;
+                    summaryText = `Analyzed: "${text.substring(0, 50)}". No strong dataset match — visiting a General Physician is advised.`;
                 }
-            } else {
-                // Fallback: keyword-based severity when no DB match
+            } catch (e) {
+                // Fallback to keyword
                 const lowerText = text.toLowerCase();
                 if (lowerText.includes('chest') || lowerText.includes('heart')) { urgency = 'Level 1: Critical (Suspected Cardiac Event)'; dept = 'Cardiology ER'; critical = true; }
                 else if (lowerText.includes('bleed') || lowerText.includes('blood')) { urgency = 'Level 2: High (Active Bleeding)'; dept = 'Trauma Center'; critical = true; }
+                summaryText = `Fallback analysis: "${text.substring(0, 50)}". Routing to ${dept}.`;
             }
 
             const urgencyCard = document.querySelector('.result-card.urgency');
             if (urgencyCard) {
-                if (critical) {
-                    urgencyCard.classList.add('critical');
-                    urgencyCard.style.borderLeftColor = '';
-                    urgencyCard.style.background = '';
-                } else {
+                if (critical) { urgencyCard.classList.add('critical'); urgencyCard.style.borderLeftColor = ''; urgencyCard.style.background = ''; }
+                else {
                     urgencyCard.classList.remove('critical');
                     urgencyCard.style.borderLeftColor = '#ffce00';
                     const rv = urgencyCard.querySelector('.r-value');
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             resUrgency.innerText = urgency;
             resDept.innerText    = dept;
-            resSummary.innerText = `Dataset Analysis: "${text.substring(0, 50)}...". AI matched ${symptomIds.length} symptom(s) from knowledge base. Routing to ${dept}.`;
+            resSummary.innerText = summaryText;
 
             uiLoading.classList.add('hidden');
             uiResults.classList.remove('hidden');
