@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapshot Assistant | MedAssist 360</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snapshot.css?v=2">
+</head>
+<body>
+
+    <!-- Cinematic Background -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <span class="brand-icon">✧</span>
+                <span class="brand-text hide-on-mobile">MedAssist 360</span>
+            </a>
+            <div class="nav-actions">
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <select id="language-select" class="lang-selector">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                    </select>
+                    <a href="index.html" class="btn btn-outline btn-sm" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 50px;">
+                        <span style="font-size: 1.2em; line-height: 1;">←</span> <span data-i18n="back_home" class="hide-on-mobile">Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="snapshot-main">
+        <div class="container snapshot-container">
+            
+            <!-- Step 1: Upload / Capture -->
+            <section class="snapshot-step glass-panel fade-up active" id="step-input">
+                <div class="snapshot-header">
+                    <h1 class="snapshot-title"><span data-i18n="snap_title_1">Snapshot</span> <span class="text-gradient" data-i18n="snap_title_2">Assistant</span></h1>
+                    <p class="snapshot-desc" data-i18n="snap_desc">Upload or capture your medical documents, prescriptions, or medicine packaging for instant AI analysis.</p>
+                </div>
+
+
+
+                <div class="action-cards">
+                    <div class="action-card" id="btn-camera">
+                        <div class="icon-ring">📷</div>
+                        <h3 data-i18n="snap_btn_cam">Take Photo</h3>
+                        <p data-i18n="snap_btn_cam_desc">Use your device camera</p>
+                    </div>
+                    <label class="action-card" for="file-upload">
+                        <div class="icon-ring">📂</div>
+                        <h3 data-i18n="snap_btn_up">Upload Image</h3>
+                        <p data-i18n="snap_btn_up_desc">Choose from gallery</p>
+                        <input type="file" id="file-upload" accept="image/*" hidden>
+                    </label>
+                </div>
+                
+                <!-- Display Error Message -->
+                <div id="camera-error-msg" style="display: none; color: #ffffff; background: rgba(239, 68, 68, 0.15); padding: 12px 20px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); text-align: center; margin-top: 20px; font-size: 0.95rem; font-weight: 500; text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);"></div>
+            </section>
+
+            <!-- Camera Viewport (Hidden initially) -->
+            <section class="snapshot-step glass-panel fade-up hidden" id="step-camera">
+                <div class="camera-header">
+                    <h2 data-i18n="snap_cam_head">Capture Document</h2>
+                    <button id="close-camera" class="btn-micro" data-i18n="snap_cam_close">Close</button>
+                </div>
+                <div class="camera-viewport-wrapper">
+                    <video id="camera-feed" class="camera-feed" autoplay playsinline></video>
+                    <div class="camera-overlay">
+                        <div class="corner top-left"></div>
+                        <div class="corner top-right"></div>
+                        <div class="corner bottom-left"></div>
+                        <div class="corner bottom-right"></div>
+                        <div class="guidance-text" data-i18n="snap_cam_align">Align document within the frame</div>
+                    </div>
+                </div>
+                <div class="camera-controls">
+                    <button id="capture-photo" class="btn-capture" title="Capture Photo">
+                        <div class="capture-inner"></div>
+                    </button>
+                </div>
+                <canvas id="snapshot-canvas" hidden></canvas>
+            </section>
+
+            <!-- Step 2: Processing (Hidden initially) -->
+            <section class="snapshot-step glass-panel fade-up hidden" id="step-processing">
+                <div class="processing-container">
+                    <div class="preview-wrapper">
+                        <img id="preview-image" src="" alt="Snapshot Preview">
+                        <div class="scanner-line"></div>
+                        <div class="ocr-grid"></div>
+                    </div>
+                    <div class="processing-status">
+                        <div class="spinner"></div>
+                        <h3 id="processing-text" data-i18n="snap_proc_anal">Analyzing Document...</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Results Dashboard (Hidden initially) -->
+            <section class="snapshot-step fade-up hidden" id="step-results">
+                <div class="results-header">
+                    <h2><span data-i18n="snap_res_anal">Analysis</span> <span class="text-gradient" data-i18n="snap_res_comp">Complete</span></h2>
+                    <button id="btn-restart" class="btn btn-outline btn-sm" data-i18n="snap_res_scan">Scan Another</button>
+                </div>
+
+                <div class="disclaimer-banner">
+                    ⚠️ <strong data-i18n="snap_res_info">Informational Only.</strong> <span data-i18n="snap_res_info_desc">This tool does not provide a final diagnosis. Always verify with a licensed doctor or pharmacist.</span>
+                </div>
+
+                <div class="results-grid">
+                    
+                    <!-- Primary Extracted Information -->
+                    <div class="result-card glass-panel main-info-card" id="card-extracted">
+                        <h3><span class="icon">📄</span> <span id="res-title" data-i18n="snap_res_ext">Extracted Details</span></h3>
+                        <div class="extracted-content" id="res-extracted-content">
+                            <!-- Dynamic Content Injected Here -->
+                        </div>
+                    </div>
+
+                    <!-- Safety & Understanding -->
+                    <div class="result-card glass-panel safety-info-card" id="card-safety">
+                        <h3><span class="icon">🛡️</span> <span data-i18n="snap_res_guidance">Guidance & Safety</span></h3>
+                        <div class="extracted-content" id="res-safety-content">
+                            <!-- Dynamic Content Injected Here -->
+                        </div>
+                    </div>
+
+
+
+                    <!-- Medication Timeline -->
+                    <div class="result-card glass-panel timeline-card hidden" id="card-timeline">
+                        <h3><span class="icon">⏰</span> <span data-i18n="snap_res_timeline">Medication Timeline</span></h3>
+                        <div class="timeline-container" id="res-timeline">
+                            <!-- Dynamic Timeline -->
+                        </div>
+                    </div>
+
+                    <!-- Nearby Services -->
+                    <div class="result-card glass-panel map-card" id="card-nearby">
+                        <h3><span class="icon">📍</span> <span data-i18n="snap_res_nearby">Nearby Services</span></h3>
+                        <div class="nearby-list" id="res-nearby">
+                            <!-- Dynamic Nearby Centers/Pharmacies -->
+                        </div>
+                    </div>
+
+                    <!-- Dietary Suggestions -->
+                    <div class="result-card glass-panel diet-card hidden" id="card-diet">
+                        <h3><span class="icon">🥗</span> <span data-i18n="snap_res_diet">Dietary Suggestions</span></h3>
+                        <div class="extracted-content" id="res-diet-content">
+                            <!-- Dynamic Content Injected Here -->
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/snapshot.js"></script>
+</body>
+</html>

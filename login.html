@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MedAssist 360</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* Locks physical scrollbar, lets wheel events only drive cinematic engine */
+        }
+
+        .login-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 50px 40px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .login-header {
+            margin-bottom: 35px;
+        }
+
+        .login-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .login-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .login-form {
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-form .input-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .login-form .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px 18px;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--trans-smooth);
+            outline: none;
+        }
+
+        .login-form .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px var(--primary-dim);
+        }
+
+        .login-form .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Fix Browser Autofill Background */
+        .login-form .input-group input:-webkit-autofill,
+        .login-form .input-group input:-webkit-autofill:hover, 
+        .login-form .input-group input:-webkit-autofill:focus, 
+        .login-form .input-group input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .login-options a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--trans-smooth);
+        }
+
+        .login-options a:hover {
+            color: #ff6666;
+            text-shadow: 0 0 10px var(--primary-dim);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .checkbox-group input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            background-color: transparent;
+            border: 1px solid var(--glass-border);
+        }
+
+        .auth-footer {
+            margin-top: 35px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .auth-footer a {
+            color: #fff;
+            font-weight: 600;
+            transition: var(--trans-smooth);
+            margin-left: 5px;
+        }
+
+        .auth-footer a:hover {
+            color: var(--primary);
+        }
+
+        /* ── Divider ── */
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 28px 0 22px;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* ── Google Button ── */
+        .btn-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        .btn-google::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(66,133,244,0.12), rgba(52,168,83,0.08), rgba(251,188,5,0.08), rgba(234,67,53,0.08));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(66, 133, 244, 0.55);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.2);
+        }
+        .btn-google:hover::before { opacity: 1; }
+        .btn-google:active { transform: translateY(0); }
+
+        .google-logo {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .simple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .login-section {
+                height: auto;
+                min-height: 100vh;
+                align-items: flex-start;
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .simple-nav {
+                padding: 15px 20px;
+                position: absolute;
+                /* stop it covering the form when scrolling */
+                background: rgba(10, 10, 10, 0.8);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
+            .simple-nav .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .brand-text {
+                font-size: 1.2rem;
+            }
+
+            .login-card {
+                padding: 40px 25px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Capsule Loader Styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        #loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .capsule-loader {
+            width: 34px;
+            height: 80px;
+            border-radius: 17px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: rotateCapsule 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(20, 20, 20, 0.6);
+        }
+
+        @keyframes rotateCapsule {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .capsule-half {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            padding: 6px;
+            gap: 3px;
+            position: relative;
+        }
+
+        .white-half {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .red-half {
+            background: rgba(255, 51, 51, 0.1);
+        }
+
+        .ball {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: floatBalls 1.5s infinite alternate ease-in-out;
+        }
+
+        .white-ball {
+            background: #ffffff;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        .red-ball {
+            background: var(--primary);
+            box-shadow: 0 0 5px var(--primary);
+        }
+
+        .ball:nth-child(1) { animation-delay: 0.1s; }
+        .ball:nth-child(2) { animation-delay: 0.3s; }
+        .ball:nth-child(3) { animation-delay: 0.5s; }
+        .ball:nth-child(4) { animation-delay: 0.2s; }
+        .ball:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes floatBalls {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-4px) scale(1.1); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cinematic Background Engine -->
+    <div class="canvas-bg">
+        <canvas id="cinematic-canvas"></canvas>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Minimal Nav -->
+    <header class="simple-nav">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">✧</span>
+            <span class="brand-text">MedAssist 360</span>
+        </a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <select id="language-select" class="lang-selector">
+                <option value="en">English</option>
+                <option value="hi">हिंदी (Hindi)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+            </select>
+            <a href="index.html" class="btn btn-outline btn-sm" data-i18n="back_home">← Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Login Area — powered by React auth-app -->
+    <section class="login-section">
+        <div class="glass-panel login-card" style="text-align:center;">
+            <span class="brand-icon" style="font-size:2.5rem;">✧</span>
+            <h2 style="font-size:1.8rem;margin:16px 0 8px;font-weight:700;">
+                <span class="text-gradient">Redirecting…</span>
+            </h2>
+            <p style="color:var(--text-muted);margin-bottom:24px;">
+                Taking you to the secure login portal.
+            </p>
+            <div style="display:flex;gap:8px;justify-content:center;">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 1s infinite 0s;"></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 1s infinite 0.2s;"></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 1s infinite 0.4s;"></span>
+            </div>
+            <p style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.3);">
+                Not redirecting? <a href="http://localhost:5173/login" style="color:var(--primary);">Click here</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="capsule-loader">
+            <div class="capsule-half white-half">
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+                <div class="ball white-ball"></div>
+            </div>
+            <div class="capsule-half red-half">
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+                <div class="ball red-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Immediately redirect to the React auth-app
+        const redirectUrl = window.location.origin + '/index.html';
+        window.location.replace('http://localhost:5173/login?redirect=' + encodeURIComponent(redirectUrl));
+    </script>
+</body>
+
+</html>
