@@ -1,0 +1,1501 @@
+symptom_id,symptom_name,body_location,severity_level,description
+SYM00001,Fever,General,Moderate,Patient-reported fever without additional qualifiers.
+SYM00002,Cough,General,Moderate,Patient-reported cough without additional qualifiers.
+SYM00003,Headache,General,Moderate,Patient-reported headache without additional qualifiers.
+SYM00004,Fatigue,General,Moderate,Patient-reported fatigue without additional qualifiers.
+SYM00005,Sore Throat,General,Moderate,Patient-reported sore throat without additional qualifiers.
+SYM00006,Runny Nose,General,Moderate,Patient-reported runny nose without additional qualifiers.
+SYM00007,Shortness of Breath,General,Moderate,Patient-reported shortness of breath without additional qualifiers.
+SYM00008,Chest Pain,General,Moderate,Patient-reported chest pain without additional qualifiers.
+SYM00009,Nausea,General,Moderate,Patient-reported nausea without additional qualifiers.
+SYM00010,Vomiting,General,Moderate,Patient-reported vomiting without additional qualifiers.
+SYM00011,Diarrhea,General,Moderate,Patient-reported diarrhea without additional qualifiers.
+SYM00012,Constipation,General,Moderate,Patient-reported constipation without additional qualifiers.
+SYM00013,Abdominal Pain,General,Moderate,Patient-reported abdominal pain without additional qualifiers.
+SYM00014,Muscle Ache,General,Moderate,Patient-reported muscle ache without additional qualifiers.
+SYM00015,Joint Pain,General,Moderate,Patient-reported joint pain without additional qualifiers.
+SYM00016,Rash,General,Moderate,Patient-reported rash without additional qualifiers.
+SYM00017,Itching,General,Moderate,Patient-reported itching without additional qualifiers.
+SYM00018,Dizziness,General,Moderate,Patient-reported dizziness without additional qualifiers.
+SYM00019,Loss of Appetite,General,Moderate,Patient-reported loss of appetite without additional qualifiers.
+SYM00020,Weight Loss,General,Moderate,Patient-reported weight loss without additional qualifiers.
+SYM00021,Weight Gain,General,Moderate,Patient-reported weight gain without additional qualifiers.
+SYM00022,Chills,General,Moderate,Patient-reported chills without additional qualifiers.
+SYM00023,Sweating,General,Moderate,Patient-reported sweating without additional qualifiers.
+SYM00024,Blurred Vision,General,Moderate,Patient-reported blurred vision without additional qualifiers.
+SYM00025,Ear Pain,General,Moderate,Patient-reported ear pain without additional qualifiers.
+SYM00026,Sneezing,General,Moderate,Patient-reported sneezing without additional qualifiers.
+SYM00027,Nasal Congestion,General,Moderate,Patient-reported nasal congestion without additional qualifiers.
+SYM00028,Swollen Lymph Nodes,General,Moderate,Patient-reported swollen lymph nodes without additional qualifiers.
+SYM00029,Back Pain,General,Moderate,Patient-reported back pain without additional qualifiers.
+SYM00030,Neck Stiffness,General,Moderate,Patient-reported neck stiffness without additional qualifiers.
+SYM00031,Confusion,General,Moderate,Patient-reported confusion without additional qualifiers.
+SYM00032,Palpitations,General,Moderate,Patient-reported palpitations without additional qualifiers.
+SYM00033,Swelling,General,Moderate,Patient-reported swelling without additional qualifiers.
+SYM00034,Numbness,General,Moderate,Patient-reported numbness without additional qualifiers.
+SYM00035,Tingling,General,Moderate,Patient-reported tingling without additional qualifiers.
+SYM00036,Difficulty Swallowing,General,Moderate,Patient-reported difficulty swallowing without additional qualifiers.
+SYM00037,Hoarseness,General,Moderate,Patient-reported hoarseness without additional qualifiers.
+SYM00038,Excessive Thirst,General,Moderate,Patient-reported excessive thirst without additional qualifiers.
+SYM00039,Frequent Urination,General,Moderate,Patient-reported frequent urination without additional qualifiers.
+SYM00040,Painful Urination,General,Moderate,Patient-reported painful urination without additional qualifiers.
+SYM00041,Blood in Urine,General,Moderate,Patient-reported blood in urine without additional qualifiers.
+SYM00042,Blood in Stool,General,Moderate,Patient-reported blood in stool without additional qualifiers.
+SYM00043,Jaundice,General,Moderate,Patient-reported jaundice without additional qualifiers.
+SYM00044,Dry Mouth,General,Moderate,Patient-reported dry mouth without additional qualifiers.
+SYM00045,Bad Breath,General,Moderate,Patient-reported bad breath without additional qualifiers.
+SYM00046,Bleeding Gums,General,Moderate,Patient-reported bleeding gums without additional qualifiers.
+SYM00047,Toothache,General,Moderate,Patient-reported toothache without additional qualifiers.
+SYM00048,Insomnia,General,Moderate,Patient-reported insomnia without additional qualifiers.
+SYM00049,Excessive Sleepiness,General,Moderate,Patient-reported excessive sleepiness without additional qualifiers.
+SYM00050,Anxiety,General,Moderate,Patient-reported anxiety without additional qualifiers.
+SYM00051,Depression,General,Moderate,Patient-reported depression without additional qualifiers.
+SYM00052,Irritability,General,Moderate,Patient-reported irritability without additional qualifiers.
+SYM00053,Memory Loss,General,Moderate,Patient-reported memory loss without additional qualifiers.
+SYM00054,Tremor,General,Moderate,Patient-reported tremor without additional qualifiers.
+SYM00055,Seizure,General,Moderate,Patient-reported seizure without additional qualifiers.
+SYM00056,Fainting,General,Moderate,Patient-reported fainting without additional qualifiers.
+SYM00057,Cold Hands And Feet,General,Moderate,Patient-reported cold hands and feet without additional qualifiers.
+SYM00058,Hair Loss,General,Moderate,Patient-reported hair loss without additional qualifiers.
+SYM00059,Brittle Nails,General,Moderate,Patient-reported brittle nails without additional qualifiers.
+SYM00060,Dry Skin,General,Moderate,Patient-reported dry skin without additional qualifiers.
+SYM00061,Excessive Hunger,General,Moderate,Patient-reported excessive hunger without additional qualifiers.
+SYM00062,Bloating,General,Moderate,Patient-reported bloating without additional qualifiers.
+SYM00063,Gas,General,Moderate,Patient-reported gas without additional qualifiers.
+SYM00064,Heartburn,General,Moderate,Patient-reported heartburn without additional qualifiers.
+SYM00065,Difficulty Breathing,General,Moderate,Patient-reported difficulty breathing without additional qualifiers.
+SYM00066,Wheezing,General,Moderate,Patient-reported wheezing without additional qualifiers.
+SYM00067,Rapid Heartbeat,General,Moderate,Patient-reported rapid heartbeat without additional qualifiers.
+SYM00068,Slow Heartbeat,General,Moderate,Patient-reported slow heartbeat without additional qualifiers.
+SYM00069,High Blood Pressure,General,Moderate,Patient-reported high blood pressure without additional qualifiers.
+SYM00070,Low Blood Pressure,General,Moderate,Patient-reported low blood pressure without additional qualifiers.
+SYM00071,Swollen Ankles,General,Moderate,Patient-reported swollen ankles without additional qualifiers.
+SYM00072,Leg Cramps,General,Moderate,Patient-reported leg cramps without additional qualifiers.
+SYM00073,Stiff Joints,General,Moderate,Patient-reported stiff joints without additional qualifiers.
+SYM00074,Red Eyes,General,Moderate,Patient-reported red eyes without additional qualifiers.
+SYM00075,Watery Eyes,General,Moderate,Patient-reported watery eyes without additional qualifiers.
+SYM00076,Sensitivity To Light,General,Moderate,Patient-reported sensitivity to light without additional qualifiers.
+SYM00077,Double Vision,General,Moderate,Patient-reported double vision without additional qualifiers.
+SYM00078,Ringing In Ears,General,Moderate,Patient-reported ringing in ears without additional qualifiers.
+SYM00079,Hearing Loss,General,Moderate,Patient-reported hearing loss without additional qualifiers.
+SYM00080,Loss Of Smell,General,Moderate,Patient-reported loss of smell without additional qualifiers.
+SYM00081,Loss Of Taste,General,Moderate,Patient-reported loss of taste without additional qualifiers.
+SYM00082,Mouth Ulcers,General,Moderate,Patient-reported mouth ulcers without additional qualifiers.
+SYM00083,Skin Discoloration,General,Moderate,Patient-reported skin discoloration without additional qualifiers.
+SYM00084,Bruising Easily,General,Moderate,Patient-reported bruising easily without additional qualifiers.
+SYM00085,Night Sweats,General,Moderate,Patient-reported night sweats without additional qualifiers.
+SYM00086,Painful Intercourse,General,Moderate,Patient-reported painful intercourse without additional qualifiers.
+SYM00087,Irregular Periods,General,Moderate,Patient-reported irregular periods without additional qualifiers.
+SYM00088,Pelvic Pain,General,Moderate,Patient-reported pelvic pain without additional qualifiers.
+SYM00089,Testicular Pain,General,Moderate,Patient-reported testicular pain without additional qualifiers.
+SYM00090,Erectile Dysfunction,General,Moderate,Patient-reported erectile dysfunction without additional qualifiers.
+SYM00091,Frequent Infections,General,Moderate,Patient-reported frequent infections without additional qualifiers.
+SYM00092,Slow Wound Healing,General,Moderate,Patient-reported slow wound healing without additional qualifiers.
+SYM00093,Increased Thirst,General,Moderate,Patient-reported increased thirst without additional qualifiers.
+SYM00094,Muscle Weakness,General,Moderate,Patient-reported muscle weakness without additional qualifiers.
+SYM00095,Facial Drooping,General,Moderate,Patient-reported facial drooping without additional qualifiers.
+SYM00096,Slurred Speech,General,Moderate,Patient-reported slurred speech without additional qualifiers.
+SYM00097,Difficulty Walking,General,Moderate,Patient-reported difficulty walking without additional qualifiers.
+SYM00098,Loss Of Balance,General,Moderate,Patient-reported loss of balance without additional qualifiers.
+SYM00099,Uncontrolled Movements,General,Moderate,Patient-reported uncontrolled movements without additional qualifiers.
+SYM00100,Persistent Cough,General,Moderate,Patient-reported persistent cough without additional qualifiers.
+SYM00101,Coughing Blood,General,Moderate,Patient-reported coughing blood without additional qualifiers.
+SYM00102,Chest Tightness,General,Moderate,Patient-reported chest tightness without additional qualifiers.
+SYM00103,Rapid Breathing,General,Moderate,Patient-reported rapid breathing without additional qualifiers.
+SYM00104,Clubbing Of Fingers,General,Moderate,Patient-reported clubbing of fingers without additional qualifiers.
+SYM00105,Severe Nasal Congestion (Neck),Neck,Severe,Severe nasal congestion localized to the neck.
+SYM00106,Severe Facial Drooping (Abdomen),Abdomen,Severe,Severe facial drooping localized to the abdomen.
+SYM00107,Severe Loss Of Taste (Abdomen),Abdomen,Severe,Severe loss of taste localized to the abdomen.
+SYM00108,Severe Sneezing (Left Leg),Left Leg,Severe,Severe sneezing localized to the left leg.
+SYM00109,Moderate Painful Urination (Right Leg),Right Leg,Moderate,Moderate painful urination localized to the right leg.
+SYM00110,Mild Difficulty Swallowing (Chest),Chest,Mild,Mild difficulty swallowing localized to the chest.
+SYM00111,Severe Abdominal Pain (Left Arm),Left Arm,Severe,Severe abdominal pain localized to the left arm.
+SYM00112,Moderate Ear Pain (Skin),Skin,Moderate,Moderate ear pain localized to the skin.
+SYM00113,Moderate Abdominal Pain (Right Arm),Right Arm,Moderate,Moderate abdominal pain localized to the right arm.
+SYM00114,Severe Ear Pain (Ears),Ears,Severe,Severe ear pain localized to the ears.
+SYM00115,Severe Difficulty Walking (Lower Back),Lower Back,Severe,Severe difficulty walking localized to the lower back.
+SYM00116,Severe Confusion (Right Leg),Right Leg,Severe,Severe confusion localized to the right leg.
+SYM00117,Severe Hair Loss (Chest),Chest,Severe,Severe hair loss localized to the chest.
+SYM00118,Mild Hearing Loss (Lower Back),Lower Back,Mild,Mild hearing loss localized to the lower back.
+SYM00119,Mild Mouth Ulcers (Left Leg),Left Leg,Mild,Mild mouth ulcers localized to the left leg.
+SYM00120,Severe Chest Pain (Right Leg),Right Leg,Severe,Severe chest pain localized to the right leg.
+SYM00121,Severe Chest Tightness (Right Leg),Right Leg,Severe,Severe chest tightness localized to the right leg.
+SYM00122,Mild Night Sweats (Upper Back),Upper Back,Mild,Mild night sweats localized to the upper back.
+SYM00123,Severe Swollen Lymph Nodes (Right Leg),Right Leg,Severe,Severe swollen lymph nodes localized to the right leg.
+SYM00124,Mild Chills (Chest),Chest,Mild,Mild chills localized to the chest.
+SYM00125,Mild Skin Discoloration (Abdomen),Abdomen,Mild,Mild skin discoloration localized to the abdomen.
+SYM00126,Severe Rapid Breathing (Left Arm),Left Arm,Severe,Severe rapid breathing localized to the left arm.
+SYM00127,Moderate Tingling (Right Leg),Right Leg,Moderate,Moderate tingling localized to the right leg.
+SYM00128,Severe Irritability (Neck),Neck,Severe,Severe irritability localized to the neck.
+SYM00129,Mild Fatigue (Left Leg),Left Leg,Mild,Mild fatigue localized to the left leg.
+SYM00130,Moderate Watery Eyes (Whole Body),Whole Body,Moderate,Moderate watery eyes localized to the whole body.
+SYM00131,Mild Weight Loss (Right Arm),Right Arm,Mild,Mild weight loss localized to the right arm.
+SYM00132,Mild Chills (Lower Back),Lower Back,Mild,Mild chills localized to the lower back.
+SYM00133,Mild Frequent Urination (Throat),Throat,Mild,Mild frequent urination localized to the throat.
+SYM00134,Mild Double Vision (Right Arm),Right Arm,Mild,Mild double vision localized to the right arm.
+SYM00135,Severe Dry Skin (Left Arm),Left Arm,Severe,Severe dry skin localized to the left arm.
+SYM00136,Mild Painful Intercourse (Whole Body),Whole Body,Mild,Mild painful intercourse localized to the whole body.
+SYM00137,Severe Brittle Nails (Ears),Ears,Severe,Severe brittle nails localized to the ears.
+SYM00138,Moderate Chest Tightness (Whole Body),Whole Body,Moderate,Moderate chest tightness localized to the whole body.
+SYM00139,Moderate Heartburn (Chest),Chest,Moderate,Moderate heartburn localized to the chest.
+SYM00140,Severe Loss Of Taste (Lower Back),Lower Back,Severe,Severe loss of taste localized to the lower back.
+SYM00141,Mild Fever (Left Arm),Left Arm,Mild,Mild fever localized to the left arm.
+SYM00142,Severe Leg Cramps (Whole Body),Whole Body,Severe,Severe leg cramps localized to the whole body.
+SYM00143,Mild Wheezing (Skin),Skin,Mild,Mild wheezing localized to the skin.
+SYM00144,Severe Rapid Breathing (Ears),Ears,Severe,Severe rapid breathing localized to the ears.
+SYM00145,Severe Watery Eyes (Skin),Skin,Severe,Severe watery eyes localized to the skin.
+SYM00146,Moderate Leg Cramps (Joints),Joints,Moderate,Moderate leg cramps localized to the joints.
+SYM00147,Moderate Double Vision (Left Arm),Left Arm,Moderate,Moderate double vision localized to the left arm.
+SYM00148,Mild Toothache (Right Leg),Right Leg,Mild,Mild toothache localized to the right leg.
+SYM00149,Mild Night Sweats (Left Arm),Left Arm,Mild,Mild night sweats localized to the left arm.
+SYM00150,Severe Bleeding Gums (Neck),Neck,Severe,Severe bleeding gums localized to the neck.
+SYM00151,Severe Difficulty Swallowing (Ears),Ears,Severe,Severe difficulty swallowing localized to the ears.
+SYM00152,Severe Loss Of Balance (Throat),Throat,Severe,Severe loss of balance localized to the throat.
+SYM00153,Moderate Hoarseness (Throat),Throat,Moderate,Moderate hoarseness localized to the throat.
+SYM00154,Moderate Dry Skin (Ears),Ears,Moderate,Moderate dry skin localized to the ears.
+SYM00155,Severe Dry Skin (Ears),Ears,Severe,Severe dry skin localized to the ears.
+SYM00156,Severe Difficulty Walking (Throat),Throat,Severe,Severe difficulty walking localized to the throat.
+SYM00157,Mild Blurred Vision (Chest),Chest,Mild,Mild blurred vision localized to the chest.
+SYM00158,Mild Muscle Ache (Left Arm),Left Arm,Mild,Mild muscle ache localized to the left arm.
+SYM00159,Mild Gas (Right Leg),Right Leg,Mild,Mild gas localized to the right leg.
+SYM00160,Mild Excessive Hunger (Head),Head,Mild,Mild excessive hunger localized to the head.
+SYM00161,Moderate Excessive Thirst (Chest),Chest,Moderate,Moderate excessive thirst localized to the chest.
+SYM00162,Mild Blood in Urine (Lower Back),Lower Back,Mild,Mild blood in urine localized to the lower back.
+SYM00163,Severe Blood in Stool (Skin),Skin,Severe,Severe blood in stool localized to the skin.
+SYM00164,Mild Sweating (Right Arm),Right Arm,Mild,Mild sweating localized to the right arm.
+SYM00165,Severe Anxiety (Whole Body),Whole Body,Severe,Severe anxiety localized to the whole body.
+SYM00166,Severe Fatigue (Lower Back),Lower Back,Severe,Severe fatigue localized to the lower back.
+SYM00167,Mild Hearing Loss (Right Arm),Right Arm,Mild,Mild hearing loss localized to the right arm.
+SYM00168,Mild Fever (Right Arm),Right Arm,Mild,Mild fever localized to the right arm.
+SYM00169,Moderate Difficulty Breathing (Abdomen),Abdomen,Moderate,Moderate difficulty breathing localized to the abdomen.
+SYM00170,Mild Excessive Thirst (Ears),Ears,Mild,Mild excessive thirst localized to the ears.
+SYM00171,Severe Red Eyes (Lower Back),Lower Back,Severe,Severe red eyes localized to the lower back.
+SYM00172,Mild Tremor (Abdomen),Abdomen,Mild,Mild tremor localized to the abdomen.
+SYM00173,Moderate Seizure (Left Leg),Left Leg,Moderate,Moderate seizure localized to the left leg.
+SYM00174,Moderate Increased Thirst (Left Arm),Left Arm,Moderate,Moderate increased thirst localized to the left arm.
+SYM00175,Severe Gas (Right Arm),Right Arm,Severe,Severe gas localized to the right arm.
+SYM00176,Severe Frequent Urination (Abdomen),Abdomen,Severe,Severe frequent urination localized to the abdomen.
+SYM00177,Mild Difficulty Walking (Right Arm),Right Arm,Mild,Mild difficulty walking localized to the right arm.
+SYM00178,Severe Loss of Appetite (Chest),Chest,Severe,Severe loss of appetite localized to the chest.
+SYM00179,Mild Tingling (Ears),Ears,Mild,Mild tingling localized to the ears.
+SYM00180,Mild Testicular Pain (Neck),Neck,Mild,Mild testicular pain localized to the neck.
+SYM00181,Severe Hoarseness (Right Leg),Right Leg,Severe,Severe hoarseness localized to the right leg.
+SYM00182,Moderate Uncontrolled Movements (Neck),Neck,Moderate,Moderate uncontrolled movements localized to the neck.
+SYM00183,Severe Persistent Cough (Throat),Throat,Severe,Severe persistent cough localized to the throat.
+SYM00184,Moderate Weight Loss (Lower Back),Lower Back,Moderate,Moderate weight loss localized to the lower back.
+SYM00185,Severe Slow Heartbeat (Joints),Joints,Severe,Severe slow heartbeat localized to the joints.
+SYM00186,Mild Jaundice (Abdomen),Abdomen,Mild,Mild jaundice localized to the abdomen.
+SYM00187,Severe Sweating (Throat),Throat,Severe,Severe sweating localized to the throat.
+SYM00188,Mild Painful Intercourse (Right Arm),Right Arm,Mild,Mild painful intercourse localized to the right arm.
+SYM00189,Mild Toothache (Left Leg),Left Leg,Mild,Mild toothache localized to the left leg.
+SYM00190,Moderate Ear Pain (Left Arm),Left Arm,Moderate,Moderate ear pain localized to the left arm.
+SYM00191,Moderate Slow Wound Healing (Right Arm),Right Arm,Moderate,Moderate slow wound healing localized to the right arm.
+SYM00192,Mild Slurred Speech (Upper Back),Upper Back,Mild,Mild slurred speech localized to the upper back.
+SYM00193,Severe Sneezing (Whole Body),Whole Body,Severe,Severe sneezing localized to the whole body.
+SYM00194,Moderate Depression (Right Arm),Right Arm,Moderate,Moderate depression localized to the right arm.
+SYM00195,Severe Dizziness (Upper Back),Upper Back,Severe,Severe dizziness localized to the upper back.
+SYM00196,Severe Slow Heartbeat (Head),Head,Severe,Severe slow heartbeat localized to the head.
+SYM00197,Moderate Sore Throat (Whole Body),Whole Body,Moderate,Moderate sore throat localized to the whole body.
+SYM00198,Severe Loss Of Taste (Head),Head,Severe,Severe loss of taste localized to the head.
+SYM00199,Moderate Excessive Sleepiness (Lower Back),Lower Back,Moderate,Moderate excessive sleepiness localized to the lower back.
+SYM00200,Mild Blurred Vision (Neck),Neck,Mild,Mild blurred vision localized to the neck.
+SYM00201,Severe Sneezing (Ears),Ears,Severe,Severe sneezing localized to the ears.
+SYM00202,Mild Constipation (Left Arm),Left Arm,Mild,Mild constipation localized to the left arm.
+SYM00203,Mild Red Eyes (Ears),Ears,Mild,Mild red eyes localized to the ears.
+SYM00204,Severe Shortness of Breath (Abdomen),Abdomen,Severe,Severe shortness of breath localized to the abdomen.
+SYM00205,Moderate Tingling (Left Arm),Left Arm,Moderate,Moderate tingling localized to the left arm.
+SYM00206,Severe Weight Gain (Left Arm),Left Arm,Severe,Severe weight gain localized to the left arm.
+SYM00207,Moderate Loss Of Taste (Abdomen),Abdomen,Moderate,Moderate loss of taste localized to the abdomen.
+SYM00208,Moderate Coughing Blood (Left Leg),Left Leg,Moderate,Moderate coughing blood localized to the left leg.
+SYM00209,Mild Bad Breath (Throat),Throat,Mild,Mild bad breath localized to the throat.
+SYM00210,Moderate Bleeding Gums (Chest),Chest,Moderate,Moderate bleeding gums localized to the chest.
+SYM00211,Moderate Frequent Infections (Chest),Chest,Moderate,Moderate frequent infections localized to the chest.
+SYM00212,Moderate Slow Heartbeat (Throat),Throat,Moderate,Moderate slow heartbeat localized to the throat.
+SYM00213,Severe Runny Nose (Lower Back),Lower Back,Severe,Severe runny nose localized to the lower back.
+SYM00214,Mild Difficulty Walking (Ears),Ears,Mild,Mild difficulty walking localized to the ears.
+SYM00215,Severe Tingling (Right Leg),Right Leg,Severe,Severe tingling localized to the right leg.
+SYM00216,Severe High Blood Pressure (Upper Back),Upper Back,Severe,Severe high blood pressure localized to the upper back.
+SYM00217,Severe Double Vision (Throat),Throat,Severe,Severe double vision localized to the throat.
+SYM00218,Severe Bad Breath (Ears),Ears,Severe,Severe bad breath localized to the ears.
+SYM00219,Mild Hearing Loss (Left Arm),Left Arm,Mild,Mild hearing loss localized to the left arm.
+SYM00220,Mild Jaundice (Neck),Neck,Mild,Mild jaundice localized to the neck.
+SYM00221,Mild Dry Mouth (Joints),Joints,Mild,Mild dry mouth localized to the joints.
+SYM00222,Severe Hearing Loss (Skin),Skin,Severe,Severe hearing loss localized to the skin.
+SYM00223,Mild Watery Eyes (Skin),Skin,Mild,Mild watery eyes localized to the skin.
+SYM00224,Severe Blurred Vision (Lower Back),Lower Back,Severe,Severe blurred vision localized to the lower back.
+SYM00225,Severe Irregular Periods (Upper Back),Upper Back,Severe,Severe irregular periods localized to the upper back.
+SYM00226,Mild Sensitivity To Light (Ears),Ears,Mild,Mild sensitivity to light localized to the ears.
+SYM00227,Mild Weight Loss (Chest),Chest,Mild,Mild weight loss localized to the chest.
+SYM00228,Severe Double Vision (Neck),Neck,Severe,Severe double vision localized to the neck.
+SYM00229,Mild Sneezing (Joints),Joints,Mild,Mild sneezing localized to the joints.
+SYM00230,Moderate Slow Wound Healing (Whole Body),Whole Body,Moderate,Moderate slow wound healing localized to the whole body.
+SYM00231,Mild Diarrhea (Upper Back),Upper Back,Mild,Mild diarrhea localized to the upper back.
+SYM00232,Mild Hair Loss (Right Arm),Right Arm,Mild,Mild hair loss localized to the right arm.
+SYM00233,Severe Blurred Vision (Whole Body),Whole Body,Severe,Severe blurred vision localized to the whole body.
+SYM00234,Mild Swollen Lymph Nodes (Right Arm),Right Arm,Mild,Mild swollen lymph nodes localized to the right arm.
+SYM00235,Mild Joint Pain (Joints),Joints,Mild,Mild joint pain localized to the joints.
+SYM00236,Moderate Cold Hands And Feet (Whole Body),Whole Body,Moderate,Moderate cold hands and feet localized to the whole body.
+SYM00237,Severe Tremor (Right Arm),Right Arm,Severe,Severe tremor localized to the right arm.
+SYM00238,Mild Stiff Joints (Skin),Skin,Mild,Mild stiff joints localized to the skin.
+SYM00239,Moderate Loss of Appetite (Left Leg),Left Leg,Moderate,Moderate loss of appetite localized to the left leg.
+SYM00240,Severe Blood in Stool (Abdomen),Abdomen,Severe,Severe blood in stool localized to the abdomen.
+SYM00241,Mild Bruising Easily (Left Leg),Left Leg,Mild,Mild bruising easily localized to the left leg.
+SYM00242,Moderate Weight Loss (Skin),Skin,Moderate,Moderate weight loss localized to the skin.
+SYM00243,Mild Dry Mouth (Throat),Throat,Mild,Mild dry mouth localized to the throat.
+SYM00244,Mild Increased Thirst (Head),Head,Mild,Mild increased thirst localized to the head.
+SYM00245,Moderate Blood in Urine (Lower Back),Lower Back,Moderate,Moderate blood in urine localized to the lower back.
+SYM00246,Severe Joint Pain (Skin),Skin,Severe,Severe joint pain localized to the skin.
+SYM00247,Moderate Depression (Joints),Joints,Moderate,Moderate depression localized to the joints.
+SYM00248,Moderate Itching (Head),Head,Moderate,Moderate itching localized to the head.
+SYM00249,Moderate Swelling (Skin),Skin,Moderate,Moderate swelling localized to the skin.
+SYM00250,Mild Dry Skin (Eyes),Eyes,Mild,Mild dry skin localized to the eyes.
+SYM00251,Moderate Swollen Ankles (Right Arm),Right Arm,Moderate,Moderate swollen ankles localized to the right arm.
+SYM00252,Severe Brittle Nails (Left Arm),Left Arm,Severe,Severe brittle nails localized to the left arm.
+SYM00253,Severe Dizziness (Left Arm),Left Arm,Severe,Severe dizziness localized to the left arm.
+SYM00254,Severe Bleeding Gums (Left Arm),Left Arm,Severe,Severe bleeding gums localized to the left arm.
+SYM00255,Moderate Irregular Periods (Right Leg),Right Leg,Moderate,Moderate irregular periods localized to the right leg.
+SYM00256,Severe Hearing Loss (Abdomen),Abdomen,Severe,Severe hearing loss localized to the abdomen.
+SYM00257,Mild Neck Stiffness (Upper Back),Upper Back,Mild,Mild neck stiffness localized to the upper back.
+SYM00258,Severe Loss Of Taste (Skin),Skin,Severe,Severe loss of taste localized to the skin.
+SYM00259,Mild Dizziness (Throat),Throat,Mild,Mild dizziness localized to the throat.
+SYM00260,Mild Rash (Chest),Chest,Mild,Mild rash localized to the chest.
+SYM00261,Severe Leg Cramps (Lower Back),Lower Back,Severe,Severe leg cramps localized to the lower back.
+SYM00262,Moderate Bad Breath (Skin),Skin,Moderate,Moderate bad breath localized to the skin.
+SYM00263,Severe Loss of Appetite (Abdomen),Abdomen,Severe,Severe loss of appetite localized to the abdomen.
+SYM00264,Severe Sensitivity To Light (Neck),Neck,Severe,Severe sensitivity to light localized to the neck.
+SYM00265,Mild Nausea (Lower Back),Lower Back,Mild,Mild nausea localized to the lower back.
+SYM00266,Mild Blood in Stool (Joints),Joints,Mild,Mild blood in stool localized to the joints.
+SYM00267,Mild Memory Loss (Neck),Neck,Mild,Mild memory loss localized to the neck.
+SYM00268,Severe Facial Drooping (Skin),Skin,Severe,Severe facial drooping localized to the skin.
+SYM00269,Severe Rapid Heartbeat (Eyes),Eyes,Severe,Severe rapid heartbeat localized to the eyes.
+SYM00270,Severe Hair Loss (Ears),Ears,Severe,Severe hair loss localized to the ears.
+SYM00271,Moderate Erectile Dysfunction (Throat),Throat,Moderate,Moderate erectile dysfunction localized to the throat.
+SYM00272,Moderate Frequent Urination (Lower Back),Lower Back,Moderate,Moderate frequent urination localized to the lower back.
+SYM00273,Mild Joint Pain (Ears),Ears,Mild,Mild joint pain localized to the ears.
+SYM00274,Moderate Back Pain (Throat),Throat,Moderate,Moderate back pain localized to the throat.
+SYM00275,Mild Fatigue (Ears),Ears,Mild,Mild fatigue localized to the ears.
+SYM00276,Severe Erectile Dysfunction (Upper Back),Upper Back,Severe,Severe erectile dysfunction localized to the upper back.
+SYM00277,Moderate Dry Mouth (Joints),Joints,Moderate,Moderate dry mouth localized to the joints.
+SYM00278,Severe Cold Hands And Feet (Left Arm),Left Arm,Severe,Severe cold hands and feet localized to the left arm.
+SYM00279,Moderate Sore Throat (Lower Back),Lower Back,Moderate,Moderate sore throat localized to the lower back.
+SYM00280,Severe Loss Of Smell (Lower Back),Lower Back,Severe,Severe loss of smell localized to the lower back.
+SYM00281,Severe Hearing Loss (Joints),Joints,Severe,Severe hearing loss localized to the joints.
+SYM00282,Mild Confusion (Upper Back),Upper Back,Mild,Mild confusion localized to the upper back.
+SYM00283,Moderate Runny Nose (Left Arm),Left Arm,Moderate,Moderate runny nose localized to the left arm.
+SYM00284,Severe Dry Mouth (Abdomen),Abdomen,Severe,Severe dry mouth localized to the abdomen.
+SYM00285,Severe Difficulty Swallowing (Chest),Chest,Severe,Severe difficulty swallowing localized to the chest.
+SYM00286,Moderate Loss Of Taste (Right Arm),Right Arm,Moderate,Moderate loss of taste localized to the right arm.
+SYM00287,Moderate Chest Tightness (Left Leg),Left Leg,Moderate,Moderate chest tightness localized to the left leg.
+SYM00288,Severe Weight Gain (Eyes),Eyes,Severe,Severe weight gain localized to the eyes.
+SYM00289,Mild Chest Tightness (Whole Body),Whole Body,Mild,Mild chest tightness localized to the whole body.
+SYM00290,Mild Stiff Joints (Chest),Chest,Mild,Mild stiff joints localized to the chest.
+SYM00291,Mild Toothache (Skin),Skin,Mild,Mild toothache localized to the skin.
+SYM00292,Moderate Heartburn (Upper Back),Upper Back,Moderate,Moderate heartburn localized to the upper back.
+SYM00293,Severe Excessive Hunger (Joints),Joints,Severe,Severe excessive hunger localized to the joints.
+SYM00294,Moderate Fatigue (Right Arm),Right Arm,Moderate,Moderate fatigue localized to the right arm.
+SYM00295,Severe Slow Wound Healing (Neck),Neck,Severe,Severe slow wound healing localized to the neck.
+SYM00296,Mild Gas (Eyes),Eyes,Mild,Mild gas localized to the eyes.
+SYM00297,Mild Hoarseness (Left Arm),Left Arm,Mild,Mild hoarseness localized to the left arm.
+SYM00298,Mild Fever (Head),Head,Mild,Mild fever localized to the head.
+SYM00299,Mild Increased Thirst (Chest),Chest,Mild,Mild increased thirst localized to the chest.
+SYM00300,Mild Tingling (Throat),Throat,Mild,Mild tingling localized to the throat.
+SYM00301,Severe Joint Pain (Left Leg),Left Leg,Severe,Severe joint pain localized to the left leg.
+SYM00302,Moderate Memory Loss (Abdomen),Abdomen,Moderate,Moderate memory loss localized to the abdomen.
+SYM00303,Mild Rapid Heartbeat (Neck),Neck,Mild,Mild rapid heartbeat localized to the neck.
+SYM00304,Moderate Blood in Urine (Throat),Throat,Moderate,Moderate blood in urine localized to the throat.
+SYM00305,Mild Chest Tightness (Throat),Throat,Mild,Mild chest tightness localized to the throat.
+SYM00306,Severe Ear Pain (Neck),Neck,Severe,Severe ear pain localized to the neck.
+SYM00307,Mild Shortness of Breath (Abdomen),Abdomen,Mild,Mild shortness of breath localized to the abdomen.
+SYM00308,Severe Hair Loss (Neck),Neck,Severe,Severe hair loss localized to the neck.
+SYM00309,Severe Hoarseness (Joints),Joints,Severe,Severe hoarseness localized to the joints.
+SYM00310,Moderate Uncontrolled Movements (Chest),Chest,Moderate,Moderate uncontrolled movements localized to the chest.
+SYM00311,Mild Brittle Nails (Left Arm),Left Arm,Mild,Mild brittle nails localized to the left arm.
+SYM00312,Moderate Slow Wound Healing (Left Leg),Left Leg,Moderate,Moderate slow wound healing localized to the left leg.
+SYM00313,Moderate Cold Hands And Feet (Eyes),Eyes,Moderate,Moderate cold hands and feet localized to the eyes.
+SYM00314,Severe Slow Heartbeat (Ears),Ears,Severe,Severe slow heartbeat localized to the ears.
+SYM00315,Severe Fatigue (Head),Head,Severe,Severe fatigue localized to the head.
+SYM00316,Mild Slurred Speech (Ears),Ears,Mild,Mild slurred speech localized to the ears.
+SYM00317,Moderate Persistent Cough (Throat),Throat,Moderate,Moderate persistent cough localized to the throat.
+SYM00318,Mild Headache (Left Leg),Left Leg,Mild,Mild headache localized to the left leg.
+SYM00319,Severe Rapid Breathing (Upper Back),Upper Back,Severe,Severe rapid breathing localized to the upper back.
+SYM00320,Mild Rapid Breathing (Ears),Ears,Mild,Mild rapid breathing localized to the ears.
+SYM00321,Severe Frequent Urination (Skin),Skin,Severe,Severe frequent urination localized to the skin.
+SYM00322,Severe Tingling (Throat),Throat,Severe,Severe tingling localized to the throat.
+SYM00323,Mild Red Eyes (Lower Back),Lower Back,Mild,Mild red eyes localized to the lower back.
+SYM00324,Mild Sensitivity To Light (Lower Back),Lower Back,Mild,Mild sensitivity to light localized to the lower back.
+SYM00325,Severe Chest Tightness (Throat),Throat,Severe,Severe chest tightness localized to the throat.
+SYM00326,Severe Rash (Head),Head,Severe,Severe rash localized to the head.
+SYM00327,Moderate Excessive Hunger (Joints),Joints,Moderate,Moderate excessive hunger localized to the joints.
+SYM00328,Severe Jaundice (Chest),Chest,Severe,Severe jaundice localized to the chest.
+SYM00329,Severe Cough (Left Leg),Left Leg,Severe,Severe cough localized to the left leg.
+SYM00330,Moderate Gas (Head),Head,Moderate,Moderate gas localized to the head.
+SYM00331,Moderate Cough (Upper Back),Upper Back,Moderate,Moderate cough localized to the upper back.
+SYM00332,Moderate Wheezing (Throat),Throat,Moderate,Moderate wheezing localized to the throat.
+SYM00333,Mild Stiff Joints (Ears),Ears,Mild,Mild stiff joints localized to the ears.
+SYM00334,Severe Nasal Congestion (Eyes),Eyes,Severe,Severe nasal congestion localized to the eyes.
+SYM00335,Moderate Irregular Periods (Chest),Chest,Moderate,Moderate irregular periods localized to the chest.
+SYM00336,Mild Fever (Skin),Skin,Mild,Mild fever localized to the skin.
+SYM00337,Mild Irregular Periods (Left Arm),Left Arm,Mild,Mild irregular periods localized to the left arm.
+SYM00338,Severe Skin Discoloration (Left Leg),Left Leg,Severe,Severe skin discoloration localized to the left leg.
+SYM00339,Moderate Cold Hands And Feet (Throat),Throat,Moderate,Moderate cold hands and feet localized to the throat.
+SYM00340,Moderate Shortness of Breath (Skin),Skin,Moderate,Moderate shortness of breath localized to the skin.
+SYM00341,Severe Clubbing Of Fingers (Neck),Neck,Severe,Severe clubbing of fingers localized to the neck.
+SYM00342,Moderate Chest Pain (Joints),Joints,Moderate,Moderate chest pain localized to the joints.
+SYM00343,Severe Slow Heartbeat (Left Leg),Left Leg,Severe,Severe slow heartbeat localized to the left leg.
+SYM00344,Moderate Stiff Joints (Left Leg),Left Leg,Moderate,Moderate stiff joints localized to the left leg.
+SYM00345,Moderate Anxiety (Left Leg),Left Leg,Moderate,Moderate anxiety localized to the left leg.
+SYM00346,Moderate Sweating (Joints),Joints,Moderate,Moderate sweating localized to the joints.
+SYM00347,Moderate Erectile Dysfunction (Skin),Skin,Moderate,Moderate erectile dysfunction localized to the skin.
+SYM00348,Mild Vomiting (Chest),Chest,Mild,Mild vomiting localized to the chest.
+SYM00349,Mild Bloating (Eyes),Eyes,Mild,Mild bloating localized to the eyes.
+SYM00350,Severe Excessive Hunger (Throat),Throat,Severe,Severe excessive hunger localized to the throat.
+SYM00351,Moderate Sensitivity To Light (Neck),Neck,Moderate,Moderate sensitivity to light localized to the neck.
+SYM00352,Moderate Excessive Hunger (Abdomen),Abdomen,Moderate,Moderate excessive hunger localized to the abdomen.
+SYM00353,Mild Dry Mouth (Neck),Neck,Mild,Mild dry mouth localized to the neck.
+SYM00354,Moderate Dry Mouth (Throat),Throat,Moderate,Moderate dry mouth localized to the throat.
+SYM00355,Mild Blurred Vision (Right Leg),Right Leg,Mild,Mild blurred vision localized to the right leg.
+SYM00356,Severe Sensitivity To Light (Ears),Ears,Severe,Severe sensitivity to light localized to the ears.
+SYM00357,Moderate Painful Intercourse (Throat),Throat,Moderate,Moderate painful intercourse localized to the throat.
+SYM00358,Moderate Cough (Joints),Joints,Moderate,Moderate cough localized to the joints.
+SYM00359,Moderate Brittle Nails (Neck),Neck,Moderate,Moderate brittle nails localized to the neck.
+SYM00360,Mild Stiff Joints (Whole Body),Whole Body,Mild,Mild stiff joints localized to the whole body.
+SYM00361,Severe Sore Throat (Neck),Neck,Severe,Severe sore throat localized to the neck.
+SYM00362,Moderate Coughing Blood (Abdomen),Abdomen,Moderate,Moderate coughing blood localized to the abdomen.
+SYM00363,Mild Ear Pain (Whole Body),Whole Body,Mild,Mild ear pain localized to the whole body.
+SYM00364,Severe Hair Loss (Upper Back),Upper Back,Severe,Severe hair loss localized to the upper back.
+SYM00365,Moderate Pelvic Pain (Chest),Chest,Moderate,Moderate pelvic pain localized to the chest.
+SYM00366,Severe Loss Of Balance (Left Arm),Left Arm,Severe,Severe loss of balance localized to the left arm.
+SYM00367,Moderate Headache (Ears),Ears,Moderate,Moderate headache localized to the ears.
+SYM00368,Severe Fever (Throat),Throat,Severe,Severe fever localized to the throat.
+SYM00369,Moderate Tingling (Skin),Skin,Moderate,Moderate tingling localized to the skin.
+SYM00370,Mild Sore Throat (Eyes),Eyes,Mild,Mild sore throat localized to the eyes.
+SYM00371,Mild Insomnia (Upper Back),Upper Back,Mild,Mild insomnia localized to the upper back.
+SYM00372,Mild Skin Discoloration (Joints),Joints,Mild,Mild skin discoloration localized to the joints.
+SYM00373,Severe Excessive Sleepiness (Head),Head,Severe,Severe excessive sleepiness localized to the head.
+SYM00374,Moderate Gas (Skin),Skin,Moderate,Moderate gas localized to the skin.
+SYM00375,Moderate Fainting (Whole Body),Whole Body,Moderate,Moderate fainting localized to the whole body.
+SYM00376,Severe Irritability (Head),Head,Severe,Severe irritability localized to the head.
+SYM00377,Severe Tingling (Lower Back),Lower Back,Severe,Severe tingling localized to the lower back.
+SYM00378,Mild Sensitivity To Light (Right Arm),Right Arm,Mild,Mild sensitivity to light localized to the right arm.
+SYM00379,Moderate Hoarseness (Right Arm),Right Arm,Moderate,Moderate hoarseness localized to the right arm.
+SYM00380,Mild Shortness of Breath (Lower Back),Lower Back,Mild,Mild shortness of breath localized to the lower back.
+SYM00381,Mild Muscle Ache (Abdomen),Abdomen,Mild,Mild muscle ache localized to the abdomen.
+SYM00382,Severe Sneezing (Upper Back),Upper Back,Severe,Severe sneezing localized to the upper back.
+SYM00383,Severe Chest Pain (Eyes),Eyes,Severe,Severe chest pain localized to the eyes.
+SYM00384,Severe Abdominal Pain (Lower Back),Lower Back,Severe,Severe abdominal pain localized to the lower back.
+SYM00385,Mild Fever (Throat),Throat,Mild,Mild fever localized to the throat.
+SYM00386,Mild Tremor (Upper Back),Upper Back,Mild,Mild tremor localized to the upper back.
+SYM00387,Severe Dry Mouth (Left Arm),Left Arm,Severe,Severe dry mouth localized to the left arm.
+SYM00388,Mild Watery Eyes (Chest),Chest,Mild,Mild watery eyes localized to the chest.
+SYM00389,Moderate Insomnia (Joints),Joints,Moderate,Moderate insomnia localized to the joints.
+SYM00390,Moderate Dizziness (Left Leg),Left Leg,Moderate,Moderate dizziness localized to the left leg.
+SYM00391,Moderate Slow Wound Healing (Chest),Chest,Moderate,Moderate slow wound healing localized to the chest.
+SYM00392,Severe Weight Gain (Ears),Ears,Severe,Severe weight gain localized to the ears.
+SYM00393,Severe Chest Tightness (Skin),Skin,Severe,Severe chest tightness localized to the skin.
+SYM00394,Moderate Dizziness (Lower Back),Lower Back,Moderate,Moderate dizziness localized to the lower back.
+SYM00395,Moderate Skin Discoloration (Neck),Neck,Moderate,Moderate skin discoloration localized to the neck.
+SYM00396,Severe Difficulty Swallowing (Left Arm),Left Arm,Severe,Severe difficulty swallowing localized to the left arm.
+SYM00397,Severe Itching (Joints),Joints,Severe,Severe itching localized to the joints.
+SYM00398,Severe Neck Stiffness (Head),Head,Severe,Severe neck stiffness localized to the head.
+SYM00399,Mild Numbness (Right Leg),Right Leg,Mild,Mild numbness localized to the right leg.
+SYM00400,Severe Fever (Whole Body),Whole Body,Severe,Severe fever localized to the whole body.
+SYM00401,Mild Testicular Pain (Joints),Joints,Mild,Mild testicular pain localized to the joints.
+SYM00402,Mild Leg Cramps (Throat),Throat,Mild,Mild leg cramps localized to the throat.
+SYM00403,Severe Neck Stiffness (Ears),Ears,Severe,Severe neck stiffness localized to the ears.
+SYM00404,Moderate Hair Loss (Right Leg),Right Leg,Moderate,Moderate hair loss localized to the right leg.
+SYM00405,Moderate Anxiety (Left Arm),Left Arm,Moderate,Moderate anxiety localized to the left arm.
+SYM00406,Severe Loss of Appetite (Throat),Throat,Severe,Severe loss of appetite localized to the throat.
+SYM00407,Moderate Sweating (Upper Back),Upper Back,Moderate,Moderate sweating localized to the upper back.
+SYM00408,Severe Nausea (Whole Body),Whole Body,Severe,Severe nausea localized to the whole body.
+SYM00409,Mild Hearing Loss (Neck),Neck,Mild,Mild hearing loss localized to the neck.
+SYM00410,Severe Toothache (Chest),Chest,Severe,Severe toothache localized to the chest.
+SYM00411,Severe Irregular Periods (Head),Head,Severe,Severe irregular periods localized to the head.
+SYM00412,Mild Diarrhea (Lower Back),Lower Back,Mild,Mild diarrhea localized to the lower back.
+SYM00413,Moderate Erectile Dysfunction (Head),Head,Moderate,Moderate erectile dysfunction localized to the head.
+SYM00414,Severe Back Pain (Lower Back),Lower Back,Severe,Severe back pain localized to the lower back.
+SYM00415,Moderate Chest Pain (Head),Head,Moderate,Moderate chest pain localized to the head.
+SYM00416,Mild Sweating (Left Leg),Left Leg,Mild,Mild sweating localized to the left leg.
+SYM00417,Severe Watery Eyes (Lower Back),Lower Back,Severe,Severe watery eyes localized to the lower back.
+SYM00418,Mild Nasal Congestion (Neck),Neck,Mild,Mild nasal congestion localized to the neck.
+SYM00419,Mild Slow Wound Healing (Chest),Chest,Mild,Mild slow wound healing localized to the chest.
+SYM00420,Severe Joint Pain (Right Arm),Right Arm,Severe,Severe joint pain localized to the right arm.
+SYM00421,Moderate Blurred Vision (Skin),Skin,Moderate,Moderate blurred vision localized to the skin.
+SYM00422,Severe Nasal Congestion (Lower Back),Lower Back,Severe,Severe nasal congestion localized to the lower back.
+SYM00423,Moderate Coughing Blood (Upper Back),Upper Back,Moderate,Moderate coughing blood localized to the upper back.
+SYM00424,Severe Swollen Ankles (Lower Back),Lower Back,Severe,Severe swollen ankles localized to the lower back.
+SYM00425,Severe Vomiting (Joints),Joints,Severe,Severe vomiting localized to the joints.
+SYM00426,Severe Seizure (Head),Head,Severe,Severe seizure localized to the head.
+SYM00427,Moderate Red Eyes (Upper Back),Upper Back,Moderate,Moderate red eyes localized to the upper back.
+SYM00428,Moderate High Blood Pressure (Head),Head,Moderate,Moderate high blood pressure localized to the head.
+SYM00429,Moderate Loss of Appetite (Lower Back),Lower Back,Moderate,Moderate loss of appetite localized to the lower back.
+SYM00430,Mild Depression (Head),Head,Mild,Mild depression localized to the head.
+SYM00431,Severe Shortness of Breath (Chest),Chest,Severe,Severe shortness of breath localized to the chest.
+SYM00432,Severe Cough (Abdomen),Abdomen,Severe,Severe cough localized to the abdomen.
+SYM00433,Moderate Vomiting (Joints),Joints,Moderate,Moderate vomiting localized to the joints.
+SYM00434,Severe Heartburn (Left Leg),Left Leg,Severe,Severe heartburn localized to the left leg.
+SYM00435,Moderate Difficulty Walking (Right Leg),Right Leg,Moderate,Moderate difficulty walking localized to the right leg.
+SYM00436,Mild Pelvic Pain (Right Leg),Right Leg,Mild,Mild pelvic pain localized to the right leg.
+SYM00437,Mild Bad Breath (Left Leg),Left Leg,Mild,Mild bad breath localized to the left leg.
+SYM00438,Mild Leg Cramps (Neck),Neck,Mild,Mild leg cramps localized to the neck.
+SYM00439,Moderate Cold Hands And Feet (Joints),Joints,Moderate,Moderate cold hands and feet localized to the joints.
+SYM00440,Mild Chest Pain (Upper Back),Upper Back,Mild,Mild chest pain localized to the upper back.
+SYM00441,Moderate Neck Stiffness (Upper Back),Upper Back,Moderate,Moderate neck stiffness localized to the upper back.
+SYM00442,Mild Blood in Stool (Whole Body),Whole Body,Mild,Mild blood in stool localized to the whole body.
+SYM00443,Mild Low Blood Pressure (Whole Body),Whole Body,Mild,Mild low blood pressure localized to the whole body.
+SYM00444,Moderate Frequent Infections (Lower Back),Lower Back,Moderate,Moderate frequent infections localized to the lower back.
+SYM00445,Severe Muscle Weakness (Head),Head,Severe,Severe muscle weakness localized to the head.
+SYM00446,Mild Nausea (Eyes),Eyes,Mild,Mild nausea localized to the eyes.
+SYM00447,Severe Dry Mouth (Throat),Throat,Severe,Severe dry mouth localized to the throat.
+SYM00448,Moderate Brittle Nails (Lower Back),Lower Back,Moderate,Moderate brittle nails localized to the lower back.
+SYM00449,Mild Dry Mouth (Skin),Skin,Mild,Mild dry mouth localized to the skin.
+SYM00450,Moderate Erectile Dysfunction (Whole Body),Whole Body,Moderate,Moderate erectile dysfunction localized to the whole body.
+SYM00451,Severe Dry Mouth (Right Arm),Right Arm,Severe,Severe dry mouth localized to the right arm.
+SYM00452,Severe Headache (Chest),Chest,Severe,Severe headache localized to the chest.
+SYM00453,Mild Rapid Heartbeat (Ears),Ears,Mild,Mild rapid heartbeat localized to the ears.
+SYM00454,Severe Excessive Sleepiness (Left Leg),Left Leg,Severe,Severe excessive sleepiness localized to the left leg.
+SYM00455,Severe Palpitations (Chest),Chest,Severe,Severe palpitations localized to the chest.
+SYM00456,Mild Blurred Vision (Throat),Throat,Mild,Mild blurred vision localized to the throat.
+SYM00457,Mild Sweating (Lower Back),Lower Back,Mild,Mild sweating localized to the lower back.
+SYM00458,Mild Increased Thirst (Neck),Neck,Mild,Mild increased thirst localized to the neck.
+SYM00459,Mild Anxiety (Head),Head,Mild,Mild anxiety localized to the head.
+SYM00460,Mild Bleeding Gums (Ears),Ears,Mild,Mild bleeding gums localized to the ears.
+SYM00461,Mild Ear Pain (Lower Back),Lower Back,Mild,Mild ear pain localized to the lower back.
+SYM00462,Mild Hoarseness (Upper Back),Upper Back,Mild,Mild hoarseness localized to the upper back.
+SYM00463,Mild Bleeding Gums (Right Leg),Right Leg,Mild,Mild bleeding gums localized to the right leg.
+SYM00464,Moderate Leg Cramps (Ears),Ears,Moderate,Moderate leg cramps localized to the ears.
+SYM00465,Moderate Gas (Lower Back),Lower Back,Moderate,Moderate gas localized to the lower back.
+SYM00466,Moderate Ear Pain (Whole Body),Whole Body,Moderate,Moderate ear pain localized to the whole body.
+SYM00467,Mild Joint Pain (Head),Head,Mild,Mild joint pain localized to the head.
+SYM00468,Severe Increased Thirst (Skin),Skin,Severe,Severe increased thirst localized to the skin.
+SYM00469,Mild Excessive Thirst (Chest),Chest,Mild,Mild excessive thirst localized to the chest.
+SYM00470,Moderate Nausea (Chest),Chest,Moderate,Moderate nausea localized to the chest.
+SYM00471,Severe Memory Loss (Lower Back),Lower Back,Severe,Severe memory loss localized to the lower back.
+SYM00472,Mild Memory Loss (Lower Back),Lower Back,Mild,Mild memory loss localized to the lower back.
+SYM00473,Moderate Coughing Blood (Skin),Skin,Moderate,Moderate coughing blood localized to the skin.
+SYM00474,Mild Ear Pain (Chest),Chest,Mild,Mild ear pain localized to the chest.
+SYM00475,Mild Vomiting (Head),Head,Mild,Mild vomiting localized to the head.
+SYM00476,Mild Red Eyes (Eyes),Eyes,Mild,Mild red eyes localized to the eyes.
+SYM00477,Severe Double Vision (Eyes),Eyes,Severe,Severe double vision localized to the eyes.
+SYM00478,Mild Cough (Throat),Throat,Mild,Mild cough localized to the throat.
+SYM00479,Severe Erectile Dysfunction (Eyes),Eyes,Severe,Severe erectile dysfunction localized to the eyes.
+SYM00480,Mild Irritability (Skin),Skin,Mild,Mild irritability localized to the skin.
+SYM00481,Moderate Slow Wound Healing (Lower Back),Lower Back,Moderate,Moderate slow wound healing localized to the lower back.
+SYM00482,Moderate Bruising Easily (Joints),Joints,Moderate,Moderate bruising easily localized to the joints.
+SYM00483,Severe Nausea (Left Arm),Left Arm,Severe,Severe nausea localized to the left arm.
+SYM00484,Severe Constipation (Left Leg),Left Leg,Severe,Severe constipation localized to the left leg.
+SYM00485,Mild Fainting (Right Leg),Right Leg,Mild,Mild fainting localized to the right leg.
+SYM00486,Mild Wheezing (Upper Back),Upper Back,Mild,Mild wheezing localized to the upper back.
+SYM00487,Mild Uncontrolled Movements (Joints),Joints,Mild,Mild uncontrolled movements localized to the joints.
+SYM00488,Moderate Sweating (Whole Body),Whole Body,Moderate,Moderate sweating localized to the whole body.
+SYM00489,Moderate Double Vision (Eyes),Eyes,Moderate,Moderate double vision localized to the eyes.
+SYM00490,Moderate Fever (Lower Back),Lower Back,Moderate,Moderate fever localized to the lower back.
+SYM00491,Moderate Difficulty Breathing (Throat),Throat,Moderate,Moderate difficulty breathing localized to the throat.
+SYM00492,Severe Rapid Heartbeat (Whole Body),Whole Body,Severe,Severe rapid heartbeat localized to the whole body.
+SYM00493,Severe Irregular Periods (Whole Body),Whole Body,Severe,Severe irregular periods localized to the whole body.
+SYM00494,Moderate Low Blood Pressure (Right Arm),Right Arm,Moderate,Moderate low blood pressure localized to the right arm.
+SYM00495,Mild Sneezing (Head),Head,Mild,Mild sneezing localized to the head.
+SYM00496,Severe Excessive Thirst (Lower Back),Lower Back,Severe,Severe excessive thirst localized to the lower back.
+SYM00497,Moderate Anxiety (Joints),Joints,Moderate,Moderate anxiety localized to the joints.
+SYM00498,Moderate Tingling (Left Leg),Left Leg,Moderate,Moderate tingling localized to the left leg.
+SYM00499,Severe Weight Gain (Abdomen),Abdomen,Severe,Severe weight gain localized to the abdomen.
+SYM00500,Moderate Dry Skin (Throat),Throat,Moderate,Moderate dry skin localized to the throat.
+SYM00501,Severe Back Pain (Chest),Chest,Severe,Severe back pain localized to the chest.
+SYM00502,Mild Red Eyes (Whole Body),Whole Body,Mild,Mild red eyes localized to the whole body.
+SYM00503,Moderate Rash (Lower Back),Lower Back,Moderate,Moderate rash localized to the lower back.
+SYM00504,Moderate Chest Pain (Neck),Neck,Moderate,Moderate chest pain localized to the neck.
+SYM00505,Severe Low Blood Pressure (Head),Head,Severe,Severe low blood pressure localized to the head.
+SYM00506,Moderate Irritability (Head),Head,Moderate,Moderate irritability localized to the head.
+SYM00507,Moderate Fainting (Chest),Chest,Moderate,Moderate fainting localized to the chest.
+SYM00508,Moderate Abdominal Pain (Upper Back),Upper Back,Moderate,Moderate abdominal pain localized to the upper back.
+SYM00509,Severe Low Blood Pressure (Right Arm),Right Arm,Severe,Severe low blood pressure localized to the right arm.
+SYM00510,Mild Irregular Periods (Joints),Joints,Mild,Mild irregular periods localized to the joints.
+SYM00511,Mild Persistent Cough (Left Leg),Left Leg,Mild,Mild persistent cough localized to the left leg.
+SYM00512,Mild Hoarseness (Chest),Chest,Mild,Mild hoarseness localized to the chest.
+SYM00513,Severe Seizure (Upper Back),Upper Back,Severe,Severe seizure localized to the upper back.
+SYM00514,Moderate Nausea (Skin),Skin,Moderate,Moderate nausea localized to the skin.
+SYM00515,Moderate Toothache (Abdomen),Abdomen,Moderate,Moderate toothache localized to the abdomen.
+SYM00516,Severe Hair Loss (Throat),Throat,Severe,Severe hair loss localized to the throat.
+SYM00517,Moderate Sensitivity To Light (Chest),Chest,Moderate,Moderate sensitivity to light localized to the chest.
+SYM00518,Moderate Leg Cramps (Whole Body),Whole Body,Moderate,Moderate leg cramps localized to the whole body.
+SYM00519,Mild Cough (Ears),Ears,Mild,Mild cough localized to the ears.
+SYM00520,Mild Headache (Head),Head,Mild,Mild headache localized to the head.
+SYM00521,Severe Uncontrolled Movements (Throat),Throat,Severe,Severe uncontrolled movements localized to the throat.
+SYM00522,Moderate Loss Of Smell (Left Leg),Left Leg,Moderate,Moderate loss of smell localized to the left leg.
+SYM00523,Mild Bruising Easily (Head),Head,Mild,Mild bruising easily localized to the head.
+SYM00524,Moderate Sweating (Head),Head,Moderate,Moderate sweating localized to the head.
+SYM00525,Severe Swollen Ankles (Skin),Skin,Severe,Severe swollen ankles localized to the skin.
+SYM00526,Moderate Dry Skin (Abdomen),Abdomen,Moderate,Moderate dry skin localized to the abdomen.
+SYM00527,Mild Frequent Urination (Whole Body),Whole Body,Mild,Mild frequent urination localized to the whole body.
+SYM00528,Moderate Blurred Vision (Right Arm),Right Arm,Moderate,Moderate blurred vision localized to the right arm.
+SYM00529,Moderate Runny Nose (Neck),Neck,Moderate,Moderate runny nose localized to the neck.
+SYM00530,Moderate Watery Eyes (Throat),Throat,Moderate,Moderate watery eyes localized to the throat.
+SYM00531,Moderate Increased Thirst (Ears),Ears,Moderate,Moderate increased thirst localized to the ears.
+SYM00532,Severe Anxiety (Left Leg),Left Leg,Severe,Severe anxiety localized to the left leg.
+SYM00533,Mild Joint Pain (Chest),Chest,Mild,Mild joint pain localized to the chest.
+SYM00534,Mild Irritability (Eyes),Eyes,Mild,Mild irritability localized to the eyes.
+SYM00535,Mild Difficulty Breathing (Chest),Chest,Mild,Mild difficulty breathing localized to the chest.
+SYM00536,Severe Irritability (Skin),Skin,Severe,Severe irritability localized to the skin.
+SYM00537,Severe Bruising Easily (Left Arm),Left Arm,Severe,Severe bruising easily localized to the left arm.
+SYM00538,Mild Rash (Left Leg),Left Leg,Mild,Mild rash localized to the left leg.
+SYM00539,Mild Tingling (Head),Head,Mild,Mild tingling localized to the head.
+SYM00540,Severe Persistent Cough (Abdomen),Abdomen,Severe,Severe persistent cough localized to the abdomen.
+SYM00541,Severe Bloating (Neck),Neck,Severe,Severe bloating localized to the neck.
+SYM00542,Severe Loss Of Taste (Left Leg),Left Leg,Severe,Severe loss of taste localized to the left leg.
+SYM00543,Severe Uncontrolled Movements (Right Leg),Right Leg,Severe,Severe uncontrolled movements localized to the right leg.
+SYM00544,Moderate Cough (Chest),Chest,Moderate,Moderate cough localized to the chest.
+SYM00545,Mild Swollen Ankles (Eyes),Eyes,Mild,Mild swollen ankles localized to the eyes.
+SYM00546,Severe Mouth Ulcers (Ears),Ears,Severe,Severe mouth ulcers localized to the ears.
+SYM00547,Moderate Back Pain (Upper Back),Upper Back,Moderate,Moderate back pain localized to the upper back.
+SYM00548,Severe Loss Of Smell (Left Leg),Left Leg,Severe,Severe loss of smell localized to the left leg.
+SYM00549,Moderate Toothache (Joints),Joints,Moderate,Moderate toothache localized to the joints.
+SYM00550,Severe Ear Pain (Skin),Skin,Severe,Severe ear pain localized to the skin.
+SYM00551,Moderate Difficulty Breathing (Skin),Skin,Moderate,Moderate difficulty breathing localized to the skin.
+SYM00552,Severe Shortness of Breath (Throat),Throat,Severe,Severe shortness of breath localized to the throat.
+SYM00553,Moderate Frequent Urination (Left Leg),Left Leg,Moderate,Moderate frequent urination localized to the left leg.
+SYM00554,Moderate Hearing Loss (Throat),Throat,Moderate,Moderate hearing loss localized to the throat.
+SYM00555,Moderate Joint Pain (Skin),Skin,Moderate,Moderate joint pain localized to the skin.
+SYM00556,Moderate Headache (Head),Head,Moderate,Moderate headache localized to the head.
+SYM00557,Severe Testicular Pain (Left Arm),Left Arm,Severe,Severe testicular pain localized to the left arm.
+SYM00558,Moderate Confusion (Right Arm),Right Arm,Moderate,Moderate confusion localized to the right arm.
+SYM00559,Moderate Difficulty Swallowing (Whole Body),Whole Body,Moderate,Moderate difficulty swallowing localized to the whole body.
+SYM00560,Severe Palpitations (Upper Back),Upper Back,Severe,Severe palpitations localized to the upper back.
+SYM00561,Moderate Muscle Ache (Right Leg),Right Leg,Moderate,Moderate muscle ache localized to the right leg.
+SYM00562,Severe Difficulty Breathing (Whole Body),Whole Body,Severe,Severe difficulty breathing localized to the whole body.
+SYM00563,Mild Brittle Nails (Ears),Ears,Mild,Mild brittle nails localized to the ears.
+SYM00564,Mild Constipation (Throat),Throat,Mild,Mild constipation localized to the throat.
+SYM00565,Moderate Chest Tightness (Eyes),Eyes,Moderate,Moderate chest tightness localized to the eyes.
+SYM00566,Severe Rapid Heartbeat (Ears),Ears,Severe,Severe rapid heartbeat localized to the ears.
+SYM00567,Mild Blood in Stool (Chest),Chest,Mild,Mild blood in stool localized to the chest.
+SYM00568,Moderate Sore Throat (Chest),Chest,Moderate,Moderate sore throat localized to the chest.
+SYM00569,Severe Bloating (Upper Back),Upper Back,Severe,Severe bloating localized to the upper back.
+SYM00570,Mild Confusion (Lower Back),Lower Back,Mild,Mild confusion localized to the lower back.
+SYM00571,Moderate Rash (Left Leg),Left Leg,Moderate,Moderate rash localized to the left leg.
+SYM00572,Moderate Gas (Neck),Neck,Moderate,Moderate gas localized to the neck.
+SYM00573,Mild Swollen Lymph Nodes (Joints),Joints,Mild,Mild swollen lymph nodes localized to the joints.
+SYM00574,Severe Chest Tightness (Joints),Joints,Severe,Severe chest tightness localized to the joints.
+SYM00575,Mild Blurred Vision (Right Arm),Right Arm,Mild,Mild blurred vision localized to the right arm.
+SYM00576,Mild Painful Urination (Right Arm),Right Arm,Mild,Mild painful urination localized to the right arm.
+SYM00577,Moderate Itching (Throat),Throat,Moderate,Moderate itching localized to the throat.
+SYM00578,Moderate Tingling (Whole Body),Whole Body,Moderate,Moderate tingling localized to the whole body.
+SYM00579,Mild Blood in Stool (Neck),Neck,Mild,Mild blood in stool localized to the neck.
+SYM00580,Moderate Erectile Dysfunction (Neck),Neck,Moderate,Moderate erectile dysfunction localized to the neck.
+SYM00581,Severe Excessive Sleepiness (Lower Back),Lower Back,Severe,Severe excessive sleepiness localized to the lower back.
+SYM00582,Severe Excessive Sleepiness (Left Arm),Left Arm,Severe,Severe excessive sleepiness localized to the left arm.
+SYM00583,Moderate Nausea (Abdomen),Abdomen,Moderate,Moderate nausea localized to the abdomen.
+SYM00584,Severe Leg Cramps (Head),Head,Severe,Severe leg cramps localized to the head.
+SYM00585,Severe Cough (Ears),Ears,Severe,Severe cough localized to the ears.
+SYM00586,Moderate Itching (Abdomen),Abdomen,Moderate,Moderate itching localized to the abdomen.
+SYM00587,Severe Watery Eyes (Eyes),Eyes,Severe,Severe watery eyes localized to the eyes.
+SYM00588,Moderate Chills (Chest),Chest,Moderate,Moderate chills localized to the chest.
+SYM00589,Moderate Red Eyes (Skin),Skin,Moderate,Moderate red eyes localized to the skin.
+SYM00590,Moderate Jaundice (Lower Back),Lower Back,Moderate,Moderate jaundice localized to the lower back.
+SYM00591,Mild Wheezing (Left Leg),Left Leg,Mild,Mild wheezing localized to the left leg.
+SYM00592,Severe Difficulty Walking (Whole Body),Whole Body,Severe,Severe difficulty walking localized to the whole body.
+SYM00593,Mild Frequent Urination (Abdomen),Abdomen,Mild,Mild frequent urination localized to the abdomen.
+SYM00594,Severe Dizziness (Skin),Skin,Severe,Severe dizziness localized to the skin.
+SYM00595,Severe Tingling (Left Arm),Left Arm,Severe,Severe tingling localized to the left arm.
+SYM00596,Mild Wheezing (Neck),Neck,Mild,Mild wheezing localized to the neck.
+SYM00597,Moderate Blood in Stool (Throat),Throat,Moderate,Moderate blood in stool localized to the throat.
+SYM00598,Mild Rapid Breathing (Eyes),Eyes,Mild,Mild rapid breathing localized to the eyes.
+SYM00599,Severe Fever (Joints),Joints,Severe,Severe fever localized to the joints.
+SYM00600,Severe Hearing Loss (Throat),Throat,Severe,Severe hearing loss localized to the throat.
+SYM00601,Mild Rapid Breathing (Right Leg),Right Leg,Mild,Mild rapid breathing localized to the right leg.
+SYM00602,Moderate Heartburn (Lower Back),Lower Back,Moderate,Moderate heartburn localized to the lower back.
+SYM00603,Mild Bad Breath (Head),Head,Mild,Mild bad breath localized to the head.
+SYM00604,Moderate Chest Tightness (Lower Back),Lower Back,Moderate,Moderate chest tightness localized to the lower back.
+SYM00605,Moderate Cough (Right Leg),Right Leg,Moderate,Moderate cough localized to the right leg.
+SYM00606,Moderate Excessive Hunger (Whole Body),Whole Body,Moderate,Moderate excessive hunger localized to the whole body.
+SYM00607,Severe Excessive Hunger (Chest),Chest,Severe,Severe excessive hunger localized to the chest.
+SYM00608,Mild Irritability (Right Leg),Right Leg,Mild,Mild irritability localized to the right leg.
+SYM00609,Moderate Painful Intercourse (Abdomen),Abdomen,Moderate,Moderate painful intercourse localized to the abdomen.
+SYM00610,Severe Leg Cramps (Ears),Ears,Severe,Severe leg cramps localized to the ears.
+SYM00611,Mild Slurred Speech (Left Arm),Left Arm,Mild,Mild slurred speech localized to the left arm.
+SYM00612,Moderate Bloating (Upper Back),Upper Back,Moderate,Moderate bloating localized to the upper back.
+SYM00613,Mild Insomnia (Right Arm),Right Arm,Mild,Mild insomnia localized to the right arm.
+SYM00614,Mild Pelvic Pain (Ears),Ears,Mild,Mild pelvic pain localized to the ears.
+SYM00615,Moderate Chest Tightness (Upper Back),Upper Back,Moderate,Moderate chest tightness localized to the upper back.
+SYM00616,Mild Back Pain (Whole Body),Whole Body,Mild,Mild back pain localized to the whole body.
+SYM00617,Severe Dizziness (Right Arm),Right Arm,Severe,Severe dizziness localized to the right arm.
+SYM00618,Severe Slow Wound Healing (Head),Head,Severe,Severe slow wound healing localized to the head.
+SYM00619,Mild Back Pain (Chest),Chest,Mild,Mild back pain localized to the chest.
+SYM00620,Moderate Frequent Urination (Whole Body),Whole Body,Moderate,Moderate frequent urination localized to the whole body.
+SYM00621,Mild Neck Stiffness (Neck),Neck,Mild,Mild neck stiffness localized to the neck.
+SYM00622,Mild Palpitations (Chest),Chest,Mild,Mild palpitations localized to the chest.
+SYM00623,Moderate Seizure (Throat),Throat,Moderate,Moderate seizure localized to the throat.
+SYM00624,Mild Diarrhea (Chest),Chest,Mild,Mild diarrhea localized to the chest.
+SYM00625,Mild Wheezing (Throat),Throat,Mild,Mild wheezing localized to the throat.
+SYM00626,Severe Dry Mouth (Chest),Chest,Severe,Severe dry mouth localized to the chest.
+SYM00627,Moderate Diarrhea (Head),Head,Moderate,Moderate diarrhea localized to the head.
+SYM00628,Mild Uncontrolled Movements (Whole Body),Whole Body,Mild,Mild uncontrolled movements localized to the whole body.
+SYM00629,Mild Back Pain (Right Leg),Right Leg,Mild,Mild back pain localized to the right leg.
+SYM00630,Mild Dizziness (Left Arm),Left Arm,Mild,Mild dizziness localized to the left arm.
+SYM00631,Severe Runny Nose (Right Leg),Right Leg,Severe,Severe runny nose localized to the right leg.
+SYM00632,Severe Bruising Easily (Eyes),Eyes,Severe,Severe bruising easily localized to the eyes.
+SYM00633,Moderate Persistent Cough (Left Leg),Left Leg,Moderate,Moderate persistent cough localized to the left leg.
+SYM00634,Moderate Nausea (Whole Body),Whole Body,Moderate,Moderate nausea localized to the whole body.
+SYM00635,Moderate Wheezing (Joints),Joints,Moderate,Moderate wheezing localized to the joints.
+SYM00636,Severe Chills (Left Leg),Left Leg,Severe,Severe chills localized to the left leg.
+SYM00637,Severe Chills (Left Arm),Left Arm,Severe,Severe chills localized to the left arm.
+SYM00638,Mild Palpitations (Ears),Ears,Mild,Mild palpitations localized to the ears.
+SYM00639,Mild Pelvic Pain (Chest),Chest,Mild,Mild pelvic pain localized to the chest.
+SYM00640,Severe Painful Intercourse (Whole Body),Whole Body,Severe,Severe painful intercourse localized to the whole body.
+SYM00641,Severe Excessive Sleepiness (Right Leg),Right Leg,Severe,Severe excessive sleepiness localized to the right leg.
+SYM00642,Moderate Loss Of Taste (Ears),Ears,Moderate,Moderate loss of taste localized to the ears.
+SYM00643,Moderate Bloating (Left Arm),Left Arm,Moderate,Moderate bloating localized to the left arm.
+SYM00644,Mild Itching (Whole Body),Whole Body,Mild,Mild itching localized to the whole body.
+SYM00645,Mild Loss Of Smell (Whole Body),Whole Body,Mild,Mild loss of smell localized to the whole body.
+SYM00646,Moderate Irregular Periods (Throat),Throat,Moderate,Moderate irregular periods localized to the throat.
+SYM00647,Moderate Ear Pain (Chest),Chest,Moderate,Moderate ear pain localized to the chest.
+SYM00648,Severe Loss Of Taste (Right Arm),Right Arm,Severe,Severe loss of taste localized to the right arm.
+SYM00649,Mild Anxiety (Throat),Throat,Mild,Mild anxiety localized to the throat.
+SYM00650,Moderate Double Vision (Left Leg),Left Leg,Moderate,Moderate double vision localized to the left leg.
+SYM00651,Mild Chest Tightness (Head),Head,Mild,Mild chest tightness localized to the head.
+SYM00652,Moderate Ringing In Ears (Joints),Joints,Moderate,Moderate ringing in ears localized to the joints.
+SYM00653,Moderate Chest Tightness (Ears),Ears,Moderate,Moderate chest tightness localized to the ears.
+SYM00654,Severe Anxiety (Right Arm),Right Arm,Severe,Severe anxiety localized to the right arm.
+SYM00655,Severe Anxiety (Eyes),Eyes,Severe,Severe anxiety localized to the eyes.
+SYM00656,Moderate Loss Of Balance (Head),Head,Moderate,Moderate loss of balance localized to the head.
+SYM00657,Mild Fever (Ears),Ears,Mild,Mild fever localized to the ears.
+SYM00658,Moderate Nasal Congestion (Skin),Skin,Moderate,Moderate nasal congestion localized to the skin.
+SYM00659,Moderate Palpitations (Upper Back),Upper Back,Moderate,Moderate palpitations localized to the upper back.
+SYM00660,Severe Itching (Chest),Chest,Severe,Severe itching localized to the chest.
+SYM00661,Moderate Dry Skin (Right Leg),Right Leg,Moderate,Moderate dry skin localized to the right leg.
+SYM00662,Mild Brittle Nails (Joints),Joints,Mild,Mild brittle nails localized to the joints.
+SYM00663,Mild Bloating (Skin),Skin,Mild,Mild bloating localized to the skin.
+SYM00664,Severe Dizziness (Abdomen),Abdomen,Severe,Severe dizziness localized to the abdomen.
+SYM00665,Severe Headache (Whole Body),Whole Body,Severe,Severe headache localized to the whole body.
+SYM00666,Severe Weight Loss (Chest),Chest,Severe,Severe weight loss localized to the chest.
+SYM00667,Mild Uncontrolled Movements (Neck),Neck,Mild,Mild uncontrolled movements localized to the neck.
+SYM00668,Moderate Coughing Blood (Head),Head,Moderate,Moderate coughing blood localized to the head.
+SYM00669,Severe Confusion (Right Arm),Right Arm,Severe,Severe confusion localized to the right arm.
+SYM00670,Severe Clubbing Of Fingers (Lower Back),Lower Back,Severe,Severe clubbing of fingers localized to the lower back.
+SYM00671,Mild Painful Intercourse (Neck),Neck,Mild,Mild painful intercourse localized to the neck.
+SYM00672,Mild Dry Mouth (Eyes),Eyes,Mild,Mild dry mouth localized to the eyes.
+SYM00673,Severe Blurred Vision (Head),Head,Severe,Severe blurred vision localized to the head.
+SYM00674,Moderate Stiff Joints (Head),Head,Moderate,Moderate stiff joints localized to the head.
+SYM00675,Mild Bloating (Abdomen),Abdomen,Mild,Mild bloating localized to the abdomen.
+SYM00676,Moderate Hair Loss (Throat),Throat,Moderate,Moderate hair loss localized to the throat.
+SYM00677,Moderate Runny Nose (Skin),Skin,Moderate,Moderate runny nose localized to the skin.
+SYM00678,Severe Weight Gain (Joints),Joints,Severe,Severe weight gain localized to the joints.
+SYM00679,Severe Cough (Left Arm),Left Arm,Severe,Severe cough localized to the left arm.
+SYM00680,Severe Nasal Congestion (Head),Head,Severe,Severe nasal congestion localized to the head.
+SYM00681,Mild Dry Skin (Left Arm),Left Arm,Mild,Mild dry skin localized to the left arm.
+SYM00682,Severe Shortness of Breath (Left Arm),Left Arm,Severe,Severe shortness of breath localized to the left arm.
+SYM00683,Moderate Difficulty Swallowing (Neck),Neck,Moderate,Moderate difficulty swallowing localized to the neck.
+SYM00684,Severe Watery Eyes (Right Leg),Right Leg,Severe,Severe watery eyes localized to the right leg.
+SYM00685,Mild Facial Drooping (Upper Back),Upper Back,Mild,Mild facial drooping localized to the upper back.
+SYM00686,Moderate Rapid Heartbeat (Whole Body),Whole Body,Moderate,Moderate rapid heartbeat localized to the whole body.
+SYM00687,Moderate Fever (Abdomen),Abdomen,Moderate,Moderate fever localized to the abdomen.
+SYM00688,Severe Headache (Abdomen),Abdomen,Severe,Severe headache localized to the abdomen.
+SYM00689,Moderate Rash (Ears),Ears,Moderate,Moderate rash localized to the ears.
+SYM00690,Severe Constipation (Chest),Chest,Severe,Severe constipation localized to the chest.
+SYM00691,Mild Tingling (Eyes),Eyes,Mild,Mild tingling localized to the eyes.
+SYM00692,Mild Difficulty Swallowing (Right Leg),Right Leg,Mild,Mild difficulty swallowing localized to the right leg.
+SYM00693,Mild Ear Pain (Left Leg),Left Leg,Mild,Mild ear pain localized to the left leg.
+SYM00694,Mild Double Vision (Joints),Joints,Mild,Mild double vision localized to the joints.
+SYM00695,Moderate Red Eyes (Neck),Neck,Moderate,Moderate red eyes localized to the neck.
+SYM00696,Moderate Swollen Ankles (Left Leg),Left Leg,Moderate,Moderate swollen ankles localized to the left leg.
+SYM00697,Mild Nasal Congestion (Throat),Throat,Mild,Mild nasal congestion localized to the throat.
+SYM00698,Severe Loss Of Taste (Ears),Ears,Severe,Severe loss of taste localized to the ears.
+SYM00699,Mild Hair Loss (Neck),Neck,Mild,Mild hair loss localized to the neck.
+SYM00700,Moderate Blood in Stool (Head),Head,Moderate,Moderate blood in stool localized to the head.
+SYM00701,Moderate Gas (Right Arm),Right Arm,Moderate,Moderate gas localized to the right arm.
+SYM00702,Severe Bruising Easily (Right Leg),Right Leg,Severe,Severe bruising easily localized to the right leg.
+SYM00703,Severe Fever (Abdomen),Abdomen,Severe,Severe fever localized to the abdomen.
+SYM00704,Mild Hair Loss (Abdomen),Abdomen,Mild,Mild hair loss localized to the abdomen.
+SYM00705,Moderate Blood in Urine (Whole Body),Whole Body,Moderate,Moderate blood in urine localized to the whole body.
+SYM00706,Mild Toothache (Eyes),Eyes,Mild,Mild toothache localized to the eyes.
+SYM00707,Mild Irritability (Right Arm),Right Arm,Mild,Mild irritability localized to the right arm.
+SYM00708,Mild Bloating (Lower Back),Lower Back,Mild,Mild bloating localized to the lower back.
+SYM00709,Mild Watery Eyes (Neck),Neck,Mild,Mild watery eyes localized to the neck.
+SYM00710,Severe Dizziness (Ears),Ears,Severe,Severe dizziness localized to the ears.
+SYM00711,Severe Mouth Ulcers (Abdomen),Abdomen,Severe,Severe mouth ulcers localized to the abdomen.
+SYM00712,Moderate Irritability (Lower Back),Lower Back,Moderate,Moderate irritability localized to the lower back.
+SYM00713,Severe Anxiety (Chest),Chest,Severe,Severe anxiety localized to the chest.
+SYM00714,Severe Bleeding Gums (Right Leg),Right Leg,Severe,Severe bleeding gums localized to the right leg.
+SYM00715,Severe Blood in Stool (Left Arm),Left Arm,Severe,Severe blood in stool localized to the left arm.
+SYM00716,Moderate Increased Thirst (Left Leg),Left Leg,Moderate,Moderate increased thirst localized to the left leg.
+SYM00717,Mild Loss of Appetite (Neck),Neck,Mild,Mild loss of appetite localized to the neck.
+SYM00718,Mild Weight Loss (Left Leg),Left Leg,Mild,Mild weight loss localized to the left leg.
+SYM00719,Severe Weight Loss (Head),Head,Severe,Severe weight loss localized to the head.
+SYM00720,Mild Erectile Dysfunction (Right Leg),Right Leg,Mild,Mild erectile dysfunction localized to the right leg.
+SYM00721,Severe Palpitations (Right Leg),Right Leg,Severe,Severe palpitations localized to the right leg.
+SYM00722,Severe Cough (Skin),Skin,Severe,Severe cough localized to the skin.
+SYM00723,Moderate Wheezing (Skin),Skin,Moderate,Moderate wheezing localized to the skin.
+SYM00724,Severe Fatigue (Left Leg),Left Leg,Severe,Severe fatigue localized to the left leg.
+SYM00725,Moderate Mouth Ulcers (Eyes),Eyes,Moderate,Moderate mouth ulcers localized to the eyes.
+SYM00726,Severe Leg Cramps (Throat),Throat,Severe,Severe leg cramps localized to the throat.
+SYM00727,Mild Frequent Infections (Joints),Joints,Mild,Mild frequent infections localized to the joints.
+SYM00728,Mild Hair Loss (Upper Back),Upper Back,Mild,Mild hair loss localized to the upper back.
+SYM00729,Mild Numbness (Neck),Neck,Mild,Mild numbness localized to the neck.
+SYM00730,Mild Erectile Dysfunction (Eyes),Eyes,Mild,Mild erectile dysfunction localized to the eyes.
+SYM00731,Moderate Rapid Breathing (Right Arm),Right Arm,Moderate,Moderate rapid breathing localized to the right arm.
+SYM00732,Severe Irritability (Throat),Throat,Severe,Severe irritability localized to the throat.
+SYM00733,Moderate Testicular Pain (Lower Back),Lower Back,Moderate,Moderate testicular pain localized to the lower back.
+SYM00734,Moderate Coughing Blood (Left Arm),Left Arm,Moderate,Moderate coughing blood localized to the left arm.
+SYM00735,Mild Irritability (Left Leg),Left Leg,Mild,Mild irritability localized to the left leg.
+SYM00736,Moderate Blurred Vision (Chest),Chest,Moderate,Moderate blurred vision localized to the chest.
+SYM00737,Moderate Low Blood Pressure (Left Arm),Left Arm,Moderate,Moderate low blood pressure localized to the left arm.
+SYM00738,Severe Sweating (Chest),Chest,Severe,Severe sweating localized to the chest.
+SYM00739,Severe Uncontrolled Movements (Upper Back),Upper Back,Severe,Severe uncontrolled movements localized to the upper back.
+SYM00740,Mild Hearing Loss (Eyes),Eyes,Mild,Mild hearing loss localized to the eyes.
+SYM00741,Severe Bad Breath (Chest),Chest,Severe,Severe bad breath localized to the chest.
+SYM00742,Mild Confusion (Abdomen),Abdomen,Mild,Mild confusion localized to the abdomen.
+SYM00743,Moderate Slow Wound Healing (Left Arm),Left Arm,Moderate,Moderate slow wound healing localized to the left arm.
+SYM00744,Mild Loss Of Taste (Whole Body),Whole Body,Mild,Mild loss of taste localized to the whole body.
+SYM00745,Mild Cough (Chest),Chest,Mild,Mild cough localized to the chest.
+SYM00746,Mild Double Vision (Ears),Ears,Mild,Mild double vision localized to the ears.
+SYM00747,Mild Wheezing (Eyes),Eyes,Mild,Mild wheezing localized to the eyes.
+SYM00748,Moderate Memory Loss (Upper Back),Upper Back,Moderate,Moderate memory loss localized to the upper back.
+SYM00749,Moderate Hoarseness (Skin),Skin,Moderate,Moderate hoarseness localized to the skin.
+SYM00750,Severe Sweating (Head),Head,Severe,Severe sweating localized to the head.
+SYM00751,Severe Loss of Appetite (Lower Back),Lower Back,Severe,Severe loss of appetite localized to the lower back.
+SYM00752,Moderate Watery Eyes (Chest),Chest,Moderate,Moderate watery eyes localized to the chest.
+SYM00753,Severe Difficulty Walking (Eyes),Eyes,Severe,Severe difficulty walking localized to the eyes.
+SYM00754,Mild Abdominal Pain (Abdomen),Abdomen,Mild,Mild abdominal pain localized to the abdomen.
+SYM00755,Mild Slow Heartbeat (Right Arm),Right Arm,Mild,Mild slow heartbeat localized to the right arm.
+SYM00756,Severe Back Pain (Left Leg),Left Leg,Severe,Severe back pain localized to the left leg.
+SYM00757,Severe Insomnia (Whole Body),Whole Body,Severe,Severe insomnia localized to the whole body.
+SYM00758,Severe Diarrhea (Ears),Ears,Severe,Severe diarrhea localized to the ears.
+SYM00759,Mild Chills (Left Leg),Left Leg,Mild,Mild chills localized to the left leg.
+SYM00760,Moderate Stiff Joints (Eyes),Eyes,Moderate,Moderate stiff joints localized to the eyes.
+SYM00761,Mild Fatigue (Right Arm),Right Arm,Mild,Mild fatigue localized to the right arm.
+SYM00762,Moderate Fainting (Upper Back),Upper Back,Moderate,Moderate fainting localized to the upper back.
+SYM00763,Severe Frequent Urination (Right Leg),Right Leg,Severe,Severe frequent urination localized to the right leg.
+SYM00764,Mild Chills (Eyes),Eyes,Mild,Mild chills localized to the eyes.
+SYM00765,Severe Ringing In Ears (Skin),Skin,Severe,Severe ringing in ears localized to the skin.
+SYM00766,Mild Heartburn (Whole Body),Whole Body,Mild,Mild heartburn localized to the whole body.
+SYM00767,Mild Anxiety (Neck),Neck,Mild,Mild anxiety localized to the neck.
+SYM00768,Mild Toothache (Ears),Ears,Mild,Mild toothache localized to the ears.
+SYM00769,Moderate Brittle Nails (Eyes),Eyes,Moderate,Moderate brittle nails localized to the eyes.
+SYM00770,Severe Insomnia (Left Arm),Left Arm,Severe,Severe insomnia localized to the left arm.
+SYM00771,Severe Night Sweats (Left Leg),Left Leg,Severe,Severe night sweats localized to the left leg.
+SYM00772,Moderate Difficulty Walking (Abdomen),Abdomen,Moderate,Moderate difficulty walking localized to the abdomen.
+SYM00773,Moderate Abdominal Pain (Skin),Skin,Moderate,Moderate abdominal pain localized to the skin.
+SYM00774,Moderate Slow Wound Healing (Neck),Neck,Moderate,Moderate slow wound healing localized to the neck.
+SYM00775,Mild Neck Stiffness (Left Arm),Left Arm,Mild,Mild neck stiffness localized to the left arm.
+SYM00776,Severe Muscle Weakness (Ears),Ears,Severe,Severe muscle weakness localized to the ears.
+SYM00777,Mild Vomiting (Left Leg),Left Leg,Mild,Mild vomiting localized to the left leg.
+SYM00778,Mild Nasal Congestion (Left Leg),Left Leg,Mild,Mild nasal congestion localized to the left leg.
+SYM00779,Mild Loss Of Taste (Eyes),Eyes,Mild,Mild loss of taste localized to the eyes.
+SYM00780,Severe Excessive Hunger (Skin),Skin,Severe,Severe excessive hunger localized to the skin.
+SYM00781,Moderate Blurred Vision (Joints),Joints,Moderate,Moderate blurred vision localized to the joints.
+SYM00782,Severe Uncontrolled Movements (Left Leg),Left Leg,Severe,Severe uncontrolled movements localized to the left leg.
+SYM00783,Severe Difficulty Swallowing (Abdomen),Abdomen,Severe,Severe difficulty swallowing localized to the abdomen.
+SYM00784,Severe Difficulty Walking (Right Arm),Right Arm,Severe,Severe difficulty walking localized to the right arm.
+SYM00785,Moderate Neck Stiffness (Ears),Ears,Moderate,Moderate neck stiffness localized to the ears.
+SYM00786,Mild Muscle Weakness (Ears),Ears,Mild,Mild muscle weakness localized to the ears.
+SYM00787,Moderate Stiff Joints (Chest),Chest,Moderate,Moderate stiff joints localized to the chest.
+SYM00788,Mild Excessive Thirst (Head),Head,Mild,Mild excessive thirst localized to the head.
+SYM00789,Moderate Itching (Right Leg),Right Leg,Moderate,Moderate itching localized to the right leg.
+SYM00790,Mild Weight Gain (Head),Head,Mild,Mild weight gain localized to the head.
+SYM00791,Mild Erectile Dysfunction (Right Arm),Right Arm,Mild,Mild erectile dysfunction localized to the right arm.
+SYM00792,Mild Loss Of Smell (Left Arm),Left Arm,Mild,Mild loss of smell localized to the left arm.
+SYM00793,Severe Dizziness (Joints),Joints,Severe,Severe dizziness localized to the joints.
+SYM00794,Moderate Gas (Whole Body),Whole Body,Moderate,Moderate gas localized to the whole body.
+SYM00795,Severe Sweating (Left Leg),Left Leg,Severe,Severe sweating localized to the left leg.
+SYM00796,Moderate Sensitivity To Light (Ears),Ears,Moderate,Moderate sensitivity to light localized to the ears.
+SYM00797,Moderate Joint Pain (Neck),Neck,Moderate,Moderate joint pain localized to the neck.
+SYM00798,Severe Numbness (Left Leg),Left Leg,Severe,Severe numbness localized to the left leg.
+SYM00799,Moderate Frequent Infections (Eyes),Eyes,Moderate,Moderate frequent infections localized to the eyes.
+SYM00800,Moderate Loss Of Smell (Right Arm),Right Arm,Moderate,Moderate loss of smell localized to the right arm.
+SYM00801,Mild Rash (Lower Back),Lower Back,Mild,Mild rash localized to the lower back.
+SYM00802,Mild Neck Stiffness (Abdomen),Abdomen,Mild,Mild neck stiffness localized to the abdomen.
+SYM00803,Mild Bad Breath (Lower Back),Lower Back,Mild,Mild bad breath localized to the lower back.
+SYM00804,Moderate Toothache (Right Leg),Right Leg,Moderate,Moderate toothache localized to the right leg.
+SYM00805,Mild Memory Loss (Joints),Joints,Mild,Mild memory loss localized to the joints.
+SYM00806,Severe Rash (Ears),Ears,Severe,Severe rash localized to the ears.
+SYM00807,Severe Jaundice (Head),Head,Severe,Severe jaundice localized to the head.
+SYM00808,Moderate Sneezing (Skin),Skin,Moderate,Moderate sneezing localized to the skin.
+SYM00809,Severe Nausea (Abdomen),Abdomen,Severe,Severe nausea localized to the abdomen.
+SYM00810,Mild Painful Urination (Joints),Joints,Mild,Mild painful urination localized to the joints.
+SYM00811,Severe Hoarseness (Ears),Ears,Severe,Severe hoarseness localized to the ears.
+SYM00812,Moderate Sweating (Left Leg),Left Leg,Moderate,Moderate sweating localized to the left leg.
+SYM00813,Mild Painful Urination (Neck),Neck,Mild,Mild painful urination localized to the neck.
+SYM00814,Mild Blood in Stool (Right Leg),Right Leg,Mild,Mild blood in stool localized to the right leg.
+SYM00815,Severe Fainting (Eyes),Eyes,Severe,Severe fainting localized to the eyes.
+SYM00816,Moderate Loss Of Smell (Skin),Skin,Moderate,Moderate loss of smell localized to the skin.
+SYM00817,Mild Headache (Upper Back),Upper Back,Mild,Mild headache localized to the upper back.
+SYM00818,Mild Loss Of Smell (Lower Back),Lower Back,Mild,Mild loss of smell localized to the lower back.
+SYM00819,Mild Low Blood Pressure (Abdomen),Abdomen,Mild,Mild low blood pressure localized to the abdomen.
+SYM00820,Severe Abdominal Pain (Right Leg),Right Leg,Severe,Severe abdominal pain localized to the right leg.
+SYM00821,Severe Uncontrolled Movements (Abdomen),Abdomen,Severe,Severe uncontrolled movements localized to the abdomen.
+SYM00822,Mild Slow Heartbeat (Joints),Joints,Mild,Mild slow heartbeat localized to the joints.
+SYM00823,Severe Blurred Vision (Left Arm),Left Arm,Severe,Severe blurred vision localized to the left arm.
+SYM00824,Moderate Gas (Ears),Ears,Moderate,Moderate gas localized to the ears.
+SYM00825,Mild Ear Pain (Skin),Skin,Mild,Mild ear pain localized to the skin.
+SYM00826,Moderate Confusion (Right Leg),Right Leg,Moderate,Moderate confusion localized to the right leg.
+SYM00827,Severe Toothache (Throat),Throat,Severe,Severe toothache localized to the throat.
+SYM00828,Moderate Abdominal Pain (Right Leg),Right Leg,Moderate,Moderate abdominal pain localized to the right leg.
+SYM00829,Severe Excessive Thirst (Skin),Skin,Severe,Severe excessive thirst localized to the skin.
+SYM00830,Moderate Clubbing Of Fingers (Left Arm),Left Arm,Moderate,Moderate clubbing of fingers localized to the left arm.
+SYM00831,Moderate Irregular Periods (Skin),Skin,Moderate,Moderate irregular periods localized to the skin.
+SYM00832,Moderate Vomiting (Ears),Ears,Moderate,Moderate vomiting localized to the ears.
+SYM00833,Moderate Low Blood Pressure (Throat),Throat,Moderate,Moderate low blood pressure localized to the throat.
+SYM00834,Mild Memory Loss (Right Arm),Right Arm,Mild,Mild memory loss localized to the right arm.
+SYM00835,Severe Slow Heartbeat (Left Arm),Left Arm,Severe,Severe slow heartbeat localized to the left arm.
+SYM00836,Mild Anxiety (Right Leg),Right Leg,Mild,Mild anxiety localized to the right leg.
+SYM00837,Moderate Sensitivity To Light (Lower Back),Lower Back,Moderate,Moderate sensitivity to light localized to the lower back.
+SYM00838,Severe Swelling (Lower Back),Lower Back,Severe,Severe swelling localized to the lower back.
+SYM00839,Moderate Loss Of Taste (Joints),Joints,Moderate,Moderate loss of taste localized to the joints.
+SYM00840,Severe Ear Pain (Upper Back),Upper Back,Severe,Severe ear pain localized to the upper back.
+SYM00841,Severe Anxiety (Skin),Skin,Severe,Severe anxiety localized to the skin.
+SYM00842,Moderate Painful Intercourse (Right Leg),Right Leg,Moderate,Moderate painful intercourse localized to the right leg.
+SYM00843,Mild Runny Nose (Right Leg),Right Leg,Mild,Mild runny nose localized to the right leg.
+SYM00844,Severe Persistent Cough (Joints),Joints,Severe,Severe persistent cough localized to the joints.
+SYM00845,Severe Sweating (Eyes),Eyes,Severe,Severe sweating localized to the eyes.
+SYM00846,Mild Muscle Ache (Right Arm),Right Arm,Mild,Mild muscle ache localized to the right arm.
+SYM00847,Severe Sore Throat (Upper Back),Upper Back,Severe,Severe sore throat localized to the upper back.
+SYM00848,Moderate Vomiting (Upper Back),Upper Back,Moderate,Moderate vomiting localized to the upper back.
+SYM00849,Mild Joint Pain (Neck),Neck,Mild,Mild joint pain localized to the neck.
+SYM00850,Mild Irregular Periods (Right Arm),Right Arm,Mild,Mild irregular periods localized to the right arm.
+SYM00851,Moderate Frequent Infections (Left Leg),Left Leg,Moderate,Moderate frequent infections localized to the left leg.
+SYM00852,Moderate Fever (Skin),Skin,Moderate,Moderate fever localized to the skin.
+SYM00853,Moderate Difficulty Breathing (Eyes),Eyes,Moderate,Moderate difficulty breathing localized to the eyes.
+SYM00854,Severe Sore Throat (Chest),Chest,Severe,Severe sore throat localized to the chest.
+SYM00855,Moderate Hearing Loss (Eyes),Eyes,Moderate,Moderate hearing loss localized to the eyes.
+SYM00856,Moderate Pelvic Pain (Left Leg),Left Leg,Moderate,Moderate pelvic pain localized to the left leg.
+SYM00857,Mild Double Vision (Left Arm),Left Arm,Mild,Mild double vision localized to the left arm.
+SYM00858,Severe Erectile Dysfunction (Whole Body),Whole Body,Severe,Severe erectile dysfunction localized to the whole body.
+SYM00859,Mild Uncontrolled Movements (Skin),Skin,Mild,Mild uncontrolled movements localized to the skin.
+SYM00860,Mild Fatigue (Abdomen),Abdomen,Mild,Mild fatigue localized to the abdomen.
+SYM00861,Mild Rapid Breathing (Throat),Throat,Mild,Mild rapid breathing localized to the throat.
+SYM00862,Moderate Bleeding Gums (Right Arm),Right Arm,Moderate,Moderate bleeding gums localized to the right arm.
+SYM00863,Moderate Ringing In Ears (Left Arm),Left Arm,Moderate,Moderate ringing in ears localized to the left arm.
+SYM00864,Moderate Frequent Urination (Neck),Neck,Moderate,Moderate frequent urination localized to the neck.
+SYM00865,Severe Sensitivity To Light (Right Arm),Right Arm,Severe,Severe sensitivity to light localized to the right arm.
+SYM00866,Moderate Diarrhea (Eyes),Eyes,Moderate,Moderate diarrhea localized to the eyes.
+SYM00867,Severe Fever (Eyes),Eyes,Severe,Severe fever localized to the eyes.
+SYM00868,Mild Excessive Sleepiness (Neck),Neck,Mild,Mild excessive sleepiness localized to the neck.
+SYM00869,Severe Hoarseness (Upper Back),Upper Back,Severe,Severe hoarseness localized to the upper back.
+SYM00870,Severe Cough (Throat),Throat,Severe,Severe cough localized to the throat.
+SYM00871,Mild Chest Tightness (Eyes),Eyes,Mild,Mild chest tightness localized to the eyes.
+SYM00872,Mild Heartburn (Neck),Neck,Mild,Mild heartburn localized to the neck.
+SYM00873,Severe Wheezing (Lower Back),Lower Back,Severe,Severe wheezing localized to the lower back.
+SYM00874,Mild Weight Gain (Chest),Chest,Mild,Mild weight gain localized to the chest.
+SYM00875,Severe Fainting (Upper Back),Upper Back,Severe,Severe fainting localized to the upper back.
+SYM00876,Severe Loss of Appetite (Neck),Neck,Severe,Severe loss of appetite localized to the neck.
+SYM00877,Severe High Blood Pressure (Head),Head,Severe,Severe high blood pressure localized to the head.
+SYM00878,Severe Nausea (Skin),Skin,Severe,Severe nausea localized to the skin.
+SYM00879,Severe Cold Hands And Feet (Joints),Joints,Severe,Severe cold hands and feet localized to the joints.
+SYM00880,Moderate Persistent Cough (Right Arm),Right Arm,Moderate,Moderate persistent cough localized to the right arm.
+SYM00881,Mild Heartburn (Lower Back),Lower Back,Mild,Mild heartburn localized to the lower back.
+SYM00882,Moderate Ringing In Ears (Upper Back),Upper Back,Moderate,Moderate ringing in ears localized to the upper back.
+SYM00883,Moderate Sore Throat (Joints),Joints,Moderate,Moderate sore throat localized to the joints.
+SYM00884,Moderate Persistent Cough (Ears),Ears,Moderate,Moderate persistent cough localized to the ears.
+SYM00885,Mild Itching (Abdomen),Abdomen,Mild,Mild itching localized to the abdomen.
+SYM00886,Mild Blood in Urine (Upper Back),Upper Back,Mild,Mild blood in urine localized to the upper back.
+SYM00887,Mild Stiff Joints (Upper Back),Upper Back,Mild,Mild stiff joints localized to the upper back.
+SYM00888,Moderate Chest Pain (Left Arm),Left Arm,Moderate,Moderate chest pain localized to the left arm.
+SYM00889,Mild Joint Pain (Upper Back),Upper Back,Mild,Mild joint pain localized to the upper back.
+SYM00890,Moderate Tingling (Chest),Chest,Moderate,Moderate tingling localized to the chest.
+SYM00891,Severe Swelling (Upper Back),Upper Back,Severe,Severe swelling localized to the upper back.
+SYM00892,Severe Joint Pain (Lower Back),Lower Back,Severe,Severe joint pain localized to the lower back.
+SYM00893,Moderate Dizziness (Ears),Ears,Moderate,Moderate dizziness localized to the ears.
+SYM00894,Mild Ringing In Ears (Joints),Joints,Mild,Mild ringing in ears localized to the joints.
+SYM00895,Moderate Frequent Infections (Ears),Ears,Moderate,Moderate frequent infections localized to the ears.
+SYM00896,Moderate Chest Tightness (Right Leg),Right Leg,Moderate,Moderate chest tightness localized to the right leg.
+SYM00897,Severe Cold Hands And Feet (Neck),Neck,Severe,Severe cold hands and feet localized to the neck.
+SYM00898,Mild Excessive Sleepiness (Head),Head,Mild,Mild excessive sleepiness localized to the head.
+SYM00899,Severe Stiff Joints (Right Arm),Right Arm,Severe,Severe stiff joints localized to the right arm.
+SYM00900,Mild Itching (Throat),Throat,Mild,Mild itching localized to the throat.
+SYM00901,Severe Testicular Pain (Skin),Skin,Severe,Severe testicular pain localized to the skin.
+SYM00902,Severe Painful Intercourse (Left Leg),Left Leg,Severe,Severe painful intercourse localized to the left leg.
+SYM00903,Mild Slurred Speech (Lower Back),Lower Back,Mild,Mild slurred speech localized to the lower back.
+SYM00904,Mild Muscle Weakness (Eyes),Eyes,Mild,Mild muscle weakness localized to the eyes.
+SYM00905,Mild Vomiting (Right Leg),Right Leg,Mild,Mild vomiting localized to the right leg.
+SYM00906,Mild Loss Of Taste (Throat),Throat,Mild,Mild loss of taste localized to the throat.
+SYM00907,Moderate Toothache (Eyes),Eyes,Moderate,Moderate toothache localized to the eyes.
+SYM00908,Mild Bad Breath (Chest),Chest,Mild,Mild bad breath localized to the chest.
+SYM00909,Moderate Chest Pain (Skin),Skin,Moderate,Moderate chest pain localized to the skin.
+SYM00910,Mild Fatigue (Whole Body),Whole Body,Mild,Mild fatigue localized to the whole body.
+SYM00911,Moderate Loss Of Smell (Head),Head,Moderate,Moderate loss of smell localized to the head.
+SYM00912,Mild Swelling (Upper Back),Upper Back,Mild,Mild swelling localized to the upper back.
+SYM00913,Mild Muscle Ache (Eyes),Eyes,Mild,Mild muscle ache localized to the eyes.
+SYM00914,Mild Stiff Joints (Left Leg),Left Leg,Mild,Mild stiff joints localized to the left leg.
+SYM00915,Mild Loss of Appetite (Ears),Ears,Mild,Mild loss of appetite localized to the ears.
+SYM00916,Severe Coughing Blood (Ears),Ears,Severe,Severe coughing blood localized to the ears.
+SYM00917,Severe Nasal Congestion (Right Leg),Right Leg,Severe,Severe nasal congestion localized to the right leg.
+SYM00918,Severe Rapid Heartbeat (Skin),Skin,Severe,Severe rapid heartbeat localized to the skin.
+SYM00919,Severe Nausea (Left Leg),Left Leg,Severe,Severe nausea localized to the left leg.
+SYM00920,Moderate Rapid Heartbeat (Ears),Ears,Moderate,Moderate rapid heartbeat localized to the ears.
+SYM00921,Moderate Gas (Right Leg),Right Leg,Moderate,Moderate gas localized to the right leg.
+SYM00922,Mild Swollen Lymph Nodes (Eyes),Eyes,Mild,Mild swollen lymph nodes localized to the eyes.
+SYM00923,Severe Difficulty Breathing (Abdomen),Abdomen,Severe,Severe difficulty breathing localized to the abdomen.
+SYM00924,Severe Heartburn (Chest),Chest,Severe,Severe heartburn localized to the chest.
+SYM00925,Mild Seizure (Right Leg),Right Leg,Mild,Mild seizure localized to the right leg.
+SYM00926,Moderate Erectile Dysfunction (Eyes),Eyes,Moderate,Moderate erectile dysfunction localized to the eyes.
+SYM00927,Moderate Testicular Pain (Ears),Ears,Moderate,Moderate testicular pain localized to the ears.
+SYM00928,Mild Facial Drooping (Chest),Chest,Mild,Mild facial drooping localized to the chest.
+SYM00929,Mild Fainting (Right Arm),Right Arm,Mild,Mild fainting localized to the right arm.
+SYM00930,Moderate Palpitations (Right Leg),Right Leg,Moderate,Moderate palpitations localized to the right leg.
+SYM00931,Moderate Clubbing Of Fingers (Whole Body),Whole Body,Moderate,Moderate clubbing of fingers localized to the whole body.
+SYM00932,Moderate Leg Cramps (Right Arm),Right Arm,Moderate,Moderate leg cramps localized to the right arm.
+SYM00933,Mild Wheezing (Right Leg),Right Leg,Mild,Mild wheezing localized to the right leg.
+SYM00934,Moderate Muscle Ache (Left Arm),Left Arm,Moderate,Moderate muscle ache localized to the left arm.
+SYM00935,Severe Slow Wound Healing (Upper Back),Upper Back,Severe,Severe slow wound healing localized to the upper back.
+SYM00936,Mild Hoarseness (Whole Body),Whole Body,Mild,Mild hoarseness localized to the whole body.
+SYM00937,Mild Bloating (Left Leg),Left Leg,Mild,Mild bloating localized to the left leg.
+SYM00938,Mild Rapid Breathing (Right Arm),Right Arm,Mild,Mild rapid breathing localized to the right arm.
+SYM00939,Mild Facial Drooping (Left Leg),Left Leg,Mild,Mild facial drooping localized to the left leg.
+SYM00940,Severe Persistent Cough (Left Arm),Left Arm,Severe,Severe persistent cough localized to the left arm.
+SYM00941,Moderate Hearing Loss (Upper Back),Upper Back,Moderate,Moderate hearing loss localized to the upper back.
+SYM00942,Moderate Low Blood Pressure (Lower Back),Lower Back,Moderate,Moderate low blood pressure localized to the lower back.
+SYM00943,Moderate Frequent Infections (Abdomen),Abdomen,Moderate,Moderate frequent infections localized to the abdomen.
+SYM00944,Severe Tingling (Left Leg),Left Leg,Severe,Severe tingling localized to the left leg.
+SYM00945,Mild Abdominal Pain (Lower Back),Lower Back,Mild,Mild abdominal pain localized to the lower back.
+SYM00946,Mild Nausea (Right Arm),Right Arm,Mild,Mild nausea localized to the right arm.
+SYM00947,Severe Bloating (Chest),Chest,Severe,Severe bloating localized to the chest.
+SYM00948,Severe Headache (Head),Head,Severe,Severe headache localized to the head.
+SYM00949,Mild Bleeding Gums (Throat),Throat,Mild,Mild bleeding gums localized to the throat.
+SYM00950,Severe Cold Hands And Feet (Throat),Throat,Severe,Severe cold hands and feet localized to the throat.
+SYM00951,Mild Shortness of Breath (Head),Head,Mild,Mild shortness of breath localized to the head.
+SYM00952,Moderate Joint Pain (Chest),Chest,Moderate,Moderate joint pain localized to the chest.
+SYM00953,Moderate Blurred Vision (Eyes),Eyes,Moderate,Moderate blurred vision localized to the eyes.
+SYM00954,Severe Sweating (Upper Back),Upper Back,Severe,Severe sweating localized to the upper back.
+SYM00955,Mild Blood in Urine (Right Arm),Right Arm,Mild,Mild blood in urine localized to the right arm.
+SYM00956,Mild Loss Of Balance (Lower Back),Lower Back,Mild,Mild loss of balance localized to the lower back.
+SYM00957,Mild Gas (Skin),Skin,Mild,Mild gas localized to the skin.
+SYM00958,Severe Low Blood Pressure (Left Leg),Left Leg,Severe,Severe low blood pressure localized to the left leg.
+SYM00959,Severe Nausea (Eyes),Eyes,Severe,Severe nausea localized to the eyes.
+SYM00960,Severe Confusion (Eyes),Eyes,Severe,Severe confusion localized to the eyes.
+SYM00961,Severe Brittle Nails (Skin),Skin,Severe,Severe brittle nails localized to the skin.
+SYM00962,Mild Loss Of Balance (Right Arm),Right Arm,Mild,Mild loss of balance localized to the right arm.
+SYM00963,Severe Neck Stiffness (Joints),Joints,Severe,Severe neck stiffness localized to the joints.
+SYM00964,Moderate Blood in Stool (Whole Body),Whole Body,Moderate,Moderate blood in stool localized to the whole body.
+SYM00965,Severe High Blood Pressure (Chest),Chest,Severe,Severe high blood pressure localized to the chest.
+SYM00966,Severe Bloating (Whole Body),Whole Body,Severe,Severe bloating localized to the whole body.
+SYM00967,Mild Abdominal Pain (Whole Body),Whole Body,Mild,Mild abdominal pain localized to the whole body.
+SYM00968,Mild Back Pain (Lower Back),Lower Back,Mild,Mild back pain localized to the lower back.
+SYM00969,Moderate Swollen Lymph Nodes (Skin),Skin,Moderate,Moderate swollen lymph nodes localized to the skin.
+SYM00970,Mild Painful Intercourse (Left Arm),Left Arm,Mild,Mild painful intercourse localized to the left arm.
+SYM00971,Mild Leg Cramps (Right Arm),Right Arm,Mild,Mild leg cramps localized to the right arm.
+SYM00972,Moderate Difficulty Walking (Lower Back),Lower Back,Moderate,Moderate difficulty walking localized to the lower back.
+SYM00973,Severe Diarrhea (Upper Back),Upper Back,Severe,Severe diarrhea localized to the upper back.
+SYM00974,Mild Sweating (Eyes),Eyes,Mild,Mild sweating localized to the eyes.
+SYM00975,Severe Abdominal Pain (Throat),Throat,Severe,Severe abdominal pain localized to the throat.
+SYM00976,Moderate Chest Pain (Lower Back),Lower Back,Moderate,Moderate chest pain localized to the lower back.
+SYM00977,Severe Cough (Whole Body),Whole Body,Severe,Severe cough localized to the whole body.
+SYM00978,Mild Loss Of Taste (Skin),Skin,Mild,Mild loss of taste localized to the skin.
+SYM00979,Mild Swollen Ankles (Whole Body),Whole Body,Mild,Mild swollen ankles localized to the whole body.
+SYM00980,Mild Difficulty Swallowing (Right Arm),Right Arm,Mild,Mild difficulty swallowing localized to the right arm.
+SYM00981,Severe High Blood Pressure (Eyes),Eyes,Severe,Severe high blood pressure localized to the eyes.
+SYM00982,Moderate Hoarseness (Head),Head,Moderate,Moderate hoarseness localized to the head.
+SYM00983,Moderate Pelvic Pain (Abdomen),Abdomen,Moderate,Moderate pelvic pain localized to the abdomen.
+SYM00984,Mild Double Vision (Left Leg),Left Leg,Mild,Mild double vision localized to the left leg.
+SYM00985,Moderate Persistent Cough (Lower Back),Lower Back,Moderate,Moderate persistent cough localized to the lower back.
+SYM00986,Severe Hearing Loss (Lower Back),Lower Back,Severe,Severe hearing loss localized to the lower back.
+SYM00987,Moderate Chills (Right Arm),Right Arm,Moderate,Moderate chills localized to the right arm.
+SYM00988,Moderate Chest Tightness (Neck),Neck,Moderate,Moderate chest tightness localized to the neck.
+SYM00989,Severe Fever (Right Arm),Right Arm,Severe,Severe fever localized to the right arm.
+SYM00990,Severe Dry Skin (Lower Back),Lower Back,Severe,Severe dry skin localized to the lower back.
+SYM00991,Moderate Back Pain (Right Leg),Right Leg,Moderate,Moderate back pain localized to the right leg.
+SYM00992,Moderate Excessive Hunger (Neck),Neck,Moderate,Moderate excessive hunger localized to the neck.
+SYM00993,Mild Frequent Urination (Ears),Ears,Mild,Mild frequent urination localized to the ears.
+SYM00994,Mild Coughing Blood (Chest),Chest,Mild,Mild coughing blood localized to the chest.
+SYM00995,Mild Anxiety (Joints),Joints,Mild,Mild anxiety localized to the joints.
+SYM00996,Severe Slow Wound Healing (Right Arm),Right Arm,Severe,Severe slow wound healing localized to the right arm.
+SYM00997,Moderate Difficulty Breathing (Chest),Chest,Moderate,Moderate difficulty breathing localized to the chest.
+SYM00998,Mild Confusion (Left Leg),Left Leg,Mild,Mild confusion localized to the left leg.
+SYM00999,Severe Itching (Abdomen),Abdomen,Severe,Severe itching localized to the abdomen.
+SYM01000,Mild Muscle Ache (Skin),Skin,Mild,Mild muscle ache localized to the skin.
+SYM01001,Severe Tingling (Right Arm),Right Arm,Severe,Severe tingling localized to the right arm.
+SYM01002,Mild Ringing In Ears (Lower Back),Lower Back,Mild,Mild ringing in ears localized to the lower back.
+SYM01003,Severe Increased Thirst (Joints),Joints,Severe,Severe increased thirst localized to the joints.
+SYM01004,Moderate Wheezing (Eyes),Eyes,Moderate,Moderate wheezing localized to the eyes.
+SYM01005,Severe Insomnia (Ears),Ears,Severe,Severe insomnia localized to the ears.
+SYM01006,Mild Mouth Ulcers (Joints),Joints,Mild,Mild mouth ulcers localized to the joints.
+SYM01007,Mild Nausea (Head),Head,Mild,Mild nausea localized to the head.
+SYM01008,Moderate Constipation (Throat),Throat,Moderate,Moderate constipation localized to the throat.
+SYM01009,Moderate Chills (Throat),Throat,Moderate,Moderate chills localized to the throat.
+SYM01010,Moderate Heartburn (Whole Body),Whole Body,Moderate,Moderate heartburn localized to the whole body.
+SYM01011,Severe Loss of Appetite (Ears),Ears,Severe,Severe loss of appetite localized to the ears.
+SYM01012,Mild Diarrhea (Right Leg),Right Leg,Mild,Mild diarrhea localized to the right leg.
+SYM01013,Moderate Numbness (Upper Back),Upper Back,Moderate,Moderate numbness localized to the upper back.
+SYM01014,Mild Persistent Cough (Abdomen),Abdomen,Mild,Mild persistent cough localized to the abdomen.
+SYM01015,Severe Fatigue (Right Leg),Right Leg,Severe,Severe fatigue localized to the right leg.
+SYM01016,Moderate Cold Hands And Feet (Abdomen),Abdomen,Moderate,Moderate cold hands and feet localized to the abdomen.
+SYM01017,Mild Rash (Throat),Throat,Mild,Mild rash localized to the throat.
+SYM01018,Moderate Bad Breath (Neck),Neck,Moderate,Moderate bad breath localized to the neck.
+SYM01019,Moderate Watery Eyes (Right Arm),Right Arm,Moderate,Moderate watery eyes localized to the right arm.
+SYM01020,Moderate Cough (Head),Head,Moderate,Moderate cough localized to the head.
+SYM01021,Severe Slow Wound Healing (Eyes),Eyes,Severe,Severe slow wound healing localized to the eyes.
+SYM01022,Mild Nasal Congestion (Skin),Skin,Mild,Mild nasal congestion localized to the skin.
+SYM01023,Severe Headache (Upper Back),Upper Back,Severe,Severe headache localized to the upper back.
+SYM01024,Severe Dry Skin (Left Leg),Left Leg,Severe,Severe dry skin localized to the left leg.
+SYM01025,Mild Rapid Breathing (Upper Back),Upper Back,Mild,Mild rapid breathing localized to the upper back.
+SYM01026,Moderate Chest Pain (Left Leg),Left Leg,Moderate,Moderate chest pain localized to the left leg.
+SYM01027,Mild Cough (Left Leg),Left Leg,Mild,Mild cough localized to the left leg.
+SYM01028,Mild Tremor (Chest),Chest,Mild,Mild tremor localized to the chest.
+SYM01029,Moderate Low Blood Pressure (Right Leg),Right Leg,Moderate,Moderate low blood pressure localized to the right leg.
+SYM01030,Moderate Anxiety (Skin),Skin,Moderate,Moderate anxiety localized to the skin.
+SYM01031,Moderate Mouth Ulcers (Ears),Ears,Moderate,Moderate mouth ulcers localized to the ears.
+SYM01032,Severe Double Vision (Whole Body),Whole Body,Severe,Severe double vision localized to the whole body.
+SYM01033,Mild Irregular Periods (Left Leg),Left Leg,Mild,Mild irregular periods localized to the left leg.
+SYM01034,Mild Painful Intercourse (Abdomen),Abdomen,Mild,Mild painful intercourse localized to the abdomen.
+SYM01035,Moderate Swollen Ankles (Lower Back),Lower Back,Moderate,Moderate swollen ankles localized to the lower back.
+SYM01036,Mild Testicular Pain (Right Arm),Right Arm,Mild,Mild testicular pain localized to the right arm.
+SYM01037,Severe Sneezing (Throat),Throat,Severe,Severe sneezing localized to the throat.
+SYM01038,Severe Facial Drooping (Head),Head,Severe,Severe facial drooping localized to the head.
+SYM01039,Severe Increased Thirst (Eyes),Eyes,Severe,Severe increased thirst localized to the eyes.
+SYM01040,Moderate High Blood Pressure (Neck),Neck,Moderate,Moderate high blood pressure localized to the neck.
+SYM01041,Moderate Stiff Joints (Right Leg),Right Leg,Moderate,Moderate stiff joints localized to the right leg.
+SYM01042,Moderate Coughing Blood (Chest),Chest,Moderate,Moderate coughing blood localized to the chest.
+SYM01043,Moderate Painful Urination (Head),Head,Moderate,Moderate painful urination localized to the head.
+SYM01044,Moderate Hoarseness (Whole Body),Whole Body,Moderate,Moderate hoarseness localized to the whole body.
+SYM01045,Severe Watery Eyes (Left Leg),Left Leg,Severe,Severe watery eyes localized to the left leg.
+SYM01046,Moderate Memory Loss (Neck),Neck,Moderate,Moderate memory loss localized to the neck.
+SYM01047,Mild Runny Nose (Chest),Chest,Mild,Mild runny nose localized to the chest.
+SYM01048,Severe Difficulty Walking (Right Leg),Right Leg,Severe,Severe difficulty walking localized to the right leg.
+SYM01049,Mild Depression (Right Arm),Right Arm,Mild,Mild depression localized to the right arm.
+SYM01050,Severe Blood in Urine (Right Leg),Right Leg,Severe,Severe blood in urine localized to the right leg.
+SYM01051,Mild Fatigue (Head),Head,Mild,Mild fatigue localized to the head.
+SYM01052,Moderate Dry Mouth (Skin),Skin,Moderate,Moderate dry mouth localized to the skin.
+SYM01053,Severe Night Sweats (Abdomen),Abdomen,Severe,Severe night sweats localized to the abdomen.
+SYM01054,Severe Mouth Ulcers (Upper Back),Upper Back,Severe,Severe mouth ulcers localized to the upper back.
+SYM01055,Moderate Sweating (Right Arm),Right Arm,Moderate,Moderate sweating localized to the right arm.
+SYM01056,Mild Brittle Nails (Left Leg),Left Leg,Mild,Mild brittle nails localized to the left leg.
+SYM01057,Mild Brittle Nails (Right Arm),Right Arm,Mild,Mild brittle nails localized to the right arm.
+SYM01058,Severe Blurred Vision (Eyes),Eyes,Severe,Severe blurred vision localized to the eyes.
+SYM01059,Moderate Weight Loss (Throat),Throat,Moderate,Moderate weight loss localized to the throat.
+SYM01060,Moderate Dry Mouth (Lower Back),Lower Back,Moderate,Moderate dry mouth localized to the lower back.
+SYM01061,Moderate Difficulty Breathing (Right Leg),Right Leg,Moderate,Moderate difficulty breathing localized to the right leg.
+SYM01062,Mild Blurred Vision (Whole Body),Whole Body,Mild,Mild blurred vision localized to the whole body.
+SYM01063,Moderate Excessive Hunger (Skin),Skin,Moderate,Moderate excessive hunger localized to the skin.
+SYM01064,Moderate Mouth Ulcers (Skin),Skin,Moderate,Moderate mouth ulcers localized to the skin.
+SYM01065,Moderate Facial Drooping (Ears),Ears,Moderate,Moderate facial drooping localized to the ears.
+SYM01066,Severe Testicular Pain (Throat),Throat,Severe,Severe testicular pain localized to the throat.
+SYM01067,Severe Excessive Thirst (Throat),Throat,Severe,Severe excessive thirst localized to the throat.
+SYM01068,Severe Bloating (Skin),Skin,Severe,Severe bloating localized to the skin.
+SYM01069,Moderate Numbness (Lower Back),Lower Back,Moderate,Moderate numbness localized to the lower back.
+SYM01070,Moderate Clubbing Of Fingers (Left Leg),Left Leg,Moderate,Moderate clubbing of fingers localized to the left leg.
+SYM01071,Mild Gas (Left Leg),Left Leg,Mild,Mild gas localized to the left leg.
+SYM01072,Mild Insomnia (Skin),Skin,Mild,Mild insomnia localized to the skin.
+SYM01073,Mild Mouth Ulcers (Chest),Chest,Mild,Mild mouth ulcers localized to the chest.
+SYM01074,Mild Irregular Periods (Neck),Neck,Mild,Mild irregular periods localized to the neck.
+SYM01075,Mild Joint Pain (Eyes),Eyes,Mild,Mild joint pain localized to the eyes.
+SYM01076,Mild Tingling (Chest),Chest,Mild,Mild tingling localized to the chest.
+SYM01077,Mild Excessive Hunger (Left Arm),Left Arm,Mild,Mild excessive hunger localized to the left arm.
+SYM01078,Moderate Slow Heartbeat (Neck),Neck,Moderate,Moderate slow heartbeat localized to the neck.
+SYM01079,Mild Brittle Nails (Abdomen),Abdomen,Mild,Mild brittle nails localized to the abdomen.
+SYM01080,Moderate Frequent Infections (Whole Body),Whole Body,Moderate,Moderate frequent infections localized to the whole body.
+SYM01081,Mild Difficulty Breathing (Whole Body),Whole Body,Mild,Mild difficulty breathing localized to the whole body.
+SYM01082,Mild Bruising Easily (Upper Back),Upper Back,Mild,Mild bruising easily localized to the upper back.
+SYM01083,Mild Sore Throat (Ears),Ears,Mild,Mild sore throat localized to the ears.
+SYM01084,Severe Chest Pain (Neck),Neck,Severe,Severe chest pain localized to the neck.
+SYM01085,Moderate Itching (Ears),Ears,Moderate,Moderate itching localized to the ears.
+SYM01086,Mild Excessive Hunger (Left Leg),Left Leg,Mild,Mild excessive hunger localized to the left leg.
+SYM01087,Mild Irritability (Joints),Joints,Mild,Mild irritability localized to the joints.
+SYM01088,Moderate Loss of Appetite (Whole Body),Whole Body,Moderate,Moderate loss of appetite localized to the whole body.
+SYM01089,Moderate Swollen Lymph Nodes (Left Arm),Left Arm,Moderate,Moderate swollen lymph nodes localized to the left arm.
+SYM01090,Severe Loss Of Balance (Joints),Joints,Severe,Severe loss of balance localized to the joints.
+SYM01091,Mild Leg Cramps (Joints),Joints,Mild,Mild leg cramps localized to the joints.
+SYM01092,Moderate Numbness (Throat),Throat,Moderate,Moderate numbness localized to the throat.
+SYM01093,Moderate Difficulty Breathing (Lower Back),Lower Back,Moderate,Moderate difficulty breathing localized to the lower back.
+SYM01094,Severe Rapid Breathing (Skin),Skin,Severe,Severe rapid breathing localized to the skin.
+SYM01095,Mild Diarrhea (Right Arm),Right Arm,Mild,Mild diarrhea localized to the right arm.
+SYM01096,Severe Sneezing (Neck),Neck,Severe,Severe sneezing localized to the neck.
+SYM01097,Severe Night Sweats (Neck),Neck,Severe,Severe night sweats localized to the neck.
+SYM01098,Mild Rapid Heartbeat (Skin),Skin,Mild,Mild rapid heartbeat localized to the skin.
+SYM01099,Mild Increased Thirst (Abdomen),Abdomen,Mild,Mild increased thirst localized to the abdomen.
+SYM01100,Moderate Mouth Ulcers (Joints),Joints,Moderate,Moderate mouth ulcers localized to the joints.
+SYM01101,Mild Watery Eyes (Eyes),Eyes,Mild,Mild watery eyes localized to the eyes.
+SYM01102,Mild Back Pain (Head),Head,Mild,Mild back pain localized to the head.
+SYM01103,Moderate Headache (Skin),Skin,Moderate,Moderate headache localized to the skin.
+SYM01104,Severe Bad Breath (Left Arm),Left Arm,Severe,Severe bad breath localized to the left arm.
+SYM01105,Mild Shortness of Breath (Left Leg),Left Leg,Mild,Mild shortness of breath localized to the left leg.
+SYM01106,Moderate Pelvic Pain (Throat),Throat,Moderate,Moderate pelvic pain localized to the throat.
+SYM01107,Severe Slurred Speech (Eyes),Eyes,Severe,Severe slurred speech localized to the eyes.
+SYM01108,Severe Facial Drooping (Ears),Ears,Severe,Severe facial drooping localized to the ears.
+SYM01109,Mild Blurred Vision (Eyes),Eyes,Mild,Mild blurred vision localized to the eyes.
+SYM01110,Mild Rapid Heartbeat (Head),Head,Mild,Mild rapid heartbeat localized to the head.
+SYM01111,Mild Back Pain (Neck),Neck,Mild,Mild back pain localized to the neck.
+SYM01112,Severe Chills (Lower Back),Lower Back,Severe,Severe chills localized to the lower back.
+SYM01113,Moderate Insomnia (Right Arm),Right Arm,Moderate,Moderate insomnia localized to the right arm.
+SYM01114,Moderate Rapid Heartbeat (Eyes),Eyes,Moderate,Moderate rapid heartbeat localized to the eyes.
+SYM01115,Severe Weight Gain (Left Leg),Left Leg,Severe,Severe weight gain localized to the left leg.
+SYM01116,Mild Watery Eyes (Right Leg),Right Leg,Mild,Mild watery eyes localized to the right leg.
+SYM01117,Severe Frequent Urination (Throat),Throat,Severe,Severe frequent urination localized to the throat.
+SYM01118,Moderate Swelling (Left Arm),Left Arm,Moderate,Moderate swelling localized to the left arm.
+SYM01119,Severe Difficulty Swallowing (Right Arm),Right Arm,Severe,Severe difficulty swallowing localized to the right arm.
+SYM01120,Severe Excessive Thirst (Head),Head,Severe,Severe excessive thirst localized to the head.
+SYM01121,Mild Brittle Nails (Neck),Neck,Mild,Mild brittle nails localized to the neck.
+SYM01122,Mild Back Pain (Joints),Joints,Mild,Mild back pain localized to the joints.
+SYM01123,Mild Weight Loss (Neck),Neck,Mild,Mild weight loss localized to the neck.
+SYM01124,Severe Irregular Periods (Neck),Neck,Severe,Severe irregular periods localized to the neck.
+SYM01125,Mild Loss Of Balance (Neck),Neck,Mild,Mild loss of balance localized to the neck.
+SYM01126,Severe Painful Urination (Right Leg),Right Leg,Severe,Severe painful urination localized to the right leg.
+SYM01127,Moderate Fever (Left Leg),Left Leg,Moderate,Moderate fever localized to the left leg.
+SYM01128,Moderate Swelling (Joints),Joints,Moderate,Moderate swelling localized to the joints.
+SYM01129,Moderate Numbness (Neck),Neck,Moderate,Moderate numbness localized to the neck.
+SYM01130,Severe Depression (Ears),Ears,Severe,Severe depression localized to the ears.
+SYM01131,Moderate Testicular Pain (Left Leg),Left Leg,Moderate,Moderate testicular pain localized to the left leg.
+SYM01132,Mild Red Eyes (Throat),Throat,Mild,Mild red eyes localized to the throat.
+SYM01133,Moderate Nausea (Neck),Neck,Moderate,Moderate nausea localized to the neck.
+SYM01134,Severe Coughing Blood (Right Arm),Right Arm,Severe,Severe coughing blood localized to the right arm.
+SYM01135,Severe Excessive Hunger (Lower Back),Lower Back,Severe,Severe excessive hunger localized to the lower back.
+SYM01136,Mild Sensitivity To Light (Joints),Joints,Mild,Mild sensitivity to light localized to the joints.
+SYM01137,Moderate Fever (Joints),Joints,Moderate,Moderate fever localized to the joints.
+SYM01138,Moderate Slurred Speech (Left Leg),Left Leg,Moderate,Moderate slurred speech localized to the left leg.
+SYM01139,Severe Rapid Heartbeat (Neck),Neck,Severe,Severe rapid heartbeat localized to the neck.
+SYM01140,Mild Clubbing Of Fingers (Head),Head,Mild,Mild clubbing of fingers localized to the head.
+SYM01141,Moderate Fatigue (Joints),Joints,Moderate,Moderate fatigue localized to the joints.
+SYM01142,Mild Tremor (Joints),Joints,Mild,Mild tremor localized to the joints.
+SYM01143,Severe Weight Gain (Skin),Skin,Severe,Severe weight gain localized to the skin.
+SYM01144,Severe Persistent Cough (Head),Head,Severe,Severe persistent cough localized to the head.
+SYM01145,Moderate Hearing Loss (Left Arm),Left Arm,Moderate,Moderate hearing loss localized to the left arm.
+SYM01146,Mild Chills (Head),Head,Mild,Mild chills localized to the head.
+SYM01147,Moderate Chest Tightness (Throat),Throat,Moderate,Moderate chest tightness localized to the throat.
+SYM01148,Mild Sneezing (Abdomen),Abdomen,Mild,Mild sneezing localized to the abdomen.
+SYM01149,Severe Hoarseness (Head),Head,Severe,Severe hoarseness localized to the head.
+SYM01150,Severe Irritability (Chest),Chest,Severe,Severe irritability localized to the chest.
+SYM01151,Severe Dry Mouth (Joints),Joints,Severe,Severe dry mouth localized to the joints.
+SYM01152,Severe Muscle Weakness (Lower Back),Lower Back,Severe,Severe muscle weakness localized to the lower back.
+SYM01153,Moderate Hair Loss (Left Arm),Left Arm,Moderate,Moderate hair loss localized to the left arm.
+SYM01154,Severe Swollen Ankles (Left Leg),Left Leg,Severe,Severe swollen ankles localized to the left leg.
+SYM01155,Moderate Depression (Skin),Skin,Moderate,Moderate depression localized to the skin.
+SYM01156,Mild Rash (Abdomen),Abdomen,Mild,Mild rash localized to the abdomen.
+SYM01157,Moderate Loss Of Smell (Abdomen),Abdomen,Moderate,Moderate loss of smell localized to the abdomen.
+SYM01158,Severe Vomiting (Left Arm),Left Arm,Severe,Severe vomiting localized to the left arm.
+SYM01159,Mild Headache (Right Arm),Right Arm,Mild,Mild headache localized to the right arm.
+SYM01160,Severe Constipation (Left Arm),Left Arm,Severe,Severe constipation localized to the left arm.
+SYM01161,Mild Uncontrolled Movements (Throat),Throat,Mild,Mild uncontrolled movements localized to the throat.
+SYM01162,Mild Memory Loss (Ears),Ears,Mild,Mild memory loss localized to the ears.
+SYM01163,Moderate Excessive Sleepiness (Eyes),Eyes,Moderate,Moderate excessive sleepiness localized to the eyes.
+SYM01164,Mild Slurred Speech (Abdomen),Abdomen,Mild,Mild slurred speech localized to the abdomen.
+SYM01165,Moderate Excessive Hunger (Eyes),Eyes,Moderate,Moderate excessive hunger localized to the eyes.
+SYM01166,Mild Rash (Upper Back),Upper Back,Mild,Mild rash localized to the upper back.
+SYM01167,Mild Nasal Congestion (Right Leg),Right Leg,Mild,Mild nasal congestion localized to the right leg.
+SYM01168,Severe Headache (Left Leg),Left Leg,Severe,Severe headache localized to the left leg.
+SYM01169,Mild Coughing Blood (Right Leg),Right Leg,Mild,Mild coughing blood localized to the right leg.
+SYM01170,Moderate Blurred Vision (Head),Head,Moderate,Moderate blurred vision localized to the head.
+SYM01171,Severe Seizure (Left Arm),Left Arm,Severe,Severe seizure localized to the left arm.
+SYM01172,Severe Tremor (Ears),Ears,Severe,Severe tremor localized to the ears.
+SYM01173,Mild Cold Hands And Feet (Left Arm),Left Arm,Mild,Mild cold hands and feet localized to the left arm.
+SYM01174,Severe Gas (Ears),Ears,Severe,Severe gas localized to the ears.
+SYM01175,Moderate Constipation (Right Leg),Right Leg,Moderate,Moderate constipation localized to the right leg.
+SYM01176,Mild Clubbing Of Fingers (Whole Body),Whole Body,Mild,Mild clubbing of fingers localized to the whole body.
+SYM01177,Severe Pelvic Pain (Upper Back),Upper Back,Severe,Severe pelvic pain localized to the upper back.
+SYM01178,Mild Rapid Breathing (Joints),Joints,Mild,Mild rapid breathing localized to the joints.
+SYM01179,Severe Joint Pain (Throat),Throat,Severe,Severe joint pain localized to the throat.
+SYM01180,Mild Seizure (Head),Head,Mild,Mild seizure localized to the head.
+SYM01181,Mild Uncontrolled Movements (Chest),Chest,Mild,Mild uncontrolled movements localized to the chest.
+SYM01182,Mild Brittle Nails (Skin),Skin,Mild,Mild brittle nails localized to the skin.
+SYM01183,Mild Jaundice (Ears),Ears,Mild,Mild jaundice localized to the ears.
+SYM01184,Mild Fever (Joints),Joints,Mild,Mild fever localized to the joints.
+SYM01185,Moderate Wheezing (Chest),Chest,Moderate,Moderate wheezing localized to the chest.
+SYM01186,Severe Sweating (Right Arm),Right Arm,Severe,Severe sweating localized to the right arm.
+SYM01187,Moderate Night Sweats (Left Leg),Left Leg,Moderate,Moderate night sweats localized to the left leg.
+SYM01188,Severe Rapid Heartbeat (Throat),Throat,Severe,Severe rapid heartbeat localized to the throat.
+SYM01189,Moderate High Blood Pressure (Right Arm),Right Arm,Moderate,Moderate high blood pressure localized to the right arm.
+SYM01190,Severe Erectile Dysfunction (Skin),Skin,Severe,Severe erectile dysfunction localized to the skin.
+SYM01191,Severe Increased Thirst (Whole Body),Whole Body,Severe,Severe increased thirst localized to the whole body.
+SYM01192,Moderate Gas (Upper Back),Upper Back,Moderate,Moderate gas localized to the upper back.
+SYM01193,Severe Hair Loss (Right Arm),Right Arm,Severe,Severe hair loss localized to the right arm.
+SYM01194,Severe High Blood Pressure (Neck),Neck,Severe,Severe high blood pressure localized to the neck.
+SYM01195,Moderate Rapid Breathing (Lower Back),Lower Back,Moderate,Moderate rapid breathing localized to the lower back.
+SYM01196,Moderate Chills (Upper Back),Upper Back,Moderate,Moderate chills localized to the upper back.
+SYM01197,Mild Red Eyes (Right Arm),Right Arm,Mild,Mild red eyes localized to the right arm.
+SYM01198,Severe Diarrhea (Left Leg),Left Leg,Severe,Severe diarrhea localized to the left leg.
+SYM01199,Moderate Bad Breath (Ears),Ears,Moderate,Moderate bad breath localized to the ears.
+SYM01200,Severe Cold Hands And Feet (Upper Back),Upper Back,Severe,Severe cold hands and feet localized to the upper back.
+SYM01201,Severe Chest Tightness (Upper Back),Upper Back,Severe,Severe chest tightness localized to the upper back.
+SYM01202,Severe Double Vision (Upper Back),Upper Back,Severe,Severe double vision localized to the upper back.
+SYM01203,Mild Excessive Hunger (Upper Back),Upper Back,Mild,Mild excessive hunger localized to the upper back.
+SYM01204,Severe Skin Discoloration (Skin),Skin,Severe,Severe skin discoloration localized to the skin.
+SYM01205,Severe Pelvic Pain (Left Leg),Left Leg,Severe,Severe pelvic pain localized to the left leg.
+SYM01206,Mild Erectile Dysfunction (Upper Back),Upper Back,Mild,Mild erectile dysfunction localized to the upper back.
+SYM01207,Mild Frequent Infections (Whole Body),Whole Body,Mild,Mild frequent infections localized to the whole body.
+SYM01208,Moderate Uncontrolled Movements (Left Leg),Left Leg,Moderate,Moderate uncontrolled movements localized to the left leg.
+SYM01209,Severe Double Vision (Right Arm),Right Arm,Severe,Severe double vision localized to the right arm.
+SYM01210,Moderate Painful Intercourse (Skin),Skin,Moderate,Moderate painful intercourse localized to the skin.
+SYM01211,Mild Nasal Congestion (Whole Body),Whole Body,Mild,Mild nasal congestion localized to the whole body.
+SYM01212,Severe Low Blood Pressure (Eyes),Eyes,Severe,Severe low blood pressure localized to the eyes.
+SYM01213,Severe Loss of Appetite (Left Leg),Left Leg,Severe,Severe loss of appetite localized to the left leg.
+SYM01214,Severe Numbness (Chest),Chest,Severe,Severe numbness localized to the chest.
+SYM01215,Mild Frequent Infections (Ears),Ears,Mild,Mild frequent infections localized to the ears.
+SYM01216,Moderate Slurred Speech (Left Arm),Left Arm,Moderate,Moderate slurred speech localized to the left arm.
+SYM01217,Mild Ringing In Ears (Right Leg),Right Leg,Mild,Mild ringing in ears localized to the right leg.
+SYM01218,Moderate Runny Nose (Lower Back),Lower Back,Moderate,Moderate runny nose localized to the lower back.
+SYM01219,Mild Erectile Dysfunction (Neck),Neck,Mild,Mild erectile dysfunction localized to the neck.
+SYM01220,Moderate Bruising Easily (Abdomen),Abdomen,Moderate,Moderate bruising easily localized to the abdomen.
+SYM01221,Severe Runny Nose (Left Leg),Left Leg,Severe,Severe runny nose localized to the left leg.
+SYM01222,Severe Loss of Appetite (Skin),Skin,Severe,Severe loss of appetite localized to the skin.
+SYM01223,Mild Jaundice (Left Arm),Left Arm,Mild,Mild jaundice localized to the left arm.
+SYM01224,Mild Loss Of Taste (Right Arm),Right Arm,Mild,Mild loss of taste localized to the right arm.
+SYM01225,Severe Fever (Skin),Skin,Severe,Severe fever localized to the skin.
+SYM01226,Severe Frequent Urination (Eyes),Eyes,Severe,Severe frequent urination localized to the eyes.
+SYM01227,Moderate Slow Heartbeat (Lower Back),Lower Back,Moderate,Moderate slow heartbeat localized to the lower back.
+SYM01228,Mild Swelling (Chest),Chest,Mild,Mild swelling localized to the chest.
+SYM01229,Severe Ear Pain (Whole Body),Whole Body,Severe,Severe ear pain localized to the whole body.
+SYM01230,Severe Anxiety (Lower Back),Lower Back,Severe,Severe anxiety localized to the lower back.
+SYM01231,Severe Difficulty Breathing (Right Leg),Right Leg,Severe,Severe difficulty breathing localized to the right leg.
+SYM01232,Severe Ear Pain (Eyes),Eyes,Severe,Severe ear pain localized to the eyes.
+SYM01233,Mild Difficulty Breathing (Head),Head,Mild,Mild difficulty breathing localized to the head.
+SYM01234,Mild Headache (Throat),Throat,Mild,Mild headache localized to the throat.
+SYM01235,Moderate Back Pain (Ears),Ears,Moderate,Moderate back pain localized to the ears.
+SYM01236,Severe Ringing In Ears (Ears),Ears,Severe,Severe ringing in ears localized to the ears.
+SYM01237,Severe Frequent Urination (Lower Back),Lower Back,Severe,Severe frequent urination localized to the lower back.
+SYM01238,Severe Increased Thirst (Ears),Ears,Severe,Severe increased thirst localized to the ears.
+SYM01239,Mild Excessive Thirst (Abdomen),Abdomen,Mild,Mild excessive thirst localized to the abdomen.
+SYM01240,Severe Slurred Speech (Neck),Neck,Severe,Severe slurred speech localized to the neck.
+SYM01241,Moderate Swelling (Eyes),Eyes,Moderate,Moderate swelling localized to the eyes.
+SYM01242,Moderate Ringing In Ears (Lower Back),Lower Back,Moderate,Moderate ringing in ears localized to the lower back.
+SYM01243,Moderate Excessive Thirst (Throat),Throat,Moderate,Moderate excessive thirst localized to the throat.
+SYM01244,Moderate Slow Heartbeat (Eyes),Eyes,Moderate,Moderate slow heartbeat localized to the eyes.
+SYM01245,Severe Tingling (Neck),Neck,Severe,Severe tingling localized to the neck.
+SYM01246,Severe Chest Pain (Right Arm),Right Arm,Severe,Severe chest pain localized to the right arm.
+SYM01247,Severe Skin Discoloration (Eyes),Eyes,Severe,Severe skin discoloration localized to the eyes.
+SYM01248,Moderate Confusion (Abdomen),Abdomen,Moderate,Moderate confusion localized to the abdomen.
+SYM01249,Severe Testicular Pain (Joints),Joints,Severe,Severe testicular pain localized to the joints.
+SYM01250,Severe Coughing Blood (Right Leg),Right Leg,Severe,Severe coughing blood localized to the right leg.
+SYM01251,Mild Facial Drooping (Right Leg),Right Leg,Mild,Mild facial drooping localized to the right leg.
+SYM01252,Severe Rash (Abdomen),Abdomen,Severe,Severe rash localized to the abdomen.
+SYM01253,Severe Blood in Stool (Right Arm),Right Arm,Severe,Severe blood in stool localized to the right arm.
+SYM01254,Moderate Brittle Nails (Left Leg),Left Leg,Moderate,Moderate brittle nails localized to the left leg.
+SYM01255,Severe Brittle Nails (Eyes),Eyes,Severe,Severe brittle nails localized to the eyes.
+SYM01256,Severe Loss Of Balance (Whole Body),Whole Body,Severe,Severe loss of balance localized to the whole body.
+SYM01257,Severe Fainting (Ears),Ears,Severe,Severe fainting localized to the ears.
+SYM01258,Moderate Cough (Eyes),Eyes,Moderate,Moderate cough localized to the eyes.
+SYM01259,Moderate Tremor (Lower Back),Lower Back,Moderate,Moderate tremor localized to the lower back.
+SYM01260,Moderate Tremor (Ears),Ears,Moderate,Moderate tremor localized to the ears.
+SYM01261,Severe Heartburn (Neck),Neck,Severe,Severe heartburn localized to the neck.
+SYM01262,Moderate Hair Loss (Abdomen),Abdomen,Moderate,Moderate hair loss localized to the abdomen.
+SYM01263,Moderate Jaundice (Eyes),Eyes,Moderate,Moderate jaundice localized to the eyes.
+SYM01264,Mild Frequent Urination (Left Arm),Left Arm,Mild,Mild frequent urination localized to the left arm.
+SYM01265,Moderate Jaundice (Whole Body),Whole Body,Moderate,Moderate jaundice localized to the whole body.
+SYM01266,Mild Swelling (Right Arm),Right Arm,Mild,Mild swelling localized to the right arm.
+SYM01267,Severe Nausea (Joints),Joints,Severe,Severe nausea localized to the joints.
+SYM01268,Severe Palpitations (Skin),Skin,Severe,Severe palpitations localized to the skin.
+SYM01269,Mild Irritability (Left Arm),Left Arm,Mild,Mild irritability localized to the left arm.
+SYM01270,Severe Bad Breath (Whole Body),Whole Body,Severe,Severe bad breath localized to the whole body.
+SYM01271,Severe Bleeding Gums (Skin),Skin,Severe,Severe bleeding gums localized to the skin.
+SYM01272,Mild Blood in Urine (Ears),Ears,Mild,Mild blood in urine localized to the ears.
+SYM01273,Mild Ringing In Ears (Abdomen),Abdomen,Mild,Mild ringing in ears localized to the abdomen.
+SYM01274,Mild Hoarseness (Joints),Joints,Mild,Mild hoarseness localized to the joints.
+SYM01275,Severe Red Eyes (Throat),Throat,Severe,Severe red eyes localized to the throat.
+SYM01276,Moderate Frequent Urination (Throat),Throat,Moderate,Moderate frequent urination localized to the throat.
+SYM01277,Severe Cold Hands And Feet (Right Arm),Right Arm,Severe,Severe cold hands and feet localized to the right arm.
+SYM01278,Moderate Excessive Thirst (Right Arm),Right Arm,Moderate,Moderate excessive thirst localized to the right arm.
+SYM01279,Moderate Testicular Pain (Chest),Chest,Moderate,Moderate testicular pain localized to the chest.
+SYM01280,Moderate Nausea (Throat),Throat,Moderate,Moderate nausea localized to the throat.
+SYM01281,Moderate Irritability (Ears),Ears,Moderate,Moderate irritability localized to the ears.
+SYM01282,Moderate Vomiting (Whole Body),Whole Body,Moderate,Moderate vomiting localized to the whole body.
+SYM01283,Mild Uncontrolled Movements (Abdomen),Abdomen,Mild,Mild uncontrolled movements localized to the abdomen.
+SYM01284,Moderate Rapid Heartbeat (Right Leg),Right Leg,Moderate,Moderate rapid heartbeat localized to the right leg.
+SYM01285,Mild Muscle Ache (Neck),Neck,Mild,Mild muscle ache localized to the neck.
+SYM01286,Severe Muscle Ache (Skin),Skin,Severe,Severe muscle ache localized to the skin.
+SYM01287,Mild Swelling (Neck),Neck,Mild,Mild swelling localized to the neck.
+SYM01288,Moderate Uncontrolled Movements (Upper Back),Upper Back,Moderate,Moderate uncontrolled movements localized to the upper back.
+SYM01289,Mild Constipation (Abdomen),Abdomen,Mild,Mild constipation localized to the abdomen.
+SYM01290,Mild Facial Drooping (Ears),Ears,Mild,Mild facial drooping localized to the ears.
+SYM01291,Severe Depression (Right Arm),Right Arm,Severe,Severe depression localized to the right arm.
+SYM01292,Mild Insomnia (Abdomen),Abdomen,Mild,Mild insomnia localized to the abdomen.
+SYM01293,Mild Jaundice (Chest),Chest,Mild,Mild jaundice localized to the chest.
+SYM01294,Mild Hearing Loss (Throat),Throat,Mild,Mild hearing loss localized to the throat.
+SYM01295,Moderate Ear Pain (Lower Back),Lower Back,Moderate,Moderate ear pain localized to the lower back.
+SYM01296,Mild Wheezing (Left Arm),Left Arm,Mild,Mild wheezing localized to the left arm.
+SYM01297,Mild Itching (Joints),Joints,Mild,Mild itching localized to the joints.
+SYM01298,Mild Runny Nose (Eyes),Eyes,Mild,Mild runny nose localized to the eyes.
+SYM01299,Mild Depression (Neck),Neck,Mild,Mild depression localized to the neck.
+SYM01300,Severe Swelling (Skin),Skin,Severe,Severe swelling localized to the skin.
+SYM01301,Moderate Red Eyes (Eyes),Eyes,Moderate,Moderate red eyes localized to the eyes.
+SYM01302,Severe Heartburn (Joints),Joints,Severe,Severe heartburn localized to the joints.
+SYM01303,Mild Swelling (Skin),Skin,Mild,Mild swelling localized to the skin.
+SYM01304,Moderate Leg Cramps (Throat),Throat,Moderate,Moderate leg cramps localized to the throat.
+SYM01305,Severe Dizziness (Neck),Neck,Severe,Severe dizziness localized to the neck.
+SYM01306,Severe Sweating (Abdomen),Abdomen,Severe,Severe sweating localized to the abdomen.
+SYM01307,Severe Painful Urination (Left Arm),Left Arm,Severe,Severe painful urination localized to the left arm.
+SYM01308,Mild Irregular Periods (Eyes),Eyes,Mild,Mild irregular periods localized to the eyes.
+SYM01309,Severe Numbness (Ears),Ears,Severe,Severe numbness localized to the ears.
+SYM01310,Moderate Dry Mouth (Neck),Neck,Moderate,Moderate dry mouth localized to the neck.
+SYM01311,Severe Wheezing (Abdomen),Abdomen,Severe,Severe wheezing localized to the abdomen.
+SYM01312,Severe Headache (Right Leg),Right Leg,Severe,Severe headache localized to the right leg.
+SYM01313,Severe Painful Urination (Skin),Skin,Severe,Severe painful urination localized to the skin.
+SYM01314,Moderate Dizziness (Skin),Skin,Moderate,Moderate dizziness localized to the skin.
+SYM01315,Moderate Diarrhea (Abdomen),Abdomen,Moderate,Moderate diarrhea localized to the abdomen.
+SYM01316,Mild Night Sweats (Abdomen),Abdomen,Mild,Mild night sweats localized to the abdomen.
+SYM01317,Severe Neck Stiffness (Abdomen),Abdomen,Severe,Severe neck stiffness localized to the abdomen.
+SYM01318,Severe Sore Throat (Right Arm),Right Arm,Severe,Severe sore throat localized to the right arm.
+SYM01319,Severe Muscle Ache (Chest),Chest,Severe,Severe muscle ache localized to the chest.
+SYM01320,Moderate Blood in Stool (Upper Back),Upper Back,Moderate,Moderate blood in stool localized to the upper back.
+SYM01321,Moderate Uncontrolled Movements (Lower Back),Lower Back,Moderate,Moderate uncontrolled movements localized to the lower back.
+SYM01322,Mild Swollen Lymph Nodes (Abdomen),Abdomen,Mild,Mild swollen lymph nodes localized to the abdomen.
+SYM01323,Severe Hair Loss (Head),Head,Severe,Severe hair loss localized to the head.
+SYM01324,Mild Tremor (Right Arm),Right Arm,Mild,Mild tremor localized to the right arm.
+SYM01325,Severe Blurred Vision (Chest),Chest,Severe,Severe blurred vision localized to the chest.
+SYM01326,Mild Hearing Loss (Joints),Joints,Mild,Mild hearing loss localized to the joints.
+SYM01327,Severe Hearing Loss (Chest),Chest,Severe,Severe hearing loss localized to the chest.
+SYM01328,Severe Clubbing Of Fingers (Joints),Joints,Severe,Severe clubbing of fingers localized to the joints.
+SYM01329,Severe Blood in Stool (Upper Back),Upper Back,Severe,Severe blood in stool localized to the upper back.
+SYM01330,Mild Painful Urination (Lower Back),Lower Back,Mild,Mild painful urination localized to the lower back.
+SYM01331,Mild Dry Skin (Ears),Ears,Mild,Mild dry skin localized to the ears.
+SYM01332,Moderate Heartburn (Abdomen),Abdomen,Moderate,Moderate heartburn localized to the abdomen.
+SYM01333,Moderate Blood in Stool (Right Arm),Right Arm,Moderate,Moderate blood in stool localized to the right arm.
+SYM01334,Severe Chills (Head),Head,Severe,Severe chills localized to the head.
+SYM01335,Mild Rapid Heartbeat (Left Leg),Left Leg,Mild,Mild rapid heartbeat localized to the left leg.
+SYM01336,Moderate Rash (Eyes),Eyes,Moderate,Moderate rash localized to the eyes.
+SYM01337,Moderate Low Blood Pressure (Skin),Skin,Moderate,Moderate low blood pressure localized to the skin.
+SYM01338,Mild Seizure (Left Leg),Left Leg,Mild,Mild seizure localized to the left leg.
+SYM01339,Mild Slow Wound Healing (Head),Head,Mild,Mild slow wound healing localized to the head.
+SYM01340,Severe Persistent Cough (Neck),Neck,Severe,Severe persistent cough localized to the neck.
+SYM01341,Severe Night Sweats (Eyes),Eyes,Severe,Severe night sweats localized to the eyes.
+SYM01342,Moderate Dry Skin (Head),Head,Moderate,Moderate dry skin localized to the head.
+SYM01343,Mild Swelling (Lower Back),Lower Back,Mild,Mild swelling localized to the lower back.
+SYM01344,Mild Chest Tightness (Abdomen),Abdomen,Mild,Mild chest tightness localized to the abdomen.
+SYM01345,Moderate Muscle Weakness (Chest),Chest,Moderate,Moderate muscle weakness localized to the chest.
+SYM01346,Moderate Brittle Nails (Whole Body),Whole Body,Moderate,Moderate brittle nails localized to the whole body.
+SYM01347,Mild Chest Tightness (Ears),Ears,Mild,Mild chest tightness localized to the ears.
+SYM01348,Moderate Slow Heartbeat (Head),Head,Moderate,Moderate slow heartbeat localized to the head.
+SYM01349,Mild Muscle Ache (Upper Back),Upper Back,Mild,Mild muscle ache localized to the upper back.
+SYM01350,Severe Abdominal Pain (Head),Head,Severe,Severe abdominal pain localized to the head.
+SYM01351,Moderate Weight Loss (Joints),Joints,Moderate,Moderate weight loss localized to the joints.
+SYM01352,Severe Irritability (Upper Back),Upper Back,Severe,Severe irritability localized to the upper back.
+SYM01353,Severe Dizziness (Chest),Chest,Severe,Severe dizziness localized to the chest.
+SYM01354,Severe Depression (Upper Back),Upper Back,Severe,Severe depression localized to the upper back.
+SYM01355,Moderate Bloating (Joints),Joints,Moderate,Moderate bloating localized to the joints.
+SYM01356,Moderate Vomiting (Right Leg),Right Leg,Moderate,Moderate vomiting localized to the right leg.
+SYM01357,Moderate Chest Pain (Throat),Throat,Moderate,Moderate chest pain localized to the throat.
+SYM01358,Mild Dry Skin (Lower Back),Lower Back,Mild,Mild dry skin localized to the lower back.
+SYM01359,Severe Chills (Right Arm),Right Arm,Severe,Severe chills localized to the right arm.
+SYM01360,Moderate Swollen Lymph Nodes (Left Leg),Left Leg,Moderate,Moderate swollen lymph nodes localized to the left leg.
+SYM01361,Mild Hair Loss (Ears),Ears,Mild,Mild hair loss localized to the ears.
+SYM01362,Severe Sensitivity To Light (Chest),Chest,Severe,Severe sensitivity to light localized to the chest.
+SYM01363,Mild Toothache (Abdomen),Abdomen,Mild,Mild toothache localized to the abdomen.
+SYM01364,Severe Dry Skin (Eyes),Eyes,Severe,Severe dry skin localized to the eyes.
+SYM01365,Severe Excessive Hunger (Ears),Ears,Severe,Severe excessive hunger localized to the ears.
+SYM01366,Mild Dizziness (Ears),Ears,Mild,Mild dizziness localized to the ears.
+SYM01367,Severe Neck Stiffness (Left Arm),Left Arm,Severe,Severe neck stiffness localized to the left arm.
+SYM01368,Moderate Swelling (Throat),Throat,Moderate,Moderate swelling localized to the throat.
+SYM01369,Moderate Seizure (Chest),Chest,Moderate,Moderate seizure localized to the chest.
+SYM01370,Mild Dizziness (Skin),Skin,Mild,Mild dizziness localized to the skin.
+SYM01371,Moderate Blurred Vision (Neck),Neck,Moderate,Moderate blurred vision localized to the neck.
+SYM01372,Mild Cough (Right Leg),Right Leg,Mild,Mild cough localized to the right leg.
+SYM01373,Severe Testicular Pain (Left Leg),Left Leg,Severe,Severe testicular pain localized to the left leg.
+SYM01374,Severe Slurred Speech (Right Arm),Right Arm,Severe,Severe slurred speech localized to the right arm.
+SYM01375,Moderate Confusion (Upper Back),Upper Back,Moderate,Moderate confusion localized to the upper back.
+SYM01376,Mild Mouth Ulcers (Right Leg),Right Leg,Mild,Mild mouth ulcers localized to the right leg.
+SYM01377,Severe Excessive Hunger (Neck),Neck,Severe,Severe excessive hunger localized to the neck.
+SYM01378,Mild Palpitations (Right Leg),Right Leg,Mild,Mild palpitations localized to the right leg.
+SYM01379,Severe Confusion (Whole Body),Whole Body,Severe,Severe confusion localized to the whole body.
+SYM01380,Severe Swollen Lymph Nodes (Ears),Ears,Severe,Severe swollen lymph nodes localized to the ears.
+SYM01381,Severe Frequent Urination (Joints),Joints,Severe,Severe frequent urination localized to the joints.
+SYM01382,Mild Heartburn (Right Leg),Right Leg,Mild,Mild heartburn localized to the right leg.
+SYM01383,Moderate Clubbing Of Fingers (Throat),Throat,Moderate,Moderate clubbing of fingers localized to the throat.
+SYM01384,Mild Swollen Ankles (Chest),Chest,Mild,Mild swollen ankles localized to the chest.
+SYM01385,Severe Toothache (Whole Body),Whole Body,Severe,Severe toothache localized to the whole body.
+SYM01386,Moderate Erectile Dysfunction (Abdomen),Abdomen,Moderate,Moderate erectile dysfunction localized to the abdomen.
+SYM01387,Severe Seizure (Chest),Chest,Severe,Severe seizure localized to the chest.
+SYM01388,Mild Diarrhea (Skin),Skin,Mild,Mild diarrhea localized to the skin.
+SYM01389,Severe Ringing In Ears (Throat),Throat,Severe,Severe ringing in ears localized to the throat.
+SYM01390,Mild Pelvic Pain (Throat),Throat,Mild,Mild pelvic pain localized to the throat.
+SYM01391,Moderate Excessive Thirst (Left Leg),Left Leg,Moderate,Moderate excessive thirst localized to the left leg.
+SYM01392,Mild Leg Cramps (Skin),Skin,Mild,Mild leg cramps localized to the skin.
+SYM01393,Moderate Clubbing Of Fingers (Upper Back),Upper Back,Moderate,Moderate clubbing of fingers localized to the upper back.
+SYM01394,Severe Headache (Left Arm),Left Arm,Severe,Severe headache localized to the left arm.
+SYM01395,Mild Dry Skin (Abdomen),Abdomen,Mild,Mild dry skin localized to the abdomen.
+SYM01396,Moderate Tingling (Lower Back),Lower Back,Moderate,Moderate tingling localized to the lower back.
+SYM01397,Moderate Excessive Hunger (Left Arm),Left Arm,Moderate,Moderate excessive hunger localized to the left arm.
+SYM01398,Severe Sensitivity To Light (Lower Back),Lower Back,Severe,Severe sensitivity to light localized to the lower back.
+SYM01399,Mild Frequent Infections (Left Arm),Left Arm,Mild,Mild frequent infections localized to the left arm.
+SYM01400,Mild Loss Of Balance (Eyes),Eyes,Mild,Mild loss of balance localized to the eyes.
+SYM01401,Severe Heartburn (Whole Body),Whole Body,Severe,Severe heartburn localized to the whole body.
+SYM01402,Mild Numbness (Eyes),Eyes,Mild,Mild numbness localized to the eyes.
+SYM01403,Moderate Headache (Eyes),Eyes,Moderate,Moderate headache localized to the eyes.
+SYM01404,Mild Dry Skin (Whole Body),Whole Body,Mild,Mild dry skin localized to the whole body.
+SYM01405,Severe Constipation (Neck),Neck,Severe,Severe constipation localized to the neck.
+SYM01406,Moderate Skin Discoloration (Right Leg),Right Leg,Moderate,Moderate skin discoloration localized to the right leg.
+SYM01407,Severe Joint Pain (Upper Back),Upper Back,Severe,Severe joint pain localized to the upper back.
+SYM01408,Mild Night Sweats (Throat),Throat,Mild,Mild night sweats localized to the throat.
+SYM01409,Mild Tremor (Ears),Ears,Mild,Mild tremor localized to the ears.
+SYM01410,Severe Excessive Thirst (Right Leg),Right Leg,Severe,Severe excessive thirst localized to the right leg.
+SYM01411,Moderate Cold Hands And Feet (Right Leg),Right Leg,Moderate,Moderate cold hands and feet localized to the right leg.
+SYM01412,Severe Uncontrolled Movements (Chest),Chest,Severe,Severe uncontrolled movements localized to the chest.
+SYM01413,Moderate Tremor (Eyes),Eyes,Moderate,Moderate tremor localized to the eyes.
+SYM01414,Severe Constipation (Head),Head,Severe,Severe constipation localized to the head.
+SYM01415,Mild Sweating (Chest),Chest,Mild,Mild sweating localized to the chest.
+SYM01416,Mild Facial Drooping (Abdomen),Abdomen,Mild,Mild facial drooping localized to the abdomen.
+SYM01417,Severe Pelvic Pain (Whole Body),Whole Body,Severe,Severe pelvic pain localized to the whole body.
+SYM01418,Mild Depression (Ears),Ears,Mild,Mild depression localized to the ears.
+SYM01419,Moderate Pelvic Pain (Head),Head,Moderate,Moderate pelvic pain localized to the head.
+SYM01420,Severe Fever (Left Leg),Left Leg,Severe,Severe fever localized to the left leg.
+SYM01421,Mild Ringing In Ears (Left Arm),Left Arm,Mild,Mild ringing in ears localized to the left arm.
+SYM01422,Mild Sensitivity To Light (Upper Back),Upper Back,Mild,Mild sensitivity to light localized to the upper back.
+SYM01423,Severe Clubbing Of Fingers (Eyes),Eyes,Severe,Severe clubbing of fingers localized to the eyes.
+SYM01424,Mild Dry Skin (Throat),Throat,Mild,Mild dry skin localized to the throat.
+SYM01425,Severe Red Eyes (Ears),Ears,Severe,Severe red eyes localized to the ears.
+SYM01426,Mild Irregular Periods (Chest),Chest,Mild,Mild irregular periods localized to the chest.
+SYM01427,Severe Hearing Loss (Eyes),Eyes,Severe,Severe hearing loss localized to the eyes.
+SYM01428,Severe Frequent Infections (Neck),Neck,Severe,Severe frequent infections localized to the neck.
+SYM01429,Moderate Weight Loss (Left Arm),Left Arm,Moderate,Moderate weight loss localized to the left arm.
+SYM01430,Moderate Frequent Urination (Head),Head,Moderate,Moderate frequent urination localized to the head.
+SYM01431,Moderate Insomnia (Ears),Ears,Moderate,Moderate insomnia localized to the ears.
+SYM01432,Severe Fatigue (Throat),Throat,Severe,Severe fatigue localized to the throat.
+SYM01433,Mild Watery Eyes (Abdomen),Abdomen,Mild,Mild watery eyes localized to the abdomen.
+SYM01434,Mild Red Eyes (Abdomen),Abdomen,Mild,Mild red eyes localized to the abdomen.
+SYM01435,Severe Low Blood Pressure (Whole Body),Whole Body,Severe,Severe low blood pressure localized to the whole body.
+SYM01436,Mild Loss Of Smell (Right Arm),Right Arm,Mild,Mild loss of smell localized to the right arm.
+SYM01437,Mild Excessive Sleepiness (Lower Back),Lower Back,Mild,Mild excessive sleepiness localized to the lower back.
+SYM01438,Mild Headache (Joints),Joints,Mild,Mild headache localized to the joints.
+SYM01439,Severe Erectile Dysfunction (Left Leg),Left Leg,Severe,Severe erectile dysfunction localized to the left leg.
+SYM01440,Mild Swollen Ankles (Throat),Throat,Mild,Mild swollen ankles localized to the throat.
+SYM01441,Mild Swollen Lymph Nodes (Chest),Chest,Mild,Mild swollen lymph nodes localized to the chest.
+SYM01442,Mild Gas (Left Arm),Left Arm,Mild,Mild gas localized to the left arm.
+SYM01443,Severe Itching (Throat),Throat,Severe,Severe itching localized to the throat.
+SYM01444,Mild Muscle Ache (Whole Body),Whole Body,Mild,Mild muscle ache localized to the whole body.
+SYM01445,Mild Red Eyes (Left Leg),Left Leg,Mild,Mild red eyes localized to the left leg.
+SYM01446,Moderate Painful Intercourse (Joints),Joints,Moderate,Moderate painful intercourse localized to the joints.
+SYM01447,Moderate Difficulty Walking (Joints),Joints,Moderate,Moderate difficulty walking localized to the joints.
+SYM01448,Mild Chills (Joints),Joints,Mild,Mild chills localized to the joints.
+SYM01449,Mild Gas (Throat),Throat,Mild,Mild gas localized to the throat.
+SYM01450,Severe Frequent Infections (Left Leg),Left Leg,Severe,Severe frequent infections localized to the left leg.
+SYM01451,Moderate Difficulty Walking (Upper Back),Upper Back,Moderate,Moderate difficulty walking localized to the upper back.
+SYM01452,Mild Frequent Infections (Skin),Skin,Mild,Mild frequent infections localized to the skin.
+SYM01453,Mild Swollen Ankles (Abdomen),Abdomen,Mild,Mild swollen ankles localized to the abdomen.
+SYM01454,Severe Neck Stiffness (Eyes),Eyes,Severe,Severe neck stiffness localized to the eyes.
+SYM01455,Mild Tingling (Left Leg),Left Leg,Mild,Mild tingling localized to the left leg.
+SYM01456,Mild Sweating (Skin),Skin,Mild,Mild sweating localized to the skin.
+SYM01457,Severe Hoarseness (Whole Body),Whole Body,Severe,Severe hoarseness localized to the whole body.
+SYM01458,Severe Slow Heartbeat (Skin),Skin,Severe,Severe slow heartbeat localized to the skin.
+SYM01459,Moderate Dry Skin (Upper Back),Upper Back,Moderate,Moderate dry skin localized to the upper back.
+SYM01460,Moderate Toothache (Right Arm),Right Arm,Moderate,Moderate toothache localized to the right arm.
+SYM01461,Moderate Dizziness (Eyes),Eyes,Moderate,Moderate dizziness localized to the eyes.
+SYM01462,Moderate Uncontrolled Movements (Whole Body),Whole Body,Moderate,Moderate uncontrolled movements localized to the whole body.
+SYM01463,Mild Difficulty Breathing (Left Arm),Left Arm,Mild,Mild difficulty breathing localized to the left arm.
+SYM01464,Mild Insomnia (Neck),Neck,Mild,Mild insomnia localized to the neck.
+SYM01465,Moderate Loss Of Taste (Skin),Skin,Moderate,Moderate loss of taste localized to the skin.
+SYM01466,Mild Slow Wound Healing (Right Arm),Right Arm,Mild,Mild slow wound healing localized to the right arm.
+SYM01467,Mild Headache (Neck),Neck,Mild,Mild headache localized to the neck.
+SYM01468,Mild Cough (Eyes),Eyes,Mild,Mild cough localized to the eyes.
+SYM01469,Mild Vomiting (Lower Back),Lower Back,Mild,Mild vomiting localized to the lower back.
+SYM01470,Moderate Erectile Dysfunction (Joints),Joints,Moderate,Moderate erectile dysfunction localized to the joints.
+SYM01471,Moderate Fever (Neck),Neck,Moderate,Moderate fever localized to the neck.
+SYM01472,Severe Swollen Ankles (Head),Head,Severe,Severe swollen ankles localized to the head.
+SYM01473,Severe Watery Eyes (Head),Head,Severe,Severe watery eyes localized to the head.
+SYM01474,Moderate Fever (Eyes),Eyes,Moderate,Moderate fever localized to the eyes.
+SYM01475,Severe Low Blood Pressure (Skin),Skin,Severe,Severe low blood pressure localized to the skin.
+SYM01476,Severe Depression (Throat),Throat,Severe,Severe depression localized to the throat.
+SYM01477,Severe Difficulty Swallowing (Whole Body),Whole Body,Severe,Severe difficulty swallowing localized to the whole body.
+SYM01478,Severe Painful Urination (Joints),Joints,Severe,Severe painful urination localized to the joints.
+SYM01479,Severe Pelvic Pain (Abdomen),Abdomen,Severe,Severe pelvic pain localized to the abdomen.
+SYM01480,Mild Dizziness (Whole Body),Whole Body,Mild,Mild dizziness localized to the whole body.
+SYM01481,Mild Ear Pain (Upper Back),Upper Back,Mild,Mild ear pain localized to the upper back.
+SYM01482,Mild Clubbing Of Fingers (Lower Back),Lower Back,Mild,Mild clubbing of fingers localized to the lower back.
+SYM01483,Severe Dry Mouth (Lower Back),Lower Back,Severe,Severe dry mouth localized to the lower back.
+SYM01484,Mild Muscle Ache (Right Leg),Right Leg,Mild,Mild muscle ache localized to the right leg.
+SYM01485,Moderate Painful Intercourse (Ears),Ears,Moderate,Moderate painful intercourse localized to the ears.
+SYM01486,Mild Fever (Right Leg),Right Leg,Mild,Mild fever localized to the right leg.
+SYM01487,Moderate Sweating (Right Leg),Right Leg,Moderate,Moderate sweating localized to the right leg.
+SYM01488,Severe Slow Heartbeat (Abdomen),Abdomen,Severe,Severe slow heartbeat localized to the abdomen.
+SYM01489,Mild Painful Urination (Abdomen),Abdomen,Mild,Mild painful urination localized to the abdomen.
+SYM01490,Severe Painful Urination (Chest),Chest,Severe,Severe painful urination localized to the chest.
+SYM01491,Mild Chills (Left Arm),Left Arm,Mild,Mild chills localized to the left arm.
+SYM01492,Severe Testicular Pain (Lower Back),Lower Back,Severe,Severe testicular pain localized to the lower back.
+SYM01493,Mild Irregular Periods (Right Leg),Right Leg,Mild,Mild irregular periods localized to the right leg.
+SYM01494,Moderate Itching (Left Leg),Left Leg,Moderate,Moderate itching localized to the left leg.
+SYM01495,Moderate Palpitations (Ears),Ears,Moderate,Moderate palpitations localized to the ears.
+SYM01496,Moderate Diarrhea (Lower Back),Lower Back,Moderate,Moderate diarrhea localized to the lower back.
+SYM01497,Mild Headache (Left Arm),Left Arm,Mild,Mild headache localized to the left arm.
+SYM01498,Mild Low Blood Pressure (Upper Back),Upper Back,Mild,Mild low blood pressure localized to the upper back.
+SYM01499,Moderate Loss Of Smell (Ears),Ears,Moderate,Moderate loss of smell localized to the ears.
+SYM01500,Mild Persistent Cough (Head),Head,Mild,Mild persistent cough localized to the head.

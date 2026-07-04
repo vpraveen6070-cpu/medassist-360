@@ -1,233 +1,114 @@
 /**
- * Symptoms Checker Modal Logic
- * Powered by Dataset-Driven AI Retrieval Engine
+ * Symptoms Checker — Dataset-Driven AI Retrieval Engine
+ * Depends on: js/dataset.js (must be loaded first)
  */
-
-// Simple robust CSV Parser
-function parseCSV(str) {
-    const arr = [];
-    let quote = false;
-    let row = 0, col = 0;
-    for (let c = 0; c < str.length; c++) {
-        let cc = str[c], nc = str[c+1];
-        arr[row] = arr[row] || [];
-        arr[row][col] = arr[row][col] || '';
-
-        if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-        if (cc == '"') { quote = !quote; continue; }
-        if (cc == ',' && !quote) { ++col; continue; }
-        if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-        if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-        arr[row][col] += cc;
-    }
-    
-    if(arr.length === 0) return [];
-    const headers = arr[0];
-    const data = [];
-    for(let i = 1; i < arr.length; i++) {
-        if(arr[i].length === 1 && arr[i][0] === "") continue; 
-        const obj = {};
-        for(let j = 0; j < headers.length; j++) {
-            obj[headers[j]] = arr[i][j];
-        }
-        data.push(obj);
-    }
-    return data;
-}
-
-// Global DB
-const DB = {
-    symptoms: [],
-    diseases: [],
-    mapping: [],
-    hospitals: [],
-    doctors: [],
-    loaded: false
-};
-
-async function loadDatasets() {
-    try {
-        const basePath = '/finalframes/healthcare_ai_system%202/data/raw/';
-        
-        const [symRes, disRes, mapRes, hosRes, docRes] = await Promise.all([
-            fetch(basePath + 'medical_knowledge_base/symptoms.csv'),
-            fetch(basePath + 'medical_knowledge_base/diseases.csv'),
-            fetch(basePath + 'medical_knowledge_base/symptom_disease_mapping.csv'),
-            fetch(basePath + 'hospital_operations/hospitals.csv'),
-            fetch(basePath + 'hospital_operations/doctors.csv')
-        ]);
-
-        DB.symptoms = parseCSV(await symRes.text());
-        DB.diseases = parseCSV(await disRes.text());
-        DB.mapping = parseCSV(await mapRes.text());
-        DB.hospitals = parseCSV(await hosRes.text());
-        DB.doctors = parseCSV(await docRes.text());
-        
-        DB.loaded = true;
-        console.log("Datasets loaded successfully", DB);
-    } catch(e) {
-        console.error("Error loading datasets", e);
-    }
-}
-
-// Start loading immediately
-loadDatasets();
-
-let predictedDiseaseCategory = null; // Store this globally for hospital filtering
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Symptoms Cinematic Canvas Engine
+    // ── Cinematic Canvas Engine ──────────────────────────────────────────────
     const sysCanvas = document.getElementById('symptoms-canvas');
     if (sysCanvas) {
-        const sysCtx = sysCanvas.getContext('2d');
+        const sysCtx   = sysCanvas.getContext('2d');
         const frameCount = 240;
-        const currentFrame = index => `finalframes/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
-
-        const images = [];
+        const images   = [];
         let loadedImages = 0;
-        let sysTargetFrame = 0;
-        let sysAnimatedFrame = 0;
-        let sysLastRenderedVal = -1;
-        let sysIsAnimating = false;
+        let sysTargetFrame = 0, sysAnimatedFrame = 0;
+        let sysLastRenderedVal = -1, sysIsAnimating = false;
 
         function sysResize() {
-            sysCanvas.width = window.innerWidth;
+            sysCanvas.width  = window.innerWidth;
             sysCanvas.height = window.innerHeight;
             sysLastRenderedVal = -1;
             sysRender();
         }
         window.addEventListener('resize', sysResize);
 
-        // Preload
         for (let i = 1; i <= frameCount; i++) {
             const img = new Image();
-            img.src = currentFrame(i);
-            img.onload = () => {
-                loadedImages++;
-                if (loadedImages === 1) sysResize();
-            };
+            img.src = `finalframes/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
+            img.onload = () => { if (++loadedImages === 1) sysResize(); };
             images.push(img);
         }
 
         function sysRender() {
-            const currentVal = sysAnimatedFrame.toFixed(3);
-            if (currentVal === sysLastRenderedVal) return;
-            sysLastRenderedVal = currentVal;
-
-            const safeFrame = Math.max(0, sysAnimatedFrame);
-            const frame1 = Math.floor(safeFrame) % frameCount;
-            const frame2 = (frame1 + 1) % frameCount;
-            const fraction = safeFrame - Math.floor(safeFrame);
-            
-            if (images[frame1] && images[frame1].complete) {
-                const img = images[frame1];
-                const canvasRatio = sysCanvas.width / sysCanvas.height;
-                const imgRatio = (img.width || 1920) / (img.height || 1080);
-                let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
-
-                if (canvasRatio > imgRatio) {
-                    drawWidth = sysCanvas.width;
-                    drawHeight = sysCanvas.width / imgRatio;
-                    offsetY = (sysCanvas.height - drawHeight) / 2;
-                } else {
-                    drawHeight = sysCanvas.height;
-                    drawWidth = sysCanvas.height * imgRatio;
-                    offsetX = (sysCanvas.width - drawWidth) / 2;
-                }
-
+            const val = sysAnimatedFrame.toFixed(3);
+            if (val === sysLastRenderedVal) return;
+            sysLastRenderedVal = val;
+            const safe  = Math.max(0, sysAnimatedFrame);
+            const f1    = Math.floor(safe) % frameCount;
+            const f2    = (f1 + 1) % frameCount;
+            const frac  = safe - Math.floor(safe);
+            if (images[f1] && images[f1].complete) {
+                const img = images[f1];
+                const cr  = sysCanvas.width / sysCanvas.height;
+                const ir  = (img.width || 1920) / (img.height || 1080);
+                let dw, dh, ox = 0, oy = 0;
+                if (cr > ir) { dw = sysCanvas.width;  dh = dw / ir;  oy = (sysCanvas.height - dh) / 2; }
+                else          { dh = sysCanvas.height; dw = dh * ir;  ox = (sysCanvas.width  - dw) / 2; }
                 sysCtx.clearRect(0, 0, sysCanvas.width, sysCanvas.height);
                 sysCtx.globalAlpha = 1;
-                sysCtx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-
-                if (frame2 !== frame1 && fraction > 0.01 && images[frame2] && images[frame2].complete) {
-                    sysCtx.globalAlpha = fraction;
-                    sysCtx.drawImage(images[frame2], offsetX, offsetY, drawWidth, drawHeight);
+                sysCtx.drawImage(img, ox, oy, dw, dh);
+                if (f2 !== f1 && frac > 0.01 && images[f2] && images[f2].complete) {
+                    sysCtx.globalAlpha = frac;
+                    sysCtx.drawImage(images[f2], ox, oy, dw, dh);
                 }
                 sysCtx.globalAlpha = 1;
             }
         }
 
-        window.startSymptomsCanvas = function() {
-            if(!sysIsAnimating) {
-                sysIsAnimating = true;
-                sysAnimLoop();
-            }
-        };
+        window.startSymptomsCanvas = () => { if (!sysIsAnimating) { sysIsAnimating = true; _loop(); } };
+        window.stopSymptomsCanvas  = () => { sysIsAnimating = false; };
 
-        window.stopSymptomsCanvas = function() {
-            sysIsAnimating = false;
-        };
-
-        function sysAnimLoop() {
-            if(!sysIsAnimating) return;
-
+        function _loop() {
+            if (!sysIsAnimating) return;
             sysTargetFrame += 0.35;
-            if(sysTargetFrame >= frameCount) {
-                sysTargetFrame = sysTargetFrame % frameCount;
+            if (sysTargetFrame >= frameCount) {
+                sysTargetFrame   = sysTargetFrame   % frameCount;
                 sysAnimatedFrame = sysAnimatedFrame % frameCount;
             }
-
             const diff = sysTargetFrame - sysAnimatedFrame;
-            if (Math.abs(diff) > 0.01) {
-                sysAnimatedFrame += diff * 0.12;
-                sysRender();
-            } else if (sysAnimatedFrame !== sysTargetFrame) {
-                sysAnimatedFrame = sysTargetFrame; 
-                sysRender();
-            }
-            requestAnimationFrame(sysAnimLoop);
+            if (Math.abs(diff) > 0.01) { sysAnimatedFrame += diff * 0.12; sysRender(); }
+            else if (sysAnimatedFrame !== sysTargetFrame) { sysAnimatedFrame = sysTargetFrame; sysRender(); }
+            requestAnimationFrame(_loop);
         }
     }
 
-    // Modal Elements
-    const navBtn = document.getElementById('nav-symptoms-btn');
-    const heroBtn = document.getElementById('hero-symptoms-btn');
-    
-    // Step Panes
-    const step1 = document.getElementById('step-1');
-    const step2 = document.getElementById('step-2');
-    const step3 = document.getElementById('step-3');
-    const step4 = document.getElementById('step-4');
-
-    // Controls
-    const nextStep1 = document.getElementById('next-step-1');
-    const prevStep2 = document.getElementById('prev-step-2');
-    const analyzeBtn = document.getElementById('analyze-symptoms-btn');
-    const prevStep3 = document.getElementById('prev-step-3');
-    const findHospitalsBtn = document.getElementById('find-hospitals-btn');
-    const prevStep4 = document.getElementById('prev-step-4');
-
-    // Inputs
-    const textInput = document.getElementById('symptoms-text-input');
-    const recordBtn = document.getElementById('voice-record-btn');
+    // ── Element References ───────────────────────────────────────────────────
+    const navBtn   = document.getElementById('nav-symptoms-btn');
+    const heroBtn  = document.getElementById('hero-symptoms-btn');
+    const step1    = document.getElementById('step-1');
+    const step2    = document.getElementById('step-2');
+    const step3    = document.getElementById('step-3');
+    const step4    = document.getElementById('step-4');
+    const nextStep1    = document.getElementById('next-step-1');
+    const prevStep2    = document.getElementById('prev-step-2');
+    const analyzeBtn   = document.getElementById('analyze-symptoms-btn');
+    const prevStep3    = document.getElementById('prev-step-3');
+    const findHospBtn  = document.getElementById('find-hospitals-btn');
+    const prevStep4    = document.getElementById('prev-step-4');
+    const textInput    = document.getElementById('symptoms-text-input');
+    const recordBtn    = document.getElementById('voice-record-btn');
     const severityInput = document.getElementById('sym-severity');
-    const genderSelect = document.getElementById('sym-gender');
+    const genderSelect  = document.getElementById('sym-gender');
     const prefFemaleWrap = document.getElementById('pref-female-doc-wrap');
-    const prefFemaleCheckbox = document.getElementById('pref-female-doc');
+    const prefFemaleChk  = document.getElementById('pref-female-doc');
+    const loadingState   = document.getElementById('symptoms-loading');
+    const resultsState   = document.getElementById('symptoms-results');
 
-    // Results & State
-    const loadingState = document.getElementById('symptoms-loading');
-    const resultsState = document.getElementById('symptoms-results');
+    // ── State ────────────────────────────────────────────────────────────────
+    let predictedCategory = 'General';
 
-    // Functions
-    function scrollToSymptoms(e) {
-        if(e) e.preventDefault();
-        const checkerSection = document.getElementById('checker');
-        if(checkerSection) {
-            checkerSection.scrollIntoView({ behavior: 'smooth' });
-        }
+    // ── Navigation Helpers ───────────────────────────────────────────────────
+    function scrollToChecker(e) {
+        if (e) e.preventDefault();
+        const el = document.getElementById('checker');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function showStep(stepElement) {
+    function showStep(el) {
         [step1, step2, step3, step4].forEach(s => s.classList.add('hidden'));
-        stepElement.classList.remove('hidden');
-        
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        el.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function resetFlow() {
@@ -237,30 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsState.classList.add('hidden');
     }
 
-    // Event Listeners - Scroll instead of modal
-    navBtn?.addEventListener('click', scrollToSymptoms);
-    heroBtn?.addEventListener('click', scrollToSymptoms);
-    
+    navBtn?.addEventListener('click', scrollToChecker);
+    heroBtn?.addEventListener('click', scrollToChecker);
     resetFlow();
 
-    // Gender Preference Logic
+    // ── Gender Preference ────────────────────────────────────────────────────
     if (genderSelect && prefFemaleWrap) {
-        genderSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'female') {
-                prefFemaleWrap.classList.remove('hidden');
-                if (prefFemaleCheckbox) prefFemaleCheckbox.checked = true;
-            } else {
-                prefFemaleWrap.classList.add('hidden');
-                if (prefFemaleCheckbox) prefFemaleCheckbox.checked = false;
-            }
+        genderSelect.addEventListener('change', e => {
+            const isFemale = e.target.value === 'female';
+            prefFemaleWrap.classList.toggle('hidden', !isFemale);
+            if (prefFemaleChk) prefFemaleChk.checked = isFemale;
         });
-        if (genderSelect.value === 'female') {
-            prefFemaleWrap.classList.remove('hidden');
-            if (prefFemaleCheckbox) prefFemaleCheckbox.checked = true;
-        }
     }
 
-    // Step Navigation
+    // ── Step Navigation ──────────────────────────────────────────────────────
     nextStep1.addEventListener('click', () => {
         if (!textInput.value.trim()) {
             textInput.style.borderColor = 'var(--primary)';
@@ -269,216 +140,131 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         showStep(step2);
     });
-    
     prevStep2.addEventListener('click', () => showStep(step1));
     prevStep3.addEventListener('click', () => showStep(step2));
     prevStep4.addEventListener('click', () => {
-        document.getElementById('hospital-detail-view').classList.add('hidden');
-        document.getElementById('hospital-list-container').style.display = 'block';
+        document.getElementById('hospital-detail-view')?.classList.add('hidden');
+        const lv = document.getElementById('hospital-list-container');
+        if (lv) lv.style.display = 'block';
         showStep(step3);
     });
 
-    // Voice Input using Web Speech API
-    let recording = false;
-    let recognition = null;
-    let baseTranscript = '';
-
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
+    // ── Voice Input ──────────────────────────────────────────────────────────
+    let recording = false, recognition = null, baseTranscript = '';
+    const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechAPI) {
+        recognition = new SpeechAPI();
         recognition.continuous = false;
         recognition.interimResults = true;
-
-        recognition.onstart = () => {
-            recording = true;
-            recordBtn.classList.add('recording');
-            recordBtn.innerHTML = '<span class="icon">⏹️</span> Listening... (Speak now)';
-            textInput.placeholder = "Listening...";
-            
-            baseTranscript = textInput.value;
-            if (baseTranscript.length > 0 && !baseTranscript.endsWith(' ')) {
-                baseTranscript += ' ';
-            }
-        };
-
-        recognition.onresult = (event) => {
-            let currentFinal = '';
-            let currentInterim = '';
-
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
-                    currentFinal += event.results[i][0].transcript;
-                } else {
-                    currentInterim += event.results[i][0].transcript;
-                }
-            }
-
-            baseTranscript += currentFinal;
-            textInput.value = baseTranscript + currentInterim;
-        };
-
-        recognition.onerror = (event) => {
-            console.error("Speech recognition error", event.error);
-            stopRecording();
-        };
-
-        recognition.onend = () => {
-             if(recording) {
-                 stopRecording();
-             }
-        };
+        recognition.onstart  = () => { recording = true; recordBtn.classList.add('recording'); recordBtn.innerHTML = '<span class="icon">⏹️</span> Listening...'; baseTranscript = textInput.value + (textInput.value.length && !textInput.value.endsWith(' ') ? ' ' : ''); };
+        recognition.onresult = e => { let fin = '', int = ''; for (let i = e.resultIndex; i < e.results.length; i++) { if (e.results[i].isFinal) fin += e.results[i][0].transcript; else int += e.results[i][0].transcript; } baseTranscript += fin; textInput.value = baseTranscript + int; };
+        recognition.onerror  = () => stopRecording();
+        recognition.onend    = () => { if (recording) stopRecording(); };
     }
-
     recordBtn.addEventListener('click', () => {
-        if (!recognition) {
-            alert('Speech recognition is not supported in your browser.');
-            return;
-        }
-
-        if (!recording) {
-            recognition.start();
-        } else {
-            stopRecording();
-        }
+        if (!recognition) { alert('Speech recognition not supported.'); return; }
+        if (!recording) recognition.start(); else stopRecording();
     });
-
     function stopRecording() {
-        if (recording && recognition) {
-            recording = false;
-            recognition.stop();
-            recordBtn.classList.remove('recording');
-            recordBtn.innerHTML = '<span class="icon">🎙️</span> Tap to Speak';
-            textInput.placeholder = "Describe your symptoms (e.g., severe headache, fever)";
-        }
+        if (recording && recognition) { recording = false; recognition.stop(); recordBtn.classList.remove('recording'); recordBtn.innerHTML = '<span class="icon">🎙️</span> Tap to Speak'; }
     }
 
-    // AI Dataset Retrieval Engine Logic
-    function extractSymptomIds(userInput) {
-        const text = userInput.toLowerCase();
-        const matchedSymptomIds = new Set();
-        
-        DB.symptoms.forEach(sym => {
-            const symName = sym.symptom_name.toLowerCase();
-            if (text.includes(symName)) {
-                matchedSymptomIds.add(sym.symptom_id);
-            } else {
-                const words = symName.split(' ');
-                if(words.some(w => w.length > 3 && text.includes(w))) {
-                    matchedSymptomIds.add(sym.symptom_id);
-                }
-            }
-        });
-        
-        return Array.from(matchedSymptomIds);
-    }
-
-    function predictDiseases(matchedSymptomIds) {
-        const diseaseScores = {};
-        
-        DB.mapping.forEach(m => {
-            if (matchedSymptomIds.includes(m.symptom_id)) {
-                if (!diseaseScores[m.disease_id]) diseaseScores[m.disease_id] = 0;
-                diseaseScores[m.disease_id] += parseInt(m.frequency_percent || 0);
-            }
-        });
-        
-        const sorted = Object.entries(diseaseScores).sort((a,b) => b[1] - a[1]);
-        
-        return sorted.slice(0, 2).map(entry => {
-            return DB.diseases.find(d => d.disease_id === entry[0]);
-        }).filter(Boolean);
-    }
-
+    // ── Analyze Button ───────────────────────────────────────────────────────
     analyzeBtn.addEventListener('click', async () => {
-        if (!DB.loaded) {
-            alert('AI Knowledge Base is still loading. Please wait a moment.');
-            return;
-        }
+        await DB.loadPromise;
+        if (!DB.loaded) { alert('AI Knowledge Base is still loading. Please wait.'); return; }
 
-        const symptoms = textInput.value;
-        const matchedIds = extractSymptomIds(symptoms);
-        
-        if (matchedIds.length === 0 && symptoms.trim().split(/\s+/).length < 4) {
-            alert('Invalid input: We could not detect any recognizable medical symptoms. Please describe your condition with more specific symptom keywords.');
+        const raw = textInput.value.trim();
+        const symptomIds = DB_extractSymptomIds(raw);
+
+        if (symptomIds.length === 0 && raw.split(/\s+/).length < 4) {
+            alert('We could not detect recognizable medical symptoms. Please describe your condition in more detail.');
             return;
         }
 
         showStep(step3);
-        
         loadingState.classList.remove('hidden');
         resultsState.classList.add('hidden');
-        
-        const severity = parseInt(severityInput.value);
 
-        await renderLiveAnalysis(matchedIds, symptoms, severity);
-        
+        await renderAnalysis(symptomIds, raw, parseInt(severityInput.value));
+
         loadingState.classList.add('hidden');
         resultsState.classList.remove('hidden');
     });
 
-    async function renderLiveAnalysis(matchedIds, rawText, severity) {
-        const textLower = rawText.toLowerCase();
-        const isEmergency = textLower.includes('chest') || textLower.includes('breath') || textLower.includes('bleed') || severity > 7;
-        const levelDisplay = document.getElementById('risk-level-display');
-        const descDisplay = document.getElementById('risk-desc-display');
-        const emergencyWarning = document.getElementById('emergency-warning');
-        const conditionsList = document.getElementById('conditions-list');
-        
+    // ── Core Analysis Renderer ───────────────────────────────────────────────
+    async function renderAnalysis(symptomIds, rawText, severity) {
+        const lowerText = rawText.toLowerCase();
+        const isEmergency = lowerText.includes('chest') || lowerText.includes('breath') || lowerText.includes('bleed') || severity > 7;
+
+        const levelDisplay    = document.getElementById('risk-level-display');
+        const descDisplay     = document.getElementById('risk-desc-display');
+        const emergencyWarn   = document.getElementById('emergency-warning');
+        const conditionsList  = document.getElementById('conditions-list');
+
         levelDisplay.className = 'risk-level';
         conditionsList.innerHTML = '';
 
-        let colorCode = '';
-        let dot = '';
+        let colorCode, dot;
         if (isEmergency) {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_high_lvl');
             levelDisplay.classList.add('risk-danger');
             descDisplay.setAttribute('data-i18n', 'sym_risk_high_desc');
-            emergencyWarning.classList.remove('hidden');
-            colorCode = '#ef4444';
-            dot = '🔴';
+            emergencyWarn?.classList.remove('hidden');
+            colorCode = '#ef4444'; dot = '🔴';
         } else if (severity > 4) {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_med_lvl');
             levelDisplay.classList.add('risk-medium');
             descDisplay.setAttribute('data-i18n', 'sym_risk_med_desc');
-            emergencyWarning.classList.add('hidden');
-            colorCode = '#f59e0b';
-            dot = '🟠';
+            emergencyWarn?.classList.add('hidden');
+            colorCode = '#f59e0b'; dot = '🟠';
         } else {
             levelDisplay.setAttribute('data-i18n', 'sym_risk_low_lvl');
             levelDisplay.classList.add('risk-low');
             descDisplay.setAttribute('data-i18n', 'sym_risk_low_desc');
-            emergencyWarning.classList.add('hidden');
-            colorCode = '#22c55e';
-            dot = '🟢';
+            emergencyWarn?.classList.add('hidden');
+            colorCode = '#22c55e'; dot = '🟢';
         }
 
-        // Run Dataset AI Match
-        const topDiseases = predictDiseases(matchedIds);
-        let liveConditionsHTML = '';
+        // Predict diseases from dataset
+        const topDiseases = DB_predictDiseases(symptomIds, 3);
 
         if (topDiseases.length > 0) {
-            predictedDiseaseCategory = topDiseases[0].category; // Save for hospital filtering
+            predictedCategory = topDiseases[0].category || 'General';
 
-            for (let d of topDiseases) {
-                liveConditionsHTML += `
-                    <li style="margin-bottom:15px; line-height: 1.5;">
-                        <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} Knowledge Base Match: ${d.disease_name}</strong><br>
-                        <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">${d.description}</span>
-                    </li>
-                `;
+            let html = '';
+            topDiseases.forEach((d, idx) => {
+                const severity_label = d.typical_severity || '';
+                const chronic_badge  = d.is_chronic === 'True' ? '<span style="font-size:0.75rem; color:#f59e0b; margin-left:8px;">Chronic</span>' : '';
+                const category_badge = `<span style="font-size:0.75rem; color:#94a3b8; margin-left:6px;">${d.category || ''}</span>`;
+                html += `
+                    <li style="margin-bottom:18px; line-height:1.6; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom:14px;">
+                        <strong style="color:${colorCode}; font-size:1.05rem;">${dot} ${idx === 0 ? 'Primary Match' : 'Possible Match'}: ${d.disease_name}</strong>
+                        ${chronic_badge}${category_badge}<br>
+                        <span style="font-size:0.88rem; opacity:0.85; color:#cbd5e1;">${d.description}</span><br>
+                        <span style="font-size:0.8rem; color:#64748b; margin-top:4px; display:block;">Typical Severity: <span style="color:${colorCode}">${severity_label}</span></span>
+                    </li>`;
+            });
+
+            // Append health tips from dataset
+            const tips = DB_getHealthTips(predictedCategory, 2);
+            if (tips.length > 0) {
+                html += `<li style="margin-top:8px; padding:12px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.07);">
+                    <strong style="color:#7c3aed; font-size:0.9rem;">💡 Dataset Health Tips (${predictedCategory})</strong><br>
+                    <ul style="margin:8px 0 0 0; padding-left:16px; color:#94a3b8; font-size:0.85rem; line-height:1.7;">
+                        ${tips.map(t => `<li>${t.tip_text}</li>`).join('')}
+                    </ul>
+                </li>`;
             }
-        }
 
-        if (liveConditionsHTML.trim()) {
-            conditionsList.innerHTML = liveConditionsHTML;
+            conditionsList.innerHTML = html;
         } else {
-            predictedDiseaseCategory = "General"; // Fallback
+            predictedCategory = 'General';
             conditionsList.innerHTML = `
-                <li style="margin-bottom:15px; line-height: 1.5;">
-                    <strong style="color: ${colorCode}; font-size:1.05rem;">${dot} General Physiological Response</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.85; color:#cbd5e1;">Your submitted symptoms match generalized physiological defense markers. Please consult our recommended clinics for a thorough physical evaluation.</span>
-                </li>
-            `;
+                <li style="margin-bottom:15px; line-height:1.5;">
+                    <strong style="color:${colorCode}; font-size:1.05rem;">${dot} General Physiological Response</strong><br>
+                    <span style="font-size:0.9em; opacity:0.85; color:#cbd5e1;">Your submitted symptoms match generalized physiological defense markers. Please consult a physician for a thorough evaluation.</span>
+                </li>`;
         }
 
         if (typeof changeLanguage === 'function') {
@@ -486,119 +272,83 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Hospitals Render
-    findHospitalsBtn.addEventListener('click', () => {
+    // ── Find Hospitals Button ────────────────────────────────────────────────
+    findHospBtn.addEventListener('click', async () => {
+        await DB.loadPromise;
         if (!DB.loaded) return;
 
         showStep(step4);
         const container = document.getElementById('hospital-list-container');
         container.innerHTML = '';
-        
-        // Filter by predicted category if possible
-        let validHospitals = DB.hospitals.filter(h => !predictedDiseaseCategory || h.specialty_focus === predictedDiseaseCategory || h.hospital_type === 'General' || h.hospital_type === 'Multi-Specialty');
-        
-        // Sort by rating 
-        validHospitals.sort((a,b) => parseFloat(b.rating) - parseFloat(a.rating));
 
-        // Limit to top 5
-        validHospitals.slice(0, 5).forEach(h => {
-            const hId = h.hospital_id;
-            const hDocs = DB.doctors.filter(d => d.hospital_id === hId);
-            
-            // Assign doctors temporarily to hospital object for detail view
-            h.doctors = hDocs.map(doc => ({
-                name: doc.full_name,
-                spec: doc.specialization,
-                rating: 4.5 + (Math.random() * 0.5).toFixed(1), // mock rating since doctor csv doesn't have it
-                emoji: doc.gender === 'Female' ? '👩‍⚕️' : '👨‍⚕️',
-                gender: doc.gender
-            }));
+        const hospitals = DB_getHospitalsForCategory(predictedCategory, 5);
 
-            // Generate a random distance for demo purposes based on rating
-            h.dist = (Math.random() * 5 + 0.5).toFixed(1);
-
+        hospitals.forEach(h => {
+            const beds = h.total_beds ? `${h.total_beds} beds` : '';
             const el = document.createElement('div');
             el.className = 'hospital-item';
             el.innerHTML = `
-                <h5><span data-i18n="${h.hospital_id}_name">${h.hospital_name}</span> <span class="h-dist">${h.dist} km</span></h5>
-                <p data-i18n="${h.hospital_id}_spec">${h.hospital_type} • ${h.specialty_focus}</p>
+                <h5>${h.hospital_name} <span class="h-dist">${h.city}, ${h.state}</span></h5>
+                <p>${h.hospital_type} • Specialty: ${h.specialty_focus}</p>
                 <div class="h-meta">
                     <span>⭐ ${h.rating}</span>
-                </div>
-            `;
+                    <span style="margin-left:12px; font-size:0.8rem; color:#64748b;">${beds}</span>
+                </div>`;
             el.addEventListener('click', () => showHospitalDetails(h));
             container.appendChild(el);
         });
-        
-        if (typeof changeLanguage === 'function') {
-            changeLanguage(localStorage.getItem('medassist_lang') || 'en');
-        }
+
+        if (typeof changeLanguage === 'function') changeLanguage(localStorage.getItem('medassist_lang') || 'en');
     });
 
-    const detailView = document.getElementById('hospital-detail-view');
-    const listView = document.getElementById('hospital-list-container');
-    const closeDetailBtn = document.getElementById('close-detail-view');
+    // ── Hospital Detail View ─────────────────────────────────────────────────
+    const detailView   = document.getElementById('hospital-detail-view');
+    const listView     = document.getElementById('hospital-list-container');
+    const closeDetail  = document.getElementById('close-detail-view');
 
     function showHospitalDetails(h) {
         listView.style.display = 'none';
         detailView.classList.remove('hidden');
-        
-        const hNameDisplay = document.getElementById('h-detail-name');
-        hNameDisplay.setAttribute('data-i18n', h.hospital_id + '_name');
-        hNameDisplay.textContent = h.hospital_name;
-        
-        const hSpecDisplay = document.getElementById('h-detail-spec');
-        hSpecDisplay.setAttribute('data-i18n', h.hospital_id + '_spec');
-        hSpecDisplay.textContent = h.specialty_focus;
-        
-        document.getElementById('h-detail-dist').textContent = `${h.dist} km`;
-        document.getElementById('h-detail-rating').textContent = `⭐ ${h.rating}`;
-        
-        const hAddrDisplay = document.getElementById('h-detail-address');
-        hAddrDisplay.setAttribute('data-i18n', h.hospital_id + '_addr');
-        hAddrDisplay.textContent = `${h.city}, ${h.state}`;
-        
-        document.getElementById('h-detail-phone').textContent = h.contact_number;
-        
-        const isEmergency = h.hospital_type === 'General' || h.hospital_type === 'Multi-Specialty';
-        const hEmerDisplay = document.getElementById('h-detail-emergency');
-        hEmerDisplay.setAttribute('data-i18n', isEmergency ? 'sym_yes_247' : 'sym_no_clinic');
-        hEmerDisplay.textContent = isEmergency ? 'Yes - 24/7' : 'No - Clinic Hours';
-        
-        // Render Doctors
+
+        document.getElementById('h-detail-name').textContent    = h.hospital_name;
+        document.getElementById('h-detail-spec').textContent    = h.specialty_focus;
+        document.getElementById('h-detail-dist').textContent    = `${h.city}, ${h.state}`;
+        document.getElementById('h-detail-rating').textContent  = `⭐ ${h.rating}`;
+        document.getElementById('h-detail-address').textContent = `Est. ${h.established_year} • ${h.total_beds} beds`;
+        document.getElementById('h-detail-phone').textContent   = h.contact_number;
+
+        const isFullService = h.hospital_type === 'General' || h.hospital_type === 'Multi-Specialty';
+        document.getElementById('h-detail-emergency').textContent = isFullService ? 'Yes - 24/7' : 'No - Clinic Hours';
+
+        // Render real doctors from dataset
         const doctorsContainer = document.getElementById('h-detail-doctors');
         doctorsContainer.innerHTML = '';
-        if (h.doctors && h.doctors.length > 0) {
-            let doctorsToRender = [...h.doctors];
-            if (prefFemaleCheckbox && prefFemaleCheckbox.checked) {
-                doctorsToRender = doctorsToRender.filter(doc => doc.gender === 'Female');
-            }
+        let docs = DB.doctorsByHospital[h.hospital_id] || [];
+        if (prefFemaleChk && prefFemaleChk.checked) docs = docs.filter(d => d.gender === 'Female');
+        docs.slice(0, 4).forEach(doc => {
+            const card = document.createElement('div');
+            card.className = 'doctor-card';
+            card.innerHTML = `
+                <div class="doctor-img">${doc.gender === 'Female' ? '👩‍⚕️' : '👨‍⚕️'}</div>
+                <div class="doctor-info">
+                    <div class="doctor-name">${doc.full_name}</div>
+                    <div class="doctor-spec">${doc.specialization} • ${doc.qualification}</div>
+                    <div class="doctor-rating" style="font-size:0.8rem; color:#64748b;">${doc.years_of_experience} yrs exp • ₹${doc.consultation_fee_inr}</div>
+                </div>`;
+            doctorsContainer.appendChild(card);
+        });
 
-            doctorsToRender.forEach((doc, idx) => {
-                const docCard = document.createElement('div');
-                docCard.className = 'doctor-card';
-                docCard.innerHTML = `
-                    <div class="doctor-img">${doc.emoji}</div>
-                    <div class="doctor-info">
-                        <div class="doctor-name" data-i18n="${h.hospital_id}_doc_${idx}_name">${doc.name}</div>
-                        <div class="doctor-spec" data-i18n="${h.hospital_id}_doc_${idx}_spec">${doc.spec}</div>
-                        <div class="doctor-rating">⭐ ${doc.rating}</div>
-                    </div>
-                `;
-                doctorsContainer.appendChild(docCard);
-            });
+        if (docs.length === 0) {
+            doctorsContainer.innerHTML = '<p style="color:#64748b; font-size:0.9rem;">No doctors listed for this hospital.</p>';
         }
-        
-        // Map Link Generation
-        const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(h.hospital_name + " " + h.city)}`;
-        document.getElementById('h-map-link').href = mapUrl;
-        
-        if (typeof changeLanguage === 'function') {
-            changeLanguage(localStorage.getItem('medassist_lang') || 'en');
-        }
+
+        document.getElementById('h-map-link').href =
+            `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(h.hospital_name + ' ' + h.city)}`;
+
+        if (typeof changeLanguage === 'function') changeLanguage(localStorage.getItem('medassist_lang') || 'en');
     }
 
-    closeDetailBtn.addEventListener('click', () => {
+    closeDetail?.addEventListener('click', () => {
         detailView.classList.add('hidden');
         listView.style.display = 'block';
     });

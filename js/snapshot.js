@@ -150,271 +150,200 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function startProcessing() {
         switchStep(stepProcessing);
-        
-        // Validate Image
+
         if (!checkImageQuality(previewImage)) {
             renderErrorState();
             switchStep(stepResults);
             return;
         }
-        
-        // Simulate Google Lens Processing Flow
+
         const statusText = document.getElementById('processing-text');
-        statusText.innerText = 'Initializing Google Lens Vision API...';
-        
-        setTimeout(() => { statusText.innerText = 'Extracting OCR text and identifying objects...'; }, 1000);
-        setTimeout(() => { statusText.innerText = 'Querying Global Web Database...'; }, 2200);
-        
-        // Simulating Google Lens confidentially extracting a medication name from the image
-        const possibleScans = ['Paracetamol', 'Ibuprofen', 'Amoxicillin', 'Lisinopril', 'Aspirin', 'Metformin', 'Atorvastatin', 'Omeprazole', 'Amlodipine', 'Cetirizine', 'Azithromycin'];
-        const query = possibleScans[Math.floor(Math.random() * possibleScans.length)];
-        
-        let desc = "";
-        let foundTitle = query;
-        let isRecommended = true;
+        statusText.innerText = 'Initializing MedAssist AI Vision...';
 
-        try {
-            // Live Background API Fetch simulating Google's knowledge graph natively
-            const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`;
-            const searchRes = await fetch(searchUrl);
-            if (searchRes.ok) {
-                const searchData = await searchRes.json();
-                if (searchData.query.search.length > 0) {
-                    foundTitle = searchData.query.search[0].title;
-                    const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(foundTitle)}`;
-                    const pageRes = await fetch(pageUrl);
-                    if (pageRes.ok) {
-                        const pageData = await pageRes.json();
-                        desc = pageData.extract;
-                        
-                        // Parse live data for warnings
-                        const descLower = desc.toLowerCase();
-                        if (descLower.includes("prescription") || descLower.includes("antibiotic") || descLower.includes("controlled") || descLower.includes("rx-only") || descLower.includes("doctor")) {
-                            isRecommended = false;
-                        }
-                        if (descLower.includes("over-the-counter") || descLower.includes("otc") || descLower.includes("supplement")) {
-                            isRecommended = true;
-                        }
-                    }
-                }
-            }
-        } catch(e) {
-            console.error("Lens Simulation Fetch Error:", e);
-        }
-        
-        if (!desc) {
-            desc = `Background extraction identified "${foundTitle}", but detailed public documentation was not immediately available over the network connection.`;
-        }
-        
-        setTimeout(() => {
-            renderDynamicResults(foundTitle, desc, isRecommended);
-            switchStep(stepResults);
-            statusText.innerText = 'Analyzing Document...'; // reset for next time
-        }, 3600);
-    }
+        // Wait for DB
+        await DB.loadPromise;
 
-    // --- Mock Data Rendering based on Type ---
-    let scenarioPool = [];
-    
-    function getNextScenario() {
-        if (scenarioPool.length === 0) {
-            scenarioPool = [
-                {
-                    title: '<span data-i18n="snap_s0_title">Prescription Analysis</span> <span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);" data-i18n="snap_s0_conf">98% Confidence</span>',
-                    main: `<div class="info-row"><span class="info-label" data-i18n="snap_lbl_phys">Prescribing Physician:</span> <span class="info-value" data-i18n="snap_s0_dr">Dr. Sarah Jenkins, MD</span></div>
-                           <div style="margin-top: 15px;"><strong data-i18n="snap_lbl_meds">Medications:</strong><br><span data-i18n="snap_s0_med">1. Amoxicillin 500mg (3x daily)</span></div>`,
-                    safety: `<div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_lbl_adv">Advisory:</span> <span class="info-value alert-value" style="font-size: 0.9rem;" data-i18n="snap_s0_adv">Complete the full 7-day course.</span></div>`,
-                    diet: `<div class="info-row"><span class="info-label" data-i18n="snap_diet_veg">Vegetables:</span> <span class="info-value" data-i18n="snap_s0_veg">Spinach, Carrots</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_diet_nonveg">Non-Veg/Egg:</span> <span class="info-value" data-i18n="snap_s0_nonveg">Boiled Eggs</span></div>
-                           <div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_diet_avoid">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;" data-i18n="snap_s0_avoid">Excess dairy, highly spiced foods</span></div>`,
-                    hasTimeline: true,
-                    timeline: `<div class="timeline-item"><span class="time-label" data-i18n="snap_time_morn">Morning</span><div class="time-action"><span data-i18n="snap_s0_med_name">Amoxicillin 500mg</span> <span class="food-note" data-i18n="snap_s0_med_note">After Breakfast</span></div></div>`,
-                    type: 'pharmacy'
-                },
-                {
-                    title: '<span data-i18n="snap_s1_title">Medication Intelligence</span> <span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);" data-i18n="snap_s1_conf">Verified</span>',
-                    main: `<div class="info-row"><span class="info-label" data-i18n="snap_lbl_com">Commercial Name:</span> <span class="info-value highlight-value" data-i18n="snap_s1_name">Crocin Advance</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_lbl_act">Active Ingredient:</span> <span class="info-value" data-i18n="snap_s1_act">Paracetamol 500mg</span></div>`,
-                    safety: `<div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_lbl_contra">Contraindications:</span> <span class="info-value alert-value" style="font-size:0.9rem;" data-i18n="snap_s1_adv">High risk of hepatotoxicity if daily dosage exceeds 4000mg.</span></div>`,
-                    diet: `<div class="info-row"><span class="info-label" data-i18n="snap_diet_veg">Vegetables:</span> <span class="info-value" data-i18n="snap_s1_veg">Light green soups, Broccoli</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_diet_nonveg">Non-Veg/Egg:</span> <span class="info-value" data-i18n="snap_s1_nonveg">Clear chicken broth</span></div>
-                           <div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_diet_avoid">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;" data-i18n="snap_s1_avoid">Alcohol, Excess caffeine</span></div>`,
-                    hasTimeline: false,
-                    timeline: '',
-                    type: 'pharmacy'
-                },
-                {
-                    title: '<span data-i18n="snap_s2_title">Lab Report Analysis</span> <span style="font-size: 0.7rem; background: rgba(255,165,0,0.1); color: #fbbf24; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(251, 191, 36, 0.3);" data-i18n="snap_s2_conf">Review Required</span>',
-                    main: `<div class="info-row"><span class="info-label" data-i18n="snap_lbl_ldl">LDL Cholesterol:</span> <span class="info-value alert-value" data-i18n="snap_s2_ldl">Elevated (160 mg/dL)</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_lbl_hdl">HDL Cholesterol:</span> <span class="info-value" data-i18n="snap_s2_hdl">Normal (45 mg/dL)</span></div>`,
-                    safety: `<div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_lbl_diet_note">Dietary Note:</span> <span class="info-value alert-value" style="font-size:0.9rem;" data-i18n="snap_s2_adv">Reduce intake of saturated fats and schedule a cardiologist review.</span></div>`,
-                    diet: `<div class="info-row"><span class="info-label" data-i18n="snap_diet_veg">Vegetables:</span> <span class="info-value" data-i18n="snap_s2_veg">Oats, Beans, Spinach</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_diet_nonveg">Non-Veg/Egg:</span> <span class="info-value" data-i18n="snap_s2_nonveg">Salmon, Grilled chicken</span></div>
-                           <div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_diet_avoid">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;" data-i18n="snap_s2_avoid">Red meat, Fried foods</span></div>`,
-                    hasTimeline: false,
-                    timeline: '',
-                    type: 'hospital'
-                },
-                {
-                    title: '<span data-i18n="snap_s3_title">Prescription Analysis</span> <span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);" data-i18n="snap_s3_conf">97% Confidence</span>',
-                    main: `<div class="info-row"><span class="info-label" data-i18n="snap_lbl_med">Medication:</span> <span class="info-value highlight-value" data-i18n="snap_s3_med">Amlodipine 5mg</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_lbl_inst">Instructions:</span> <span class="info-value" data-i18n="snap_s3_inst">1x daily for Hypertension</span></div>`,
-                    safety: `<div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_lbl_adv">Advisory:</span> <span class="info-value alert-value" style="font-size:0.9rem;" data-i18n="snap_s3_adv">Monitor blood pressure regularly. Swelling of ankles may occur.</span></div>`,
-                    diet: `<div class="info-row"><span class="info-label" data-i18n="snap_diet_veg">Vegetables:</span> <span class="info-value" data-i18n="snap_s3_veg">Potatoes, Bananas, Leafy greens</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_diet_nonveg">Non-Veg/Egg:</span> <span class="info-value" data-i18n="snap_s3_nonveg">Lean poultry</span></div>
-                           <div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_diet_avoid">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;" data-i18n="snap_s3_avoid">High sodium foods, Pickles</span></div>`,
-                    hasTimeline: true,
-                    timeline: `<div class="timeline-item"><span class="time-label" data-i18n="snap_s3_time">Morning</span><div class="time-action"><span data-i18n="snap_s3_med_name">Amlodipine 5mg</span> <span class="food-note" data-i18n="snap_s3_med_note">Take at the same time daily</span></div></div>`,
-                    type: 'pharmacy'
-                },
-                {
-                    title: '<span data-i18n="snap_s4_title">Prescription Analysis</span> <span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);" data-i18n="snap_s4_conf">99% Confidence</span>',
-                    main: `<div class="info-row"><span class="info-label" data-i18n="snap_lbl_med">Medication:</span> <span class="info-value highlight-value" data-i18n="snap_s4_med">Metformin 500mg</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_lbl_inst">Instructions:</span> <span class="info-value" data-i18n="snap_s4_inst">2x daily with meals</span></div>`,
-                    safety: `<div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_lbl_adv">Advisory:</span> <span class="info-value alert-value" style="font-size:0.9rem;" data-i18n="snap_s4_adv">Always take with food to avoid gastrointestinal issues. Monitor blood sugar levels.</span></div>`,
-                    diet: `<div class="info-row"><span class="info-label" data-i18n="snap_diet_veg">Vegetables:</span> <span class="info-value" data-i18n="snap_s4_veg">Bitter gourd, Leafy greens</span></div>
-                           <div class="info-row"><span class="info-label" data-i18n="snap_diet_nonveg">Non-Veg/Egg:</span> <span class="info-value" data-i18n="snap_s4_nonveg">Lean meat, Fish</span></div>
-                           <div class="info-row" style="border:none;"><span class="info-label" data-i18n="snap_diet_avoid">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;" data-i18n="snap_s4_avoid">Sugary sweets, White rice</span></div>`,
-                    hasTimeline: true,
-                    timeline: `<div class="timeline-item"><span class="time-label" data-i18n="snap_s4_time1">Morning</span><div class="time-action"><span data-i18n="snap_s4_med">Metformin 500mg</span> <span class="food-note" data-i18n="snap_s4_med_note1">During Breakfast</span></div></div>
-                               <div class="timeline-item"><span class="time-label" data-i18n="snap_s4_time2">Evening</span><div class="time-action"><span data-i18n="snap_s4_med">Metformin 500mg</span> <span class="food-note" data-i18n="snap_s4_med_note2">During Dinner</span></div></div>`,
-                    type: 'pharmacy'
-                }
-            ];
-            // Shuffle pool
-            scenarioPool.sort(() => Math.random() - 0.5);
-        }
-        return scenarioPool.pop();
-    }
+        setTimeout(() => { statusText.innerText = 'Reading document structure...'; }, 900);
+        setTimeout(() => { statusText.innerText = 'Querying healthcare knowledge base...'; }, 2000);
 
-    function renderErrorState() {
-        const titleSpan = document.getElementById('res-title');
-        const mainContent = document.getElementById('res-extracted-content');
-        const safetyContent = document.getElementById('res-safety-content');
-        const timelineCard = document.getElementById('card-timeline');
-        const nearbyContent = document.getElementById('res-nearby');
-        const dietCard = document.getElementById('card-diet');
+        const docType = docTypeSelect ? docTypeSelect.value : 'prescription';
 
-        titleSpan.innerHTML = 'Scan Failed <span style="font-size: 0.7rem; background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(239, 68, 68, 0.3);">Error</span>';
-        mainContent.innerHTML = `<div class="info-row"><span class="info-label">Error:</span> <span class="info-value alert-value">Image quality too low or too dark.</span></div>`;
-        safetyContent.innerHTML = `<div class="info-row" style="border:none;"><span class="info-label">Resolution:</span> <span class="info-value">Please ensure good lighting and try capturing again.</span></div>`;
-
-        if (timelineCard) timelineCard.classList.add('hidden');
-        if (dietCard) dietCard.classList.add('hidden');
-        nearbyContent.innerHTML = '';
-        
-        if (typeof changeLanguage === 'function') {
-            changeLanguage(localStorage.getItem('medassist_lang') || 'en');
+        let result;
+        if (docType === 'lab_report') {
+            result = DB_getRandomLabReport();
+            setTimeout(() => {
+                renderLabReportResult(result);
+                switchStep(stepResults);
+                statusText.innerText = 'Analyzing Document...';
+            }, 3200);
+        } else {
+            // prescription or medicine_scan
+            result = DB_getRandomPrescription();
+            setTimeout(() => {
+                renderPrescriptionResult(result);
+                switchStep(stepResults);
+                statusText.innerText = 'Analyzing Document...';
+            }, 3200);
         }
     }
 
-    function renderDynamicResults(title, desc, isRecommended) {
-        const titleSpan = document.getElementById('res-title');
-        const mainContent = document.getElementById('res-extracted-content');
+    // ── Dataset-Driven Prescription Result Renderer ──────────────────────────
+    function renderPrescriptionResult(result) {
+        const titleSpan    = document.getElementById('res-title');
+        const mainContent  = document.getElementById('res-extracted-content');
         const safetyContent = document.getElementById('res-safety-content');
         const timelineCard = document.getElementById('card-timeline');
         const timelineContent = document.getElementById('res-timeline');
         const nearbyContent = document.getElementById('res-nearby');
-        const safetyCard = document.getElementById('card-safety');
-        const dietCard = document.getElementById('card-diet');
-        const dietContent = document.getElementById('res-diet-content');
+        const dietCard     = document.getElementById('card-diet');
+        const dietContent  = document.getElementById('res-diet-content');
 
-        // Reset visibility
         if (timelineCard) timelineCard.classList.remove('hidden');
-        if (safetyCard) safetyCard.classList.remove('hidden');
         if (dietCard) dietCard.classList.remove('hidden');
-        nearbyContent.innerHTML = '';
 
-        const trustBadge = isRecommended ? 
-            `<span style="font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.3);">OTC Verified</span>` :
-            `<span style="font-size: 0.7rem; background: rgba(255,165,0,0.1); color: #fbbf24; padding: 2px 6px; border-radius: 10px; margin-left: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">Prescription Required</span>`;
+        if (!result || !result.medicine) {
+            renderErrorState(); return;
+        }
 
-        titleSpan.innerHTML = `<span style="display:flex; align-items:center; gap:8px;">Google Lens Match <span style="font-size: 1.2rem;">🔍</span></span> ${trustBadge}`;
-        
+        const { prescription: p, medicine: med, doctor: doc, disease: dis } = result;
+        const rxRequired = med.requires_prescription === 'True';
+        const trustBadge = rxRequired
+            ? `<span style="font-size:0.7rem; background:rgba(255,165,0,0.1); color:#fbbf24; padding:2px 6px; border-radius:10px; margin-left:10px; border:1px solid rgba(251,191,36,0.3);">Prescription Required</span>`
+            : `<span style="font-size:0.7rem; background:rgba(0,255,0,0.1); color:#4ade80; padding:2px 6px; border-radius:10px; margin-left:10px; border:1px solid rgba(74,222,128,0.3);">OTC Verified</span>`;
+
+        titleSpan.innerHTML = `Prescription Analysis ${trustBadge}`;
+
         mainContent.innerHTML = `
-            <div class="info-row"><span class="info-label">Identified Object:</span> <span class="info-value highlight-value" style="font-size:1.15rem">${title}</span></div>
-            <div class="info-row" style="flex-direction:column; align-items:flex-start; text-align:left; border:none; padding-top:15px;">
-                <span class="info-label" style="margin-bottom:8px; color: #cbd5e1; font-weight: 500;">Live Web Knowledge Graph:</span> 
-                <span class="info-value" style="text-align:left; max-width:100%; font-size:0.95rem; line-height:1.6; color:#94a3b8; font-weight: normal;">${desc}</span>
-            </div>
+            <div class="info-row"><span class="info-label">Prescribing Physician:</span> <span class="info-value">${doc ? doc.full_name : 'Unknown'} ${doc ? '(' + doc.specialization + ')' : ''}</span></div>
+            <div class="info-row"><span class="info-label">Medication:</span> <span class="info-value highlight-value">${med.brand_name} (${med.generic_name} ${med.strength_mg}mg ${med.dosage_form})</span></div>
+            <div class="info-row"><span class="info-label">Drug Class:</span> <span class="info-value">${med.drug_class}</span></div>
+            <div class="info-row"><span class="info-label">Common Use:</span> <span class="info-value">${med.common_use}</span></div>
+            <div class="info-row"><span class="info-label">Condition:</span> <span class="info-value">${dis ? dis.disease_name : 'General'}</span></div>
+            <div class="info-row"><span class="info-label">Price:</span> <span class="info-value">₹${med.price_inr}</span></div>
         `;
 
-        if (isRecommended) {
-            safetyContent.innerHTML = `<div class="info-row" style="border:none;"><span class="info-label">Advisory:</span> <span class="info-value" style="font-size:0.9rem; color:#4ade80;">Generally safe for over-the-counter use. Follow packaging limits.</span></div>`;
-            dietContent.innerHTML = `
-                <div class="info-row"><span class="info-label">Recommended Pairing:</span> <span class="info-value">Take with plain water</span></div>
-                <div class="info-row" style="border:none;"><span class="info-label">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;">Excessive alcohol consumption</span></div>
-            `;
-            timelineContent.innerHTML = `<div class="timeline-item"><span class="time-label">Dosage Routine</span><div class="time-action"><span>${title}</span> <span class="food-note">Do not exceed maximum daily limits as per box</span></div></div>`;
-        } else {
-            safetyContent.innerHTML = `<div class="info-row" style="border:none;"><span class="info-label">Advisory:</span> <span class="info-value alert-value" style="font-size:0.9rem;">Strict adherence to physician prescription required.</span></div>`;
-            dietContent.innerHTML = `
-                <div class="info-row"><span class="info-label">Important Note:</span> <span class="info-value">Consult doctor for dietary restrictions</span></div>
-                <div class="info-row" style="border:none;"><span class="info-label">Avoid:</span> <span class="info-value alert-value" style="font-size: 0.85rem;">Grapefruit juice or specific vitamins that may interact</span></div>
-            `;
-            timelineContent.innerHTML = `<div class="timeline-item"><span class="time-label">Schedule</span><div class="time-action"><span>${title}</span> <span class="food-note">Take strictly according to your physician's schedule</span></div></div>`;
-        }
+        safetyContent.innerHTML = `
+            <div class="info-row" style="border:none;">
+                <span class="info-label">Dosage:</span>
+                <span class="info-value alert-value" style="font-size:0.9rem;">${p.dosage_frequency} for ${p.duration} (Status: ${p.status})</span>
+            </div>
+            <div class="info-row" style="border:none;">
+                <span class="info-label">Notes:</span>
+                <span class="info-value" style="font-size:0.88rem;">${p.notes || 'Follow your physician\'s guidance.'}</span>
+            </div>`;
 
-        nearbyContent.innerHTML = getMockPharmacies(); 
-        
-        // Let the language script replace tags if needed
-        if (typeof changeLanguage === 'function') {
-            changeLanguage(localStorage.getItem('medassist_lang') || 'en');
-        }
+        timelineContent.innerHTML = `
+            <div class="timeline-item">
+                <span class="time-label">Prescription Date</span>
+                <div class="time-action"><span>${p.prescription_date}</span></div>
+            </div>
+            <div class="timeline-item">
+                <span class="time-label">Frequency</span>
+                <div class="time-action"><span>${med.brand_name}</span> <span class="food-note">${p.dosage_frequency}</span></div>
+            </div>`;
+
+        // Health tips from disease category
+        const tips = DB_getHealthTips(dis ? dis.category : 'General', 2);
+        dietContent.innerHTML = tips.map(t =>
+            `<div class="info-row"><span class="info-label">Tip:</span> <span class="info-value" style="font-size:0.88rem;">${t.tip_text}</span></div>`
+        ).join('') || '<div class="info-row"><span class="info-value">Maintain a balanced diet and follow your doctor\'s dietary advice.</span></div>';
+
+        nearbyContent.innerHTML = getDatasetHospitals(dis ? dis.category : 'General');
+
+        if (typeof changeLanguage === 'function') changeLanguage(localStorage.getItem('medassist_lang') || 'en');
     }
 
-    // --- Mock Data Generators ---
-    function getMockPharmacies() {
-        return `
-            <div class="nearby-item">
-                <div class="stock-badge" data-i18n="snap_stock_92">Stock: 92%</div>
-                <div class="place-info">
-                    <h4 data-i18n="snap_pharm_apollo">Apollo Pharmacy</h4>
-                    <div class="place-meta" data-i18n="snap_pharm_apollo_meta">⭐ 4.8 • 0.3 miles away • Open Now</div>
-                </div>
-                <div class="place-action">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-micro" data-i18n="snap_btn_dir">Directions</a>
-                </div>
-            </div>
-            <div class="nearby-item">
-                <div class="stock-badge" style="background: rgba(234, 179, 8, 0.15); color: #eab308; border-color: rgba(234, 179, 8, 0.3);" data-i18n="snap_stock_65">Stock: 65%</div>
-                <div class="place-info">
-                    <h4 data-i18n="snap_pharm_wellness">Wellness Medicos</h4>
-                    <div class="place-meta" data-i18n="snap_pharm_wellness_meta">⭐ 4.2 • 0.8 miles away • Open Now</div>
-                </div>
-                <div class="place-action">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-micro" data-i18n="snap_btn_dir">Directions</a>
-                </div>
-            </div>
-        `;
+    // ── Dataset-Driven Lab Report Result Renderer ────────────────────────────
+    function renderLabReportResult(result) {
+        const titleSpan    = document.getElementById('res-title');
+        const mainContent  = document.getElementById('res-extracted-content');
+        const safetyContent = document.getElementById('res-safety-content');
+        const timelineCard = document.getElementById('card-timeline');
+        const nearbyContent = document.getElementById('res-nearby');
+        const dietCard     = document.getElementById('card-diet');
+        const dietContent  = document.getElementById('res-diet-content');
+        const timelineContent = document.getElementById('res-timeline');
+
+        if (timelineCard) timelineCard.classList.remove('hidden');
+        if (dietCard) dietCard.classList.remove('hidden');
+
+        if (!result || !result.report) { renderErrorState(); return; }
+
+        const { report: lab, doctor: doc } = result;
+        const isAbnormal = lab.status === 'Abnormal';
+        const statusBadge = isAbnormal
+            ? `<span style="font-size:0.7rem; background:rgba(255,165,0,0.1); color:#fbbf24; padding:2px 6px; border-radius:10px; margin-left:10px; border:1px solid rgba(251,191,36,0.3);">Review Required</span>`
+            : `<span style="font-size:0.7rem; background:rgba(0,255,0,0.1); color:#4ade80; padding:2px 6px; border-radius:10px; margin-left:10px; border:1px solid rgba(74,222,128,0.3);">Normal</span>`;
+
+        titleSpan.innerHTML = `Lab Report Analysis ${statusBadge}`;
+
+        mainContent.innerHTML = `
+            <div class="info-row"><span class="info-label">Test:</span> <span class="info-value highlight-value">${lab.test_name}</span></div>
+            <div class="info-row"><span class="info-label">Result:</span> <span class="info-value ${isAbnormal ? 'alert-value' : ''}">${lab.result_value} ${lab.unit}</span></div>
+            <div class="info-row"><span class="info-label">Reference Range:</span> <span class="info-value">${lab.reference_range} ${lab.unit}</span></div>
+            <div class="info-row"><span class="info-label">Status:</span> <span class="info-value ${isAbnormal ? 'alert-value' : ''}">${lab.status}</span></div>
+            <div class="info-row"><span class="info-label">Report Date:</span> <span class="info-value">${lab.report_date}</span></div>
+            <div class="info-row"><span class="info-label">Ordered By:</span> <span class="info-value">${doc ? doc.full_name + ' (' + doc.specialization + ')' : 'Unknown'}</span></div>`;
+
+        safetyContent.innerHTML = `
+            <div class="info-row" style="border:none;">
+                <span class="info-label">${isAbnormal ? 'Advisory:' : 'Result:'}</span>
+                <span class="info-value ${isAbnormal ? 'alert-value' : ''}" style="font-size:0.9rem;">
+                    ${isAbnormal ? 'Result is outside normal reference range. Schedule a follow-up with your physician promptly.' : 'All values are within normal clinical range. Continue regular health monitoring.'}
+                </span>
+            </div>`;
+
+        timelineContent.innerHTML = `
+            <div class="timeline-item">
+                <span class="time-label">Report Date</span>
+                <div class="time-action"><span>${lab.report_date}</span></div>
+            </div>`;
+
+        const tips = DB_getHealthTips('General', 2);
+        dietContent.innerHTML = tips.map(t =>
+            `<div class="info-row"><span class="info-label">Tip:</span> <span class="info-value" style="font-size:0.88rem;">${t.tip_text}</span></div>`
+        ).join('');
+
+        nearbyContent.innerHTML = getDatasetHospitals('General');
+        if (typeof changeLanguage === 'function') changeLanguage(localStorage.getItem('medassist_lang') || 'en');
     }
 
-    function getMockHospitals() {
-        return `
+    // ── Dataset Hospital Nearby Section ──────────────────────────────────────
+    function getDatasetHospitals(category) {
+        if (!DB.loaded) return '';
+        const hospitals = DB_getHospitalsForCategory(category, 2);
+        return hospitals.map(h => `
             <div class="nearby-item">
-                <div class="stock-badge">Beds: 12 Open</div>
+                <div class="stock-badge">⭐ ${h.rating}</div>
                 <div class="place-info">
-                    <h4>City General Hospital</h4>
-                    <div class="place-meta">⭐ 4.6 • 1.2 miles away • 24/7 ER</div>
-                    <div class="place-meta" style="color: var(--primary);">General Medicine, Pathology</div>
+                    <h4>${h.hospital_name}</h4>
+                    <div class="place-meta">${h.hospital_type} • ${h.city}, ${h.state}</div>
+                    <div class="place-meta" style="color:var(--primary);">${h.specialty_focus}</div>
                 </div>
                 <div class="place-action">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-micro">Directions</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(h.hospital_name + ' ' + h.city)}" target="_blank" class="btn btn-outline btn-micro">Directions</a>
                 </div>
-            </div>
-            <div class="nearby-item">
-                <div class="stock-badge" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Wait: 45m</div>
-                <div class="place-info">
-                    <h4>Lifeline Diagnostic Center</h4>
-                    <div class="place-meta">⭐ 4.5 • 2.5 miles away • Open till 9 PM</div>
-                </div>
-                <div class="place-action">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-micro">Directions</a>
-                </div>
-            </div>
-        `;
+            </div>`).join('');
     }
-    
+
+    // ── Error State ───────────────────────────────────────────────────────────
+    function renderErrorState() {
+        const titleSpan    = document.getElementById('res-title');
+        const mainContent  = document.getElementById('res-extracted-content');
+        const safetyContent = document.getElementById('res-safety-content');
+        const timelineCard = document.getElementById('card-timeline');
+        const nearbyContent = document.getElementById('res-nearby');
+        const dietCard     = document.getElementById('card-diet');
+
+        if (titleSpan) titleSpan.innerHTML = 'Scan Failed <span style="font-size:0.7rem; background:rgba(239,68,68,0.1); color:#ef4444; padding:2px 6px; border-radius:10px; margin-left:10px; border:1px solid rgba(239,68,68,0.3);">Error</span>';
+        if (mainContent) mainContent.innerHTML = '<div class="info-row"><span class="info-label">Error:</span> <span class="info-value alert-value">Image quality too low or too dark.</span></div>';
+        if (safetyContent) safetyContent.innerHTML = '<div class="info-row" style="border:none;"><span class="info-label">Resolution:</span> <span class="info-value">Please ensure good lighting and try again.</span></div>';
+        if (timelineCard) timelineCard.classList.add('hidden');
+        if (dietCard) dietCard.classList.add('hidden');
+        if (nearbyContent) nearbyContent.innerHTML = '';
+        if (typeof changeLanguage === 'function') changeLanguage(localStorage.getItem('medassist_lang') || 'en');
+    }
+
     function checkImageQuality(imgElement) {
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = imgElement.naturalWidth || imgElement.width || 100;

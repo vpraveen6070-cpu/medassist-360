@@ -1,0 +1,101 @@
+hospital_id,hospital_name,hospital_type,specialty_focus,city,state,total_beds,established_year,contact_number,rating
+HOS0001,Kochi Multi-Specialty Hospital,Multi-Specialty,Cardiology,Kochi,Kerala,75,2012,+91-5260181590,3.8
+HOS0002,"Browning Specialty Hospital, Coimbatore",Specialty,Nephrology,Coimbatore,Tamil Nadu,150,1962,+91-3016613186,2.7
+HOS0003,"Brown General Hospital, Lucknow",General,Nephrology,Lucknow,Uttar Pradesh,500,1963,+91-9139099603,4.6
+HOS0004,Chennai Multi-Specialty Hospital,Multi-Specialty,Pulmonology,Chennai,Tamil Nadu,50,1996,+91-0824628194,4.0
+HOS0005,"Castro Multi-Specialty Hospital, Visakhapatnam",Multi-Specialty,Orthopedics,Visakhapatnam,Andhra Pradesh,200,1986,+91-2199351819,2.9
+HOS0006,Chennai Specialty Hospital,Specialty,Orthopedics,Chennai,Tamil Nadu,75,1997,+91-0937865797,3.9
+HOS0007,"Ward Teaching Hospital, Delhi",Teaching,Oncology,Delhi,Delhi,50,1999,+91-3231948757,3.0
+HOS0008,Warangal Community Hospital,Community,Trauma Care,Warangal,Telangana,750,1983,+91-4911862527,3.2
+HOS0009,"Fisher Multi-Specialty Hospital, Mumbai",Multi-Specialty,Neurology,Mumbai,Maharashtra,1000,1991,+91-1895559797,4.7
+HOS0010,Jaipur Teaching Hospital,Teaching,Oncology,Jaipur,Rajasthan,75,1992,+91-1147104974,3.5
+HOS0011,Kochi Multi-Specialty Hospital,Multi-Specialty,Maternity,Kochi,Kerala,50,2002,+91-6507529170,2.7
+HOS0012,Warangal Specialty Hospital,Specialty,General Medicine,Warangal,Telangana,300,2004,+91-3423667127,3.4
+HOS0013,Bhopal Specialty Hospital,Specialty,Oncology,Bhopal,Madhya Pradesh,75,1977,+91-6842684656,3.7
+HOS0014,Vijayawada General Hospital,General,Neurology,Vijayawada,Andhra Pradesh,750,1978,+91-3212233079,4.3
+HOS0015,Coimbatore General Hospital,General,General Medicine,Coimbatore,Tamil Nadu,100,1999,+91-2440268599,2.8
+HOS0016,Visakhapatnam Multi-Specialty Hospital,Multi-Specialty,Orthopedics,Visakhapatnam,Andhra Pradesh,150,1985,+91-5289078666,3.5
+HOS0017,"Long General Hospital, Bhopal",General,Maternity,Bhopal,Madhya Pradesh,1000,1977,+91-7603137215,4.7
+HOS0018,"Burke Specialty Hospital, Lucknow",Specialty,Maternity,Lucknow,Uttar Pradesh,300,2003,+91-1092815901,4.7
+HOS0019,"Sawyer Multi-Specialty Hospital, Kolkata",Multi-Specialty,Orthopedics,Kolkata,West Bengal,150,2002,+91-9624595711,3.1
+HOS0020,"Sweeney Specialty Hospital, Bhopal",Specialty,Neurology,Bhopal,Madhya Pradesh,50,1969,+91-7774121547,3.5
+HOS0021,Coimbatore Specialty Hospital,Specialty,Orthopedics,Coimbatore,Tamil Nadu,1000,1999,+91-2803852808,4.1
+HOS0022,Visakhapatnam Community Hospital,Community,Nephrology,Visakhapatnam,Andhra Pradesh,500,1985,+91-4148525388,3.5
+HOS0023,Chennai Community Hospital,Community,Cardiology,Chennai,Tamil Nadu,150,1964,+91-8539336338,5.0
+HOS0024,"Vasquez Multi-Specialty Hospital, Jaipur",Multi-Specialty,Pulmonology,Jaipur,Rajasthan,50,1966,+91-0047439575,2.5
+HOS0025,"Friedman Specialty Hospital, Bengaluru",Specialty,General Medicine,Bengaluru,Karnataka,50,1964,+91-5131373537,4.7
+HOS0026,"Hanson Community Hospital, Nashik",Community,Neurology,Nashik,Maharashtra,300,1998,+91-9075116372,3.4
+HOS0027,Chennai General Hospital,General,Trauma Care,Chennai,Tamil Nadu,750,1990,+91-6516761222,3.3
+HOS0028,Bengaluru General Hospital,General,Neurology,Bengaluru,Karnataka,750,2013,+91-0297299752,4.2
+HOS0029,"Dunn General Hospital, Guntur",General,Nephrology,Guntur,Andhra Pradesh,300,1969,+91-2001826330,4.2
+HOS0030,"King Specialty Hospital, Hyderabad",Specialty,Oncology,Hyderabad,Telangana,200,1993,+91-4839548620,3.4
+HOS0031,Mumbai Teaching Hospital,Teaching,Nephrology,Mumbai,Maharashtra,1000,2009,+91-5798682828,3.8
+HOS0032,Kolkata Specialty Hospital,Specialty,Pediatrics,Kolkata,West Bengal,150,2012,+91-8072902227,3.5
+HOS0033,Kolkata Multi-Specialty Hospital,Multi-Specialty,General Medicine,Kolkata,West Bengal,50,1961,+91-9180588871,4.5
+HOS0034,"Ware Teaching Hospital, Bhopal",Teaching,Pulmonology,Bhopal,Madhya Pradesh,300,1988,+91-0334018780,4.5
+HOS0035,"Wolf Teaching Hospital, Coimbatore",Teaching,Oncology,Coimbatore,Tamil Nadu,150,1990,+91-1759898347,3.0
+HOS0036,Delhi Community Hospital,Community,Pulmonology,Delhi,Delhi,50,1990,+91-8878384837,4.8
+HOS0037,Coimbatore General Hospital,General,Oncology,Coimbatore,Tamil Nadu,500,2010,+91-2616751361,4.3
+HOS0038,Delhi Community Hospital,Community,Maternity,Delhi,Delhi,300,1965,+91-3412524273,4.5
+HOS0039,Nagpur Community Hospital,Community,Oncology,Nagpur,Maharashtra,100,1970,+91-1672326865,5.0
+HOS0040,Hyderabad Multi-Specialty Hospital,Multi-Specialty,Trauma Care,Hyderabad,Telangana,100,1999,+91-6355150587,4.6
+HOS0041,"Alexander Teaching Hospital, Bhopal",Teaching,Nephrology,Bhopal,Madhya Pradesh,100,1961,+91-0658948113,2.5
+HOS0042,Chennai Specialty Hospital,Specialty,Orthopedics,Chennai,Tamil Nadu,500,2015,+91-1144024264,3.0
+HOS0043,"Sullivan General Hospital, Delhi",General,Neurology,Delhi,Delhi,1000,1975,+91-8897514026,4.4
+HOS0044,Kochi Teaching Hospital,Teaching,Orthopedics,Kochi,Kerala,50,2018,+91-1401419314,4.3
+HOS0045,Jaipur Specialty Hospital,Specialty,Nephrology,Jaipur,Rajasthan,500,2012,+91-1705864920,4.8
+HOS0046,Guntur Multi-Specialty Hospital,Multi-Specialty,Nephrology,Guntur,Andhra Pradesh,1000,1961,+91-8312402344,4.7
+HOS0047,"Schmidt Specialty Hospital, Mumbai",Specialty,Orthopedics,Mumbai,Maharashtra,100,1969,+91-3478245040,3.7
+HOS0048,"Smith Specialty Hospital, Chennai",Specialty,Nephrology,Chennai,Tamil Nadu,1000,1995,+91-8838737167,3.7
+HOS0049,"Gardner Specialty Hospital, Chennai",Specialty,Pediatrics,Chennai,Tamil Nadu,200,1962,+91-6843353265,4.4
+HOS0050,Guntur Community Hospital,Community,Oncology,Guntur,Andhra Pradesh,750,1980,+91-0201462016,4.0
+HOS0051,Guntur Specialty Hospital,Specialty,Neurology,Guntur,Andhra Pradesh,750,1992,+91-8493407224,3.8
+HOS0052,Bhopal Specialty Hospital,Specialty,Nephrology,Bhopal,Madhya Pradesh,200,1995,+91-7045585304,4.7
+HOS0053,"Robinson Community Hospital, Delhi",Community,Oncology,Delhi,Delhi,500,1988,+91-2056174833,3.3
+HOS0054,"Wagner Community Hospital, Kolkata",Community,Neurology,Kolkata,West Bengal,75,2017,+91-0141269060,4.4
+HOS0055,"Evans Multi-Specialty Hospital, Coimbatore",Multi-Specialty,Orthopedics,Coimbatore,Tamil Nadu,750,1974,+91-3198296572,4.4
+HOS0056,Chennai Community Hospital,Community,Orthopedics,Chennai,Tamil Nadu,150,1970,+91-4920868288,4.3
+HOS0057,Guntur Community Hospital,Community,Pediatrics,Guntur,Andhra Pradesh,300,1980,+91-9093100251,2.7
+HOS0058,Coimbatore General Hospital,General,Trauma Care,Coimbatore,Tamil Nadu,750,2005,+91-6780083740,2.5
+HOS0059,Kochi Specialty Hospital,Specialty,Nephrology,Kochi,Kerala,75,1967,+91-7188181741,5.0
+HOS0060,"Mathis General Hospital, Kolkata",General,Neurology,Kolkata,West Bengal,50,2017,+91-3337761740,4.4
+HOS0061,Pune Multi-Specialty Hospital,Multi-Specialty,Neurology,Pune,Maharashtra,500,1969,+91-9319254499,3.8
+HOS0062,Guntur Specialty Hospital,Specialty,General Medicine,Guntur,Andhra Pradesh,75,1977,+91-2070741374,2.6
+HOS0063,Mumbai Community Hospital,Community,Neurology,Mumbai,Maharashtra,50,2000,+91-8477718341,2.7
+HOS0064,Pune General Hospital,General,Pediatrics,Pune,Maharashtra,75,1976,+91-7047187463,4.7
+HOS0065,Jaipur General Hospital,General,Nephrology,Jaipur,Rajasthan,500,2018,+91-3191284529,3.2
+HOS0066,Bengaluru General Hospital,General,Pediatrics,Bengaluru,Karnataka,75,1970,+91-8415377602,3.2
+HOS0067,Mumbai Multi-Specialty Hospital,Multi-Specialty,Neurology,Mumbai,Maharashtra,1000,2008,+91-0776426565,3.0
+HOS0068,Jaipur Specialty Hospital,Specialty,Neurology,Jaipur,Rajasthan,300,2011,+91-1505561304,2.5
+HOS0069,"King General Hospital, Pune",General,Nephrology,Pune,Maharashtra,1000,1972,+91-1669156404,3.8
+HOS0070,"Garcia Community Hospital, Kolkata",Community,Maternity,Kolkata,West Bengal,750,1994,+91-4234685356,4.6
+HOS0071,Nagpur Specialty Hospital,Specialty,Pediatrics,Nagpur,Maharashtra,150,1981,+91-0688310679,3.0
+HOS0072,Bengaluru Community Hospital,Community,Cardiology,Bengaluru,Karnataka,100,1960,+91-2470822765,2.7
+HOS0073,"Campbell Community Hospital, Pune",Community,Oncology,Pune,Maharashtra,500,2015,+91-4463478612,3.8
+HOS0074,"Day Specialty Hospital, Ahmedabad",Specialty,Neurology,Ahmedabad,Gujarat,50,1989,+91-1387837576,3.0
+HOS0075,"Taylor Community Hospital, Pune",Community,General Medicine,Pune,Maharashtra,300,1995,+91-3312581535,3.3
+HOS0076,"Green Teaching Hospital, Visakhapatnam",Teaching,Orthopedics,Visakhapatnam,Andhra Pradesh,50,1981,+91-9306668364,3.5
+HOS0077,Bhopal Teaching Hospital,Teaching,Pediatrics,Bhopal,Madhya Pradesh,150,1992,+91-5074952883,4.4
+HOS0078,Vijayawada Teaching Hospital,Teaching,Orthopedics,Vijayawada,Andhra Pradesh,500,1997,+91-1436676402,2.6
+HOS0079,Hyderabad Teaching Hospital,Teaching,Pediatrics,Hyderabad,Telangana,75,1997,+91-0679701687,4.9
+HOS0080,Bengaluru Specialty Hospital,Specialty,General Medicine,Bengaluru,Karnataka,750,1969,+91-7313228171,3.2
+HOS0081,"Arnold Multi-Specialty Hospital, Nashik",Multi-Specialty,Nephrology,Nashik,Maharashtra,500,2006,+91-0023904248,4.3
+HOS0082,Guntur Multi-Specialty Hospital,Multi-Specialty,Nephrology,Guntur,Andhra Pradesh,50,2012,+91-6111489364,4.2
+HOS0083,"Walker General Hospital, Kolkata",General,Orthopedics,Kolkata,West Bengal,300,1966,+91-9008474537,3.4
+HOS0084,"Fox Specialty Hospital, Jaipur",Specialty,Cardiology,Jaipur,Rajasthan,1000,2003,+91-8306400376,3.1
+HOS0085,Pune General Hospital,General,Oncology,Pune,Maharashtra,1000,2017,+91-1436537056,3.8
+HOS0086,Guntur General Hospital,General,Trauma Care,Guntur,Andhra Pradesh,200,2011,+91-5630481373,2.7
+HOS0087,Pune Multi-Specialty Hospital,Multi-Specialty,Pediatrics,Pune,Maharashtra,150,2007,+91-4337344197,4.1
+HOS0088,Jaipur Community Hospital,Community,Oncology,Jaipur,Rajasthan,750,2018,+91-9237609260,4.2
+HOS0089,Visakhapatnam Specialty Hospital,Specialty,Pediatrics,Visakhapatnam,Andhra Pradesh,75,1998,+91-3092600267,2.9
+HOS0090,Pune Teaching Hospital,Teaching,Orthopedics,Pune,Maharashtra,50,1990,+91-5112532870,2.7
+HOS0091,Pune General Hospital,General,Trauma Care,Pune,Maharashtra,200,2005,+91-4655721014,3.8
+HOS0092,Jaipur Community Hospital,Community,Oncology,Jaipur,Rajasthan,1000,1972,+91-1561836546,3.3
+HOS0093,"Miller Community Hospital, Vijayawada",Community,Trauma Care,Vijayawada,Andhra Pradesh,75,2012,+91-7358735570,3.8
+HOS0094,Jaipur Teaching Hospital,Teaching,Pediatrics,Jaipur,Rajasthan,75,1997,+91-6360607104,2.7
+HOS0095,Guntur Teaching Hospital,Teaching,Orthopedics,Guntur,Andhra Pradesh,1000,1977,+91-3195545904,4.7
+HOS0096,Coimbatore Multi-Specialty Hospital,Multi-Specialty,Trauma Care,Coimbatore,Tamil Nadu,500,1961,+91-5440910317,2.9
+HOS0097,Bhopal Community Hospital,Community,Orthopedics,Bhopal,Madhya Pradesh,500,1982,+91-7646727204,3.4
+HOS0098,"Carson Teaching Hospital, Chennai",Teaching,General Medicine,Chennai,Tamil Nadu,500,1967,+91-2935575918,4.8
+HOS0099,Delhi General Hospital,General,Neurology,Delhi,Delhi,200,1983,+91-3623610788,2.7
+HOS0100,"Nguyen Specialty Hospital, Nagpur",Specialty,Maternity,Nagpur,Maharashtra,200,2014,+91-6114913167,2.6

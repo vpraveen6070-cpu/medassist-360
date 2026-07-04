@@ -251,11 +251,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const resDept = document.getElementById('res-dept');
     const resSummary = document.getElementById('res-summary');
 
+    // ── HERO DEMO: Dataset-Driven Triage Engine ────────────────────────────
     if (analyzeBtn) {
-        analyzeBtn.addEventListener('click', () => {
+        analyzeBtn.addEventListener('click', async () => {
             const text = demoInput.value.trim();
             if (text.length < 5) {
-                alert("Please describe a symptom first for the AI engine to analyze.");
+                alert('Please describe a symptom first for the AI engine to analyze.');
                 return;
             }
 
@@ -263,54 +264,63 @@ document.addEventListener('DOMContentLoaded', () => {
             uiResults.classList.add('hidden');
             uiLoading.classList.remove('hidden');
             analyzeBtn.disabled = true;
-            analyzeBtn.innerText = "Analyzing...";
+            analyzeBtn.innerText = 'Analyzing...';
 
-            // Simulate Network / AI Processing
-            setTimeout(() => {
-                const lowerText = text.toLowerCase();
-                let urgency = "Level 3: Urgent (Monitor)";
-                let dept = "General Urgent Care";
-                let critical = false;
-                
-                if (lowerText.includes('chest') || lowerText.includes('pain') || lowerText.includes('heart')) {
-                    urgency = "Level 1: Critical (Suspected Cardiac Event)";
-                    dept = "Cardiology ER";
+            await DB.loadPromise;
+
+            let urgency = 'Level 3: Urgent (Monitor)';
+            let dept    = 'General Urgent Care';
+            let critical = false;
+
+            const symptomIds = DB_extractSymptomIds(text);
+            const topDiseases = DB_predictDiseases(symptomIds, 1);
+
+            if (topDiseases.length > 0) {
+                const d = topDiseases[0];
+                const sev = (d.typical_severity || '').toLowerCase();
+                dept = d.category || 'General Medicine';
+
+                if (sev === 'severe' || sev === 'critical') {
+                    urgency = `Level 1: Critical — ${d.disease_name}`;
                     critical = true;
-                } else if (lowerText.includes('speak') || lowerText.includes('weak') || lowerText.includes('face')) {
-                    urgency = "Level 1: Critical (Suspected Stroke)";
-                    dept = "Neurology / Stroke Center";
+                } else if (sev === 'moderate') {
+                    urgency = `Level 2: High — ${d.disease_name}`;
                     critical = true;
-                } else if (lowerText.includes('bleed') || lowerText.includes('cut') || lowerText.includes('blood')) {
-                    urgency = "Level 2: High (Active Bleeding)";
-                    dept = "Trauma Center";
-                    critical = true;
+                } else {
+                    urgency = `Level 3: Routine — ${d.disease_name}`;
                 }
+            } else {
+                // Fallback: keyword-based severity when no DB match
+                const lowerText = text.toLowerCase();
+                if (lowerText.includes('chest') || lowerText.includes('heart')) { urgency = 'Level 1: Critical (Suspected Cardiac Event)'; dept = 'Cardiology ER'; critical = true; }
+                else if (lowerText.includes('bleed') || lowerText.includes('blood')) { urgency = 'Level 2: High (Active Bleeding)'; dept = 'Trauma Center'; critical = true; }
+            }
 
-                const urgencyCard = document.querySelector('.result-card.urgency');
+            const urgencyCard = document.querySelector('.result-card.urgency');
+            if (urgencyCard) {
                 if (critical) {
                     urgencyCard.classList.add('critical');
-                    urgencyCard.style.borderLeftColor = "";
-                    urgencyCard.style.background = "";
+                    urgencyCard.style.borderLeftColor = '';
+                    urgencyCard.style.background = '';
                 } else {
                     urgencyCard.classList.remove('critical');
-                    urgencyCard.style.borderLeftColor = "#ffce00";
-                    urgencyCard.querySelector('.r-value').style.color = "#ffce00";
-                    urgencyCard.querySelector('.r-value').style.textShadow = "none";
-                    urgencyCard.style.background = "rgba(255, 206, 0, 0.1)";
+                    urgencyCard.style.borderLeftColor = '#ffce00';
+                    const rv = urgencyCard.querySelector('.r-value');
+                    if (rv) { rv.style.color = '#ffce00'; rv.style.textShadow = 'none'; }
+                    urgencyCard.style.background = 'rgba(255,206,0,0.1)';
                 }
+            }
 
-                resUrgency.innerText = urgency;
-                resDept.innerText = dept;
-                resSummary.innerText = `Automated Summary: Patient reporting "${text.substring(0, 40)}...". Requesting immediate triage routing to ${dept}.`;
+            resUrgency.innerText = urgency;
+            resDept.innerText    = dept;
+            resSummary.innerText = `Dataset Analysis: "${text.substring(0, 50)}...". AI matched ${symptomIds.length} symptom(s) from knowledge base. Routing to ${dept}.`;
 
-                uiLoading.classList.add('hidden');
-                uiResults.classList.remove('hidden');
-                analyzeBtn.disabled = false;
-                analyzeBtn.innerText = "Analyze Symptoms";
+            uiLoading.classList.add('hidden');
+            uiResults.classList.remove('hidden');
+            analyzeBtn.disabled = false;
+            analyzeBtn.innerText = 'Analyze Symptoms';
 
-                document.getElementById('demo-output-wrapper').scroll({ top: 100, behavior: 'smooth' });
-
-            }, 2500);
+            document.getElementById('demo-output-wrapper')?.scroll({ top: 100, behavior: 'smooth' });
         });
     }
 
@@ -455,110 +465,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ── MEDICINE SEARCH: Dataset-Driven Engine ─────────────────────────────
     if (medicineSearchBtn && medicineSearchInput) {
-        medicineSearchBtn.addEventListener('click', async () => {
+        const runMedSearch = async () => {
             const query = medicineSearchInput.value.trim();
-            if (!query) {
-                alert("Please enter a medicine name.");
-                return;
-            }
+            if (!query) { alert('Please enter a medicine name.'); return; }
 
-            // Hide results, show loading
             medicineSearchResults.style.display = 'none';
             medicineSearchLoading.style.display = 'block';
             medicineSearchBtn.disabled = true;
 
             try {
-                // Real Background Search API Fetch (Mimicking Google Search Engine behavior)
-                const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`;
-                const searchRes = await fetch(searchUrl);
-                let desc = "";
-                let usage = "Usage instructions generally depend on patient age, weight, and medical history. Please refer to the packaging or consult a healthcare professional.";
-                let details = "Consult your healthcare provider for full medical details and potential side-effects.";
-                let isRecommended = true;
-                let foundTitle = query;
+                await DB.loadPromise;
+                const matches = DB_searchMedicines(query, 1);
 
-                if (searchRes.ok) {
-                    const searchData = await searchRes.json();
-                    if (searchData.query && searchData.query.search.length > 0) {
-                        foundTitle = searchData.query.search[0].title; // Best match from the search engine!
-                        
-                        // Fetch the detail abstract of the top search result
-                        const pageUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(foundTitle)}`;
-                        const pageRes = await fetch(pageUrl);
-                        if (pageRes.ok) {
-                            const pageData = await pageRes.json();
-                            desc = pageData.extract; // The actual background search result details
-                            
-                            // Dynamic real-time heuristics based on actual description
-                            const descLower = desc.toLowerCase();
-                            if (descLower.includes("prescription") || descLower.includes("antibiotic") || descLower.includes("schedule") || descLower.includes("controlled") || descLower.includes("rx-only") || descLower.includes("doctor")) {
-                                isRecommended = false;
-                            }
-                            if (descLower.includes("over-the-counter") || descLower.includes("otc") || descLower.includes("supplement")) {
-                                isRecommended = true;
-                            }
-                        }
-                    }
-                }
-
-                if (!desc) {
-                    // Fallback if the search engine completely fails or returns zero results
-                    const qLower = query.toLowerCase();
-                    desc = `We couldn't find extensive public details for "${foundTitle}". It may be a specialized or newly registered medication.`;
-                    
-                    if (qLower.includes("antibiotic") || qLower.includes("amoxicillin") || qLower.includes("azithromycin")) {
-                        isRecommended = false;
-                        desc = "A prescription antibiotic used to treat various bacterial infections.";
-                    } else if (qLower.includes("syrup") || qLower.includes("cough")) {
-                        isRecommended = true;
-                        desc = "Cough suppressant and expectorant syrup used for relief of dry cough and throat irritation.";
-                    } else if (qLower.includes("insulin") || qLower.includes("metformin")) {
-                        isRecommended = false;
-                        desc = "Anti-diabetic medication used to control high blood sugar in patients with diabetes.";
-                    }
-                }
-
-                // Update UI elements
-                const nameEl = document.getElementById('med-res-title');
-                const recEl = document.getElementById('med-res-rec');
-                const descEl = document.getElementById('med-res-desc');
-                const usageEl = document.getElementById('med-res-usage');
+                const nameEl    = document.getElementById('med-res-title');
+                const recEl     = document.getElementById('med-res-rec');
+                const descEl    = document.getElementById('med-res-desc');
+                const usageEl   = document.getElementById('med-res-usage');
                 const detailsEl = document.getElementById('med-res-details');
 
-                nameEl.innerText = foundTitle.charAt(0).toUpperCase() + foundTitle.slice(1);
-                
-                if (isRecommended) {
-                    recEl.innerHTML = '✅ Recommended for General Use (OTC)';
-                    recEl.style.background = 'rgba(0, 255, 100, 0.1)';
-                    recEl.style.color = '#00ff64';
+                if (matches.length > 0) {
+                    const med = matches[0];
+                    const rxRequired = med.requires_prescription === 'True';
+                    const usageCount = (DB.prescriptionsByMedicine[med.medicine_id] || []).length;
+
+                    nameEl.innerText = `${med.brand_name} (${med.generic_name})`;
+
+                    if (rxRequired) {
+                        recEl.innerHTML = '⚠️ Prescription Required (Consult Doctor)';
+                        recEl.style.background = 'rgba(255,170,0,0.1)';
+                        recEl.style.color = '#ffaa00';
+                    } else {
+                        recEl.innerHTML = '✅ Available Over the Counter (OTC)';
+                        recEl.style.background = 'rgba(0,255,100,0.1)';
+                        recEl.style.color = '#00ff64';
+                    }
+
+                    descEl.innerText   = `Drug Class: ${med.drug_class} • Form: ${med.dosage_form} • Strength: ${med.strength_mg}mg\n\nCommon Use: ${med.common_use}\n\nManufacturer: ${med.manufacturer} • Price: ₹${med.price_inr}`;
+                    usageEl.innerText  = `This medicine appears in ${usageCount} active prescription record(s) across our hospital network.`;
+                    detailsEl.innerText = rxRequired
+                        ? 'This is a prescription-only medication. Do not self-medicate. Always follow your doctor\'s dosage instructions.'
+                        : 'Available without a prescription. Follow packaging instructions and do not exceed the recommended dose.';
+
+                    // Show a relevant health tip from dataset
+                    const tips = DB_getHealthTips('General', 1);
+                    if (tips.length && detailsEl) {
+                        detailsEl.innerText += `\n\n💡 Health Tip: ${tips[0].tip_text}`;
+                    }
+
                 } else {
-                    recEl.innerHTML = '⚠️ Prescription Required (Consult Doctor)';
-                    recEl.style.background = 'rgba(255, 170, 0, 0.1)';
-                    recEl.style.color = '#ffaa00';
+                    nameEl.innerText    = query;
+                    recEl.innerHTML     = '❓ Not Found in Knowledge Base';
+                    recEl.style.background = 'rgba(100,116,139,0.1)';
+                    recEl.style.color   = '#94a3b8';
+                    descEl.innerText    = `No record for "${query}" was found in the medicines dataset. Please check the spelling or try a generic name.`;
+                    usageEl.innerText   = 'N/A';
+                    detailsEl.innerText = 'Consult a licensed pharmacist for information on this medicine.';
                 }
-
-                descEl.innerText = desc;
-                usageEl.innerText = usage;
-                detailsEl.innerText = details;
-
-            } catch (error) {
-                console.error("Error fetching medicine data:", error);
+            } catch (err) {
+                console.error('Medicine search error:', err);
                 const descEl = document.getElementById('med-res-desc');
-                if (descEl) descEl.innerText = "Failed to fetch medicine details. Please try again or check your internet connection.";
+                if (descEl) descEl.innerText = 'Failed to query the medicine database. Please try again.';
             } finally {
                 medicineSearchLoading.style.display = 'none';
                 medicineSearchBtn.disabled = false;
                 medicineSearchResults.style.display = 'block';
             }
-        });
+        };
 
-        // Trigger search on Enter key
-        medicineSearchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                medicineSearchBtn.click();
-            }
-        });
+        medicineSearchBtn.addEventListener('click', runMedSearch);
+        medicineSearchInput.addEventListener('keypress', e => { if (e.key === 'Enter') runMedSearch(); });
     }
 
 });
