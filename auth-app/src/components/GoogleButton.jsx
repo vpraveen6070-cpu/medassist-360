@@ -1,12 +1,6 @@
-/**
- * src/components/GoogleButton.jsx
- * --------------------------------
- * "Continue with Google" button using @react-oauth/google.
- * When VITE_GOOGLE_CLIENT_ID is not configured, renders a disabled
- * placeholder with an explanatory tooltip so the UI doesn't break.
- */
-import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from 'react';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase';
 
 const GOOGLE_SVG = (
   <svg className="google-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -17,74 +11,28 @@ const GOOGLE_SVG = (
   </svg>
 );
 
-const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const isConfigured = CLIENT_ID && CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID_HERE';
-
-/**
- * @param {{ onSuccess: (idToken: string) => void, onError: (msg: string) => void, disabled: boolean }} props
- */
 export default function GoogleButton({ onSuccess, onError, disabled }) {
   const [busy, setBusy] = useState(false);
 
-  // useGoogleLogin uses the popup flow and returns an auth-code response;
-  // We use `flow: 'implicit'` to get the ID credential directly client-side.
-  // NOTE: For production prefer Authorization Code + PKCE server-side exchange.
-  const triggerGoogleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      // tokenResponse.access_token is a Google access token (NOT an ID token).
-      // We exchange it for user info, then send to our backend.
-      try {
-        setBusy(true);
-        // Fetch user info using the access token
-        const resp = await fetch(
-          `https://www.googleapis.com/oauth2/v3/userinfo`,
-          { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } }
-        );
-        if (!resp.ok) throw new Error('Failed to fetch Google user info');
-        // We cannot get an ID token this way; send the access_token to our backend
-        // The backend can verify it via Google's tokeninfo endpoint.
-        // For simplicity, pass the access token as `id_token` and handle on backend.
-        onSuccess(tokenResponse.access_token);
-      } catch (err) {
-        onError('Google sign-in failed. Please try again.');
-      } finally {
-        setBusy(false);
-      }
-    },
-    onError: () => {
-      onError('Google sign-in was cancelled or failed.');
+  const handleGoogleLogin = async () => {
+    try {
+      setBusy(true);
+      const result = await signInWithPopup(auth, googleProvider);
+      if (onSuccess) onSuccess(result.user);
+    } catch (error) {
+      console.error(error);
+      if (onError) onError(error.message || 'Google sign-in failed. Please try again.');
+    } finally {
       setBusy(false);
-    },
-    flow: 'implicit',
-  });
-
-  if (!isConfigured) {
-    return (
-      <button
-        type="button"
-        className={`btn-google${busy ? ' btn-google--loading' : ''}`}
-        onClick={() => {
-          setBusy(true);
-          setTimeout(() => {
-            onSuccess('mock_google_token');
-            setBusy(false);
-          }, 1500); // Simulate network delay for Google popup
-        }}
-        disabled={disabled || busy}
-      >
-        {GOOGLE_SVG}
-        {busy ? 'Connecting to Google…' : 'Continue with Google'}
-        <span className="google-badge" style={{background: 'rgba(255,255,255,0.1)', color: '#fff'}}>Demo Mode</span>
-      </button>
-    );
-  }
+    }
+  };
 
   return (
     <button
       id="googleSignInBtn"
       type="button"
       className={`btn-google${busy ? ' btn-google--loading' : ''}`}
-      onClick={() => { setBusy(true); triggerGoogleLogin(); }}
+      onClick={handleGoogleLogin}
       disabled={disabled || busy}
       aria-busy={busy}
     >

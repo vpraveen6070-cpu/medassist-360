@@ -1,12 +1,7 @@
-/**
- * src/pages/RegisterPage.jsx
- * ---------------------------
- * Registration page with full validation, Google sign-up,
- * and automatic login after successful registration.
- */
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { googleAuth, registerUser } from '../api/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../firebase';
 import GoogleButton from '../components/GoogleButton';
 import InputField from '../components/InputField';
 import LoadingOverlay from '../components/LoadingOverlay';
@@ -40,42 +35,37 @@ const makeValidators = (values) => ({
 });
 
 export default function RegisterPage() {
-  const { login }   = useAuth();
-  const [loading, setLoading]   = useState(false);
-  const [loadMsg, setLoadMsg]   = useState('CREATING PROFILE...');
-  const [toast, setToast]       = useState({ message: '', type: 'error' });
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [loadMsg, setLoadMsg] = useState('CREATING PROFILE...');
+  const [toast, setToast] = useState({ message: '', type: 'error' });
 
   const { values, errors, handleChange, handleBlur, validate } = useForm(
     { full_name: '', email: '', password: '', confirm_password: '' },
-    // validators depend on values (for confirm_password cross-check)
-    // so we rebuild them each render — useForm handles this correctly
     makeValidators({ password: '' }),
   );
 
-  const showError   = (msg) => setToast({ message: msg, type: 'error' });
+  const showError = (msg) => setToast({ message: msg, type: 'error' });
   const showSuccess = (msg) => setToast({ message: msg, type: 'success' });
 
-  // Re-derive validators using current values so confirm_password check is live
   const validators = makeValidators(values);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Run validators inline with latest values
     let valid = true;
     for (const [field, fn] of Object.entries(validators)) {
       if (fn(values[field])) { valid = false; }
     }
-    if (!validate()) return; // also sets error state
+    if (!validate()) return;
 
     try {
       setLoadMsg('CREATING PROFILE...');
       setLoading(true);
-      const data = await registerUser({
-        full_name: values.full_name.trim(),
-        email: values.email,
-        password: values.password,
+      const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      await updateProfile(userCredential.user, {
+        displayName: values.full_name.trim(),
       });
-      login(data);
+      
       showSuccess('Account created! Welcome to MedAssist 360.');
       const params = new URLSearchParams(window.location.search);
       const redirectTo = params.get('redirect') || '../index.html';
@@ -84,29 +74,18 @@ export default function RegisterPage() {
       }, 1200);
     } catch (err) {
       setLoading(false);
-      const detail = err.response?.data?.detail;
-      showError(detail || 'Registration failed. Please try again.');
+      showError(err.message || 'Registration failed. Please try again.');
     }
   };
 
-  const handleGoogleSuccess = useCallback(async (accessToken) => {
-    try {
-      setLoadMsg('CONNECTING TO GOOGLE...');
-      setLoading(true);
-      const data = await googleAuth(accessToken);
-      login(data);
-      showSuccess('Google sign-up successful! Welcome!');
-      const params = new URLSearchParams(window.location.search);
-      const redirectTo = params.get('redirect') || '../index.html';
-      setTimeout(() => {
-        window.location.href = redirectTo;
-      }, 1200);
-    } catch (err) {
-      setLoading(false);
-      const detail = err.response?.data?.detail;
-      showError(detail || 'Google sign-in failed. Please try again.');
-    }
-  }, [login]);
+  const handleGoogleSuccess = useCallback(async (user) => {
+    showSuccess('Google sign-up successful! Welcome!');
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get('redirect') || '../index.html';
+    setTimeout(() => {
+      window.location.href = redirectTo;
+    }, 1200);
+  }, []);
 
   return (
     <>
@@ -119,7 +98,6 @@ export default function RegisterPage() {
 
       <section className="auth-section">
         <div className="glass-panel auth-card">
-          {/* ── Header ── */}
           <div className="auth-header">
             <a href="../index.html" className="brand-link" aria-label="Back to MedAssist 360">
               <span className="brand-icon">✧</span>
@@ -130,7 +108,6 @@ export default function RegisterPage() {
             <p className="auth-subtitle">Join the medical intelligence network.</p>
           </div>
 
-          {/* ── Form ── */}
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <InputField
               id="reg-name"
@@ -194,17 +171,14 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          {/* ── Divider ── */}
           <div className="or-divider"><span>or</span></div>
 
-          {/* ── Google ── */}
           <GoogleButton
             onSuccess={handleGoogleSuccess}
             onError={showError}
             disabled={loading}
           />
 
-          {/* ── Footer ── */}
           <div className="auth-footer">
             <span>Already a member?</span>
             <Link to="/login" className="auth-footer-link">Sign In securely</Link>

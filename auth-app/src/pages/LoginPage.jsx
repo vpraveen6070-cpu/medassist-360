@@ -1,18 +1,7 @@
-/**
- * src/pages/LoginPage.jsx
- * ------------------------
- * Full login page with:
- * - Email + password form (with field validation)
- * - Show/hide password toggle
- * - "Continue with Google" button
- * - Forgot Password placeholder
- * - Link to Register
- * - Loading overlay on submit
- * - Toast for success/error feedback
- */
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { googleAuth, loginUser } from '../api/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import GoogleButton from '../components/GoogleButton';
 import InputField from '../components/InputField';
 import LoadingOverlay from '../components/LoadingOverlay';
@@ -20,7 +9,6 @@ import Toast from '../components/Toast';
 import { useAuth } from '../hooks/useAuth';
 import { useForm } from '../hooks/useForm';
 
-// ── Field validators ──────────────────────────────────────────────────────────
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validators = {
@@ -36,11 +24,11 @@ const validators = {
 };
 
 export default function LoginPage() {
-  const { login }    = useAuth();
-  const navigate     = useNavigate();
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [loadMsg,  setLoadMsg] = useState('AUTHENTICATING...');
-  const [toast, setToast]      = useState({ message: '', type: 'error' });
+  const [loadMsg, setLoadMsg] = useState('AUTHENTICATING...');
+  const [toast, setToast] = useState({ message: '', type: 'error' });
 
   const { values, errors, handleChange, handleBlur, validate } = useForm(
     { email: '', password: '' },
@@ -50,7 +38,6 @@ export default function LoginPage() {
   const showError = (msg) => setToast({ message: msg, type: 'error' });
   const showSuccess = (msg) => setToast({ message: msg, type: 'success' });
 
-  // ── Email / password submit ─────────────────────────────────────────────
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -58,8 +45,7 @@ export default function LoginPage() {
     try {
       setLoadMsg('AUTHENTICATING...');
       setLoading(true);
-      const data = await loginUser({ email: values.email, password: values.password });
-      login(data);
+      await signInWithEmailAndPassword(auth, values.email, values.password);
       showSuccess('Login successful! Redirecting…');
       const params = new URLSearchParams(window.location.search);
       const redirectTo = params.get('redirect') || '../index.html';
@@ -68,30 +54,18 @@ export default function LoginPage() {
       }, 1200);
     } catch (err) {
       setLoading(false);
-      const detail = err.response?.data?.detail;
-      showError(detail || 'Login failed. Please try again.');
+      showError(err.message || 'Login failed. Please try again.');
     }
   };
 
-  // ── Google OAuth success ────────────────────────────────────────────────
-  const handleGoogleSuccess = useCallback(async (accessToken) => {
-    try {
-      setLoadMsg('CONNECTING TO GOOGLE...');
-      setLoading(true);
-      const data = await googleAuth(accessToken);
-      login(data);
-      showSuccess('Google sign-in successful! Redirecting…');
-      const params = new URLSearchParams(window.location.search);
-      const redirectTo = params.get('redirect') || '../index.html';
-      setTimeout(() => {
-        window.location.href = redirectTo;
-      }, 1200);
-    } catch (err) {
-      setLoading(false);
-      const detail = err.response?.data?.detail;
-      showError(detail || 'Google sign-in failed. Please try again.');
-    }
-  }, [login]);
+  const handleGoogleSuccess = useCallback(async (user) => {
+    showSuccess('Google sign-in successful! Redirecting…');
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get('redirect') || '../index.html';
+    setTimeout(() => {
+      window.location.href = redirectTo;
+    }, 1200);
+  }, []);
 
   return (
     <>
@@ -104,7 +78,6 @@ export default function LoginPage() {
 
       <section className="auth-section">
         <div className="glass-panel auth-card">
-          {/* ── Header ── */}
           <div className="auth-header">
             <a href="../index.html" className="brand-link" aria-label="Back to MedAssist 360">
               <span className="brand-icon">✧</span>
@@ -115,7 +88,6 @@ export default function LoginPage() {
             <p className="auth-subtitle">Secure access to your medical intelligence dashboard.</p>
           </div>
 
-          {/* ── Form ── */}
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <InputField
               id="login-email"
@@ -144,7 +116,6 @@ export default function LoginPage() {
               required
             />
 
-            {/* Options row */}
             <div className="form-options">
               <label className="checkbox-group">
                 <input type="checkbox" defaultChecked />
@@ -165,17 +136,14 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* ── Divider ── */}
           <div className="or-divider"><span>or</span></div>
 
-          {/* ── Google ── */}
           <GoogleButton
             onSuccess={handleGoogleSuccess}
             onError={showError}
             disabled={loading}
           />
 
-          {/* ── Footer ── */}
           <div className="auth-footer">
             <span>Want to be a member?</span>
             <Link to="/register" className="auth-footer-link">Create an Account</Link>
