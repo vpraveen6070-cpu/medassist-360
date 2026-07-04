@@ -200,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const prescriptions = r.prescriptionInsights;
         const specialists   = r.specialists;
         const tips          = r.healthTips;
+        const reasoning     = r.reasoning;
 
         // -- Risk Level Display --
         const levelDisplay  = document.getElementById('risk-level-display');
@@ -237,7 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${syms.exact.map(s => `<span style="background:rgba(124,58,237,0.15); color:#c4b5fd; padding:3px 10px; border-radius:20px; font-size:0.82rem;">${s}</span>`).join('')}
                     ${syms.fuzzy.map(s => `<span style="background:rgba(100,116,139,0.15); color:#94a3b8; padding:3px 10px; border-radius:20px; font-size:0.82rem;">${s} ~</span>`).join('')}
                 </div>
-                ${syms.bodyLocations.length ? `<div style="font-size:0.78rem; color:#64748b;">Body areas: ${syms.bodyLocations.filter(Boolean).join(', ')}</div>` : ''}
+                ${syms.bodyLocations.length ? `<div style="font-size:0.78rem; color:#64748b; margin-bottom:10px;">Body areas: ${syms.bodyLocations.filter(Boolean).join(', ')}</div>` : ''}
+                
+                ${reasoning ? `
+                <div style="font-size:0.82rem; color:#cbd5e1; border-top:1px solid rgba(124,58,237,0.15); padding-top:10px; line-height:1.5;">
+                    <strong style="color:#a78bfa; display:block; margin-bottom:4px; font-size:0.8rem;">🧠 SYMPTOM CORRELATION:</strong>
+                    ${reasoning.symptomCorrelation}
+                </div>` : ''}
             </li>`;
         }
 
@@ -336,6 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="font-size:0.78rem; color:#64748b;">${d.specialization} · ${d.qualification} · ${d.experience} yrs</div>
             </div>`).join('')}
+            ${reasoning ? `
+            <div style="font-size:0.82rem; color:#cbd5e1; border-top:1px solid rgba(249,115,22,0.15); padding-top:10px; margin-top:8px; line-height:1.5;">
+                <strong style="color:#ffedd5; display:block; margin-bottom:4px; font-size:0.78rem;">💡 RECOMMENDATION RATIONALE:</strong>
+                ${reasoning.recommendationExplanation}
+            </div>` : ''}
         </li>`;
 
         // Section 6: Health Tips
@@ -344,6 +356,23 @@ document.addEventListener('DOMContentLoaded', () => {
             <li style="margin-bottom:16px; padding:14px; background:rgba(139,92,246,0.05); border-radius:10px; border:1px solid rgba(139,92,246,0.12); list-style:none;">
                 <div style="font-size:0.78rem; color:#8b5cf6; font-weight:700; letter-spacing:1px; margin-bottom:8px;">💡 HEALTH TIPS FROM KNOWLEDGE BASE</div>
                 ${tips.map(t => `<div style="padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.85rem; color:#94a3b8; line-height:1.6;">→ ${t}</div>`).join('')}
+            </li>`;
+        }
+
+        // Section 6b: Precautions & Follow-up Actions
+        if (reasoning && ((reasoning.precautions && reasoning.precautions.length > 0) || (reasoning.followUpActions && reasoning.followUpActions.length > 0))) {
+            html += `
+            <li style="margin-bottom:16px; padding:14px; background:rgba(239,68,68,0.03); border-radius:10px; border:1px solid rgba(239,68,68,0.15); list-style:none;">
+                ${reasoning.precautions && reasoning.precautions.length > 0 ? `
+                <div style="margin-bottom:12px;">
+                    <div style="font-size:0.78rem; color:#ef4444; font-weight:700; letter-spacing:1px; margin-bottom:6px;">⚠️ IMPORTANT PRECAUTIONS</div>
+                    ${reasoning.precautions.map(p => `<div style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:4px;">• ${p}</div>`).join('')}
+                </div>` : ''}
+                ${reasoning.followUpActions && reasoning.followUpActions.length > 0 ? `
+                <div style="border-top:1px solid rgba(255,255,255,0.05); padding-top:10px;">
+                    <div style="font-size:0.78rem; color:#3b82f6; font-weight:700; letter-spacing:1px; margin-bottom:6px;">📋 RECOMMENDED FOLLOW-UP ACTIONS</div>
+                    ${reasoning.followUpActions.map(f => `<div style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin-bottom:4px;">• ${f}</div>`).join('')}
+                </div>` : ''}
             </li>`;
         }
 

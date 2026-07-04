@@ -29,6 +29,66 @@ window.MedAssistAI = (function () {
         'General':         ['General Physician'],
     };
 
+    const PRECAUTIONS_BY_CATEGORY = {
+        'Cardiovascular': [
+            'Avoid physical strain, heavy lifting, or sudden posture changes.',
+            'Monitor blood pressure, heart rate, and report any sudden spikes.',
+            'Keep emergency contacts and relevant medication (e.g. aspirin) close by.'
+        ],
+        'Respiratory': [
+            'Ensure adequate room ventilation; avoid exposure to smoke, dust, or cold dry drafts.',
+            'Remain sitting upright if breathing feels shallow or labored.',
+            'Check blood oxygen levels (SpO2) using a pulse oximeter if available.'
+        ],
+        'Neurological': [
+            'Rest in a quiet, dimly lit, and noise-free room to limit sensory load.',
+            'Do not drive, climb stairs, or operate machinery while symptomatic.',
+            'Have someone keep watch in case of coordination changes or lapses in awareness.'
+        ],
+        'Digestive': [
+            'Drink small sips of water or oral rehydration solutions to prevent dehydration.',
+            'Avoid solid food, caffeine, dairy, greasy, or highly acidic products.',
+            'Avoid taking NSAIDs (like Ibuprofen) which can worsen gastric irritation.'
+        ],
+        'Infectious': [
+            'Restrict contact with others and isolate in a well-ventilated room.',
+            'Wear a face cover when around others; wash hands thoroughly and frequently.',
+            'Do not share personal items (utensils, towels, bedding).'
+        ],
+        'General': [
+            'Get absolute physical rest and maintain solid fluid intake (water, warm decaf teas).',
+            'Log your body temperature every 4 hours to track fever trajectory.',
+            'Avoid starting new OTC medications unless authorized by a clinical provider.'
+        ]
+    };
+
+    const FOLLOW_UPS_BY_CATEGORY = {
+        'Cardiovascular': [
+            'Schedule a diagnostic checkup (ECG/Echocardiogram) with a clinic.',
+            'Follow up with a Cardiologist for custom diagnostic tests.'
+        ],
+        'Respiratory': [
+            'Get a chest auscultation or Spirometry test if symptoms continue.',
+            'Consult a Pulmonologist for clinical lung evaluation.'
+        ],
+        'Neurological': [
+            'Track symptom duration, frequency, and potential triggers in a health journal.',
+            'Schedule a specialist review with a Neurologist.'
+        ],
+        'Digestive': [
+            'Request an abdominal examination or ultrasound if discomfort doesn\'t resolve.',
+            'Consult a Gastroenterologist for evaluation.'
+        ],
+        'Infectious': [
+            'Consult a General Physician or Infectious Disease expert for standard lab work (e.g. CBC, blood cultures).',
+            'Complete full medication course even if you start feeling better.'
+        ],
+        'General': [
+            'Book an appointment with a General Physician for full clinical analysis.',
+            'Observe and log other emerging symptoms over the next 48 hours.'
+        ]
+    };
+
     // ── Urgency escalation triggers ───────────────────────────────────────────
     const EMERGENCY_WORDS = ['chest pain', 'chest tightness', 'cannot breathe', "can't breathe",
         'difficulty breathing', 'shortness of breath', 'heart attack', 'stroke',
@@ -270,6 +330,19 @@ window.MedAssistAI = (function () {
         const category       = disease?.category || 'General';
         const specializations = CATEGORY_SPECIALIST[category] || ['General Physician'];
 
+        // ── Clinical Reasoning Engine ──────────────────────────────────────────
+        const catPrecautions = PRECAUTIONS_BY_CATEGORY[category] || PRECAUTIONS_BY_CATEGORY['General'];
+        const catFollowUps   = FOLLOW_UPS_BY_CATEGORY[category] || FOLLOW_UPS_BY_CATEGORY['General'];
+
+        const bodyParts = [...new Set(matchedSymptoms.map(s => s.bodyLocation))];
+        const symptomCorrelation = matchedSymptoms.length > 1
+            ? `Your reported symptoms of ${matchedSymptoms.map(s => s.symptomName).join(', ')} are correlated under the ${category} category, typically localizing to the ${bodyParts.filter(Boolean).join('/')} region(s). The co-occurrence of these markers points to a ${confidence}% match for ${disease ? disease.disease_name : 'the assessed condition'}.`
+            : `Your symptom of ${matchedSymptoms[0]?.symptomName || 'indisposition'} is primarily associated with the ${category} system (localized to the ${bodyParts[0] || 'general area'}).`;
+
+        const recommendationExplanation = disease
+            ? `Based on the predicted condition (${disease.disease_name}), we recommend consulting a specialist in ${specializations[0]} (e.g. ${doctors[0] ? doctors[0].full_name : 'a specialist'} with ${doctors[0] ? doctors[0].years_of_experience : 'extensive'} years of experience). For physical validation, ${hospitals[0] ? hospitals[0].hospital_name : 'the recommended facility'} is preferred due to its focus on ${hospitals[0] ? hospitals[0].specialty_focus : category} and high user rating of ${hospitals[0] ? hospitals[0].rating : '4.5'}.`
+            : `Please consult a General Physician for diagnosis.`;
+
         // ── Urgency level ─────────────────────────────────────────────────────
         let urgencyLevel, urgencyColor, urgencyIcon;
         if (isEmergency || disease?.typical_severity === 'Critical') {
@@ -366,18 +439,27 @@ window.MedAssistAI = (function () {
             // ── Prescription Insights ─────────────────────────────────────────
             prescriptionInsights: prescriptions,
 
+            // ── Clinical Reasoning Insights ──────────────────────────────────
+            reasoning: {
+                symptomCorrelation: symptomCorrelation,
+                recommendationExplanation: recommendationExplanation,
+                precautions: catPrecautions,
+                followUpActions: catFollowUps
+            },
+
             // ── Natural language summary (for display in AI chat bubble) ──────
             nlSummary: _buildNLSummary({
                 input, exactSymptoms, fuzzySymptoms, disease, confidence,
                 predictions, medicines, prescriptions, specializations, urgencyLevel, urgencyIcon,
-                category, validation, healthTips, isEmergency
+                category, validation, healthTips, isEmergency,
+                reasoning: { symptomCorrelation, recommendationExplanation, precautions: catPrecautions, followUpActions: catFollowUps }
             }),
         };
     }
 
     function _buildNLSummary({ input, exactSymptoms, fuzzySymptoms, disease, confidence,
         predictions, medicines, prescriptions, specializations, urgencyLevel, urgencyIcon,
-        category, validation, healthTips, isEmergency }) {
+        category, validation, healthTips, isEmergency, reasoning }) {
 
         const lines = [];
 
@@ -450,6 +532,24 @@ window.MedAssistAI = (function () {
             lines.push(`**💡 Health Tips (${category}):**`);
             healthTips.slice(0, 2).forEach(t => lines.push(`- ${t.tip_text}`));
             lines.push('');
+        }
+
+        // Precautionary Guidance & Clinical Reasoning
+        if (reasoning) {
+            lines.push(`**🧠 Clinical Reasoning & Insights:**`);
+            lines.push(`- *Symptom Correlation:* ${reasoning.symptomCorrelation}`);
+            lines.push(`- *Specialist Rationale:* ${reasoning.recommendationExplanation}`);
+            lines.push('');
+            if (reasoning.precautions && reasoning.precautions.length > 0) {
+                lines.push(`**⚠️ Important Precautions:**`);
+                reasoning.precautions.forEach(p => lines.push(`- ${p}`));
+                lines.push('');
+            }
+            if (reasoning.followUpActions && reasoning.followUpActions.length > 0) {
+                lines.push(`**📋 Recommended Follow-up Actions:**`);
+                reasoning.followUpActions.forEach(f => lines.push(`- ${f}`));
+                lines.push('');
+            }
         }
 
         // Urgency advisory
